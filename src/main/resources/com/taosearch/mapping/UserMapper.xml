@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taosearch.dao.UserDao">
+	<select id="getItemListForPage" parameterType="map"
+		resultType="com.taosearch.model.SysUser">
+		SELECT
+		s.`user_id`,s.`username`,s.`createtime`,s.`tel`,t.`team_name`
+		team,s.`team_id`,s.state,s.admin
+		FROM
+		t_sys_user s
+		LEFT JOIN t_team t ON
+		s.`team_id`=t.`team_id`
+		WHERE
+		s.`state`='1'
+		LIMIT
+		#{pagestart},#{rows}
+	</select>
+	<select id="getTeamListForPage" parameterType="map"
+		resultType="com.taosearch.model.TeamInfo">
+		SELECT
+		t.team_id,t.team_name,u.`username`
+		team_leader_name,t.`team_leader`,t.team_remark,t.team_state,t.createtime,u1.`username`
+		createuser,t.updatetime,u2.`username` updateuser
+		FROM
+		t_team t
+		LEFT JOIN
+		t_sys_user u ON t.`team_leader`=u.`user_id`
+		LEFT JOIN t_sys_user u1 ON
+		t.`createuser`=u1.`user_id`
+		LEFT JOIN t_sys_user u2 ON
+		t.`updateuser`=u2.`user_id`
+		WHERE
+		t.team_state='1'
+		LIMIT
+		#{pagestart},#{rows}
+	</select>
+	<select id="getTeamCount" parameterType="map" resultType="int">
+		select
+		count(*)
+		from
+		t_team
+		where
+		team_state='1'
+	</select>
+	<select id="getUserTeams" resultType="com.taosearch.model.TeamInfo">
+		select team_id,team_name
+		from t_team
+		WHERE team_state='1'
+	</select>
+	<select id="getItemCount" parameterType="map" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		t_sys_user s
+		LEFT JOIN t_team t ON s.`team_id`=t.`team_id`
+		WHERE
+		s.`state`='1'
+	</select>
+	<select id="getUserAuthorizationList" resultType="com.taosearch.model.Authorization">
+		SELECT * FROM
+		t_authorization
+	</select>
+	<select id="getAuthorizations" parameterType="int" resultType="String">
+		SELECT a.`authorization`
+		FROM t_user_authorization_cfg
+		c,t_authorization a
+		WHERE c.`authorization_id`=a.`id` AND
+		c.`user_id`=#{user_id}
+	</select>
+	<update id="updateUserInfo" parameterType="com.taosearch.model.SysUser">
+		update t_sys_user
+		<set>
+			updatetime=now(),
+			<if test="tel != null">
+				tel=#{tel},
+			</if>
+			team_id=#{team_id},
+			<if test="admin != null and admin != ''">
+				admin=#{admin},
+			</if>
+			updateuser=#{updateuser}
+		</set>
+		where
+		user_id=#{user_id}
+	</update>
+	<update id="updateTeamInfo" parameterType="com.taosearch.model.TeamInfo">
+		update t_team
+		<set>
+			updatetime=now(),
+			<if test="team_remark != null">
+				team_remark=#{team_remark},
+			</if>
+			updateuser=#{updateuser},
+			team_leader=#{team_leader}
+		</set>
+		where
+		team_id=#{team_id}
+	</update>
+	<update id="updateUserDefPwd" parameterType="com.taosearch.model.SysUser">
+		update t_sys_user
+		<set>
+			updatetime=now(),
+			pwd=#{pwd},
+			updateuser=#{updateuser}
+		</set>
+		where
+		user_id=#{user_id}
+	</update>
+	<update id="updateUserState" parameterType="com.taosearch.model.SysUser">
+		update t_sys_user
+		<set>
+			updatetime=now(),
+			state=#{state},
+			updateuser=#{updateuser}
+		</set>
+		where
+		user_id=#{user_id}
+	</update>
+	<update id="updateTeamState" parameterType="com.taosearch.model.TeamInfo">
+		update t_team
+		<set>
+			updatetime=now(),
+			team_state=#{team_state},
+			updateuser=#{updateuser}
+		</set>
+		where
+		team_id=#{team_id}
+	</update>
+	<select id="getUserNameCount" resultType="int" parameterType="String">
+		select count(*)
+		from t_sys_user
+		where
+		username=#{username}
+	</select>
+	<select id="getTeamNameCount" resultType="int" parameterType="String">
+		select count(*)
+		from t_team
+		where
+		team_name=#{team_name}
+	</select>
+	<select id="getTeamLearderselectdata" resultType="com.taosearch.model.SysUser">
+		SELECT
+		user_id,username
+		FROM
+		t_sys_user
+		WHERE
+		state='1'
+	</select>
+	<select id="getLeaderByUserId" resultType="com.taosearch.model.SysUser"
+		parameterType="String">
+		SELECT
+		t.`team_name` team,u.`username`
+		FROM
+		t_team t
+		LEFT
+		JOIN t_sys_user u ON t.`team_leader`=u.`user_id`
+		WHERE
+		t.`team_leader`=#{team_leader}
+	</select>
+	<insert id="saveUserInfo" parameterType="com.taosearch.model.SysUser">
+		insert t_sys_user
+		<set>
+			user_id=#{user_id},
+			pwd=#{pwd},
+			state=#{state},
+			createuser=#{createuser},
+			createtime=now(),
+			<if test="username != null and username != ''">
+				username=#{username},
+			</if>
+			<if test="admin != null and admin != ''">
+				admin=#{admin},
+			</if>
+			<if test="tel != null and tel != ''">
+				tel=#{tel},
+			</if>
+			<if test="team_id != null and team_id != ''">
+				team_id=#{team_id},
+			</if>
+			updatetime=now()
+		</set>
+	</insert>
+	<insert id="saveTeamInfo" parameterType="com.taosearch.model.TeamInfo">
+		insert t_team
+		<set>
+			team_id=#{team_id},
+			team_name=#{team_name},
+			team_state=#{team_state},
+			createuser=#{createuser},
+			createtime=now(),
+			<if test="team_remark != null and team_remark != ''">
+				team_remark=#{team_remark},
+			</if>
+			<if test="team_leader != null and team_leader != ''">
+				team_leader=#{team_leader},
+			</if>
+			updatetime=now()
+		</set>
+	</insert>
+	<select id="getTeamUserById" parameterType="String"
+		resultType="com.taosearch.model.SysUser">
+		select * from t_sys_user where team_id=#{team_id}
+	</select>
+</mapper>

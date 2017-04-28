@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taosearch.dao.LoginDao">
+	<select id="doLogin" parameterType="com.taosearch.model.SysUser"
+		resultType="com.taosearch.model.SysUser">
+		SELECT
+		s.user_id,s.username,s.pwd,s.createtime,s.updatetime,t.`team_name`
+		team,s.`tel`,s.admin,s.team_id
+		FROM t_sys_user s
+		LEFT JOIN t_team t ON
+		s.`team_id`=t.`team_id`
+		where 1=1
+		<if test="state != null and state != '' ">and state = #{state} </if>
+		and username = #{username}
+		and pwd = #{pwd}
+	</select>
+	<select id="getUserSimpleAuthorization" parameterType="String"
+		resultType="com.taosearch.model.SimpleAuthorization">
+		SELECT
+		s.`user_id`,s.`admin`,t.`team_id`
+		FROM
+		t_sys_user s
+		LEFT JOIN t_team t ON s.`user_id`=t.`team_leader`
+		WHERE
+		s.`user_id`=#{user_id}
+	</select>
+</mapper>
