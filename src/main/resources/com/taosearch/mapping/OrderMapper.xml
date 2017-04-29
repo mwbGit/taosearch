@@ -158,13 +158,15 @@
 		<if test="state != null and state != '' and state != '000'.toString() ">and state = #{state} </if>
 		<if test="vo.item_type != null and vo.item_type != ''">and item_type = #{vo.item_type} </if>
 		<if test="vo.item_no != null and vo.item_no != ''">and item_no = #{vo.item_no} </if>
+		<if test="vo.qq != null and vo.qq != ''">and qq LIKE CONCAT('%', #{vo.qq},'%')</if>
 		<if test="vo.item_name != null and vo.item_name !=''"> and item_name like CONCAT('%',#{vo.item_name},'%') </if>
 		<if test="vo.query_start_time != null and vo.query_start_time !=''"> 
 			<![CDATA[and createtime>=#{vo.query_start_time}]]>
 		</if>
 		<if test="vo.query_end_time != null and vo.query_end_time !=''"> 
-			<![CDATA[and createtime<=#{vo.query_end_time}]]>
+			<![CDATA[and createtime<= DATE_ADD(#{vo.query_end_time},INTERVAL 1 DAY)]]>
 		</if>
+
 		AND
 		user_id IN(SELECT user_id FROM
 		t_sys_user
@@ -174,12 +176,19 @@
 		<if test="vo.team_id != null and vo.team_id != ''">and team_id = #{vo.team_id} </if>
 		<if test="vo.user_id != null and vo.user_id != ''">and user_id = #{vo.user_id} </if>
 		))i
-		JOIN t_coupon c ON i.`coupon_id`=c.`coupon_id`
+		INNER JOIN t_coupon c ON i.`coupon_id`=c.`coupon_id`
 		JOIN
 		t_sys_user s ON
 		i.`user_id`=s.`user_id`
-		WHERE
+		<where>
 		1=1
+		<if test="vo.coupon_get_num_min != null">
+			<![CDATA[and c.coupon_get_num>=#{vo.coupon_get_num_min}]]>
+		</if>
+		<if test="vo.coupon_get_num_max != null">
+			<![CDATA[and c.coupon_get_num<=#{vo.coupon_get_num_max}]]>
+		</if>
+		</where>
 		ORDER BY i.`updatetime` DESC
 		LIMIT
 		#{pagestart},#{rows}
@@ -192,27 +201,37 @@
 		<if test="state != null and state != '' and state != '000'.toString() ">and state = #{state} </if>
 		<if test="vo.item_type != null and vo.item_type != ''">and item_type = #{vo.item_type} </if>
 		<if test="vo.item_no != null and vo.item_no != ''">and item_no = #{vo.item_no} </if>
+		<if test="vo.qq != null and vo.qq != ''">and qq LIKE CONCAT('%', #{vo.qq},'%')</if>
 		<if test="vo.item_name != null and vo.item_name !=''"> and item_name like CONCAT('%',#{vo.item_name},'%') </if>
-		<if test="vo.query_start_time != null and vo.query_start_time !=''"> 
+		<if test="vo.query_start_time != null and vo.query_start_time !=''">
 			<![CDATA[and createtime>=#{vo.query_start_time}]]>
 		</if>
-		<if test="vo.query_end_time != null and vo.query_end_time !=''"> 
-			<![CDATA[and createtime<=#{vo.query_end_time}]]>
+		<if test="vo.query_end_time != null and vo.query_end_time !=''">
+			<![CDATA[and createtime<= DATE_ADD(#{vo.query_end_time},INTERVAL 1 DAY)]]>
 		</if>
+
 		AND
-		user_id IN(SELECT
-		user_id FROM t_sys_user
+		user_id IN(SELECT user_id FROM
+		t_sys_user
 		WHERE 1=1
 		<if test="sa.authorization == '1'.toString() ">and user_id = #{sa.user_id} </if>
 		<if test="sa.authorization == '2'.toString() ">and team_id = #{sa.team_id} </if>
 		<if test="vo.team_id != null and vo.team_id != ''">and team_id = #{vo.team_id} </if>
 		<if test="vo.user_id != null and vo.user_id != ''">and user_id = #{vo.user_id} </if>
 		))i
-		JOIN t_coupon c ON i.`coupon_id`=c.`coupon_id`
-		JOIN t_sys_user s ON
+		INNER JOIN t_coupon c ON i.`coupon_id`=c.`coupon_id`
+		JOIN
+		t_sys_user s ON
 		i.`user_id`=s.`user_id`
-		WHERE
-		1=1
+		<where>
+			1=1
+			<if test="vo.coupon_get_num_min != null">
+				<![CDATA[and c.coupon_get_num>=#{vo.coupon_get_num_min}]]>
+			</if>
+			<if test="vo.coupon_get_num_max != null">
+				<![CDATA[and c.coupon_get_num<=#{vo.coupon_get_num_max}]]>
+			</if>
+		</where>
 	</select>
 	<select id="getitemInfoById" parameterType="String" resultMap="ItemInfoMap">
 		select
@@ -516,13 +535,13 @@
 			<![CDATA[and createtime>=#{vo.create_start_time}]]>
 		</if>
 		<if test="vo.create_end_time != null and vo.create_end_time !=''"> 
-			<![CDATA[and createtime<=#{vo.create_end_time}]]>
+			<![CDATA[and createtime<=DATE_ADD(#{vo.create_end_time},INTERVAL 1 DAY)]]>
 		</if>
 		<if test="vo.update_start_time != null and vo.update_start_time !=''"> 
 			<![CDATA[and updatetime>=#{vo.update_start_time}]]>
 		</if>
 		<if test="vo.update_end_time != null and vo.update_end_time !=''"> 
-			<![CDATA[and updatetime<=#{vo.update_end_time}]]>
+			<![CDATA[and updatetime<=DATE_ADD(#{vo.update_end_time},INTERVAL 1 DAY)]]>
 		</if>
 		AND
 		user_id IN(SELECT user_id FROM

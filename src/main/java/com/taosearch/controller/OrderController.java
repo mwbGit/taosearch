@@ -63,6 +63,24 @@ public class OrderController {
 	@Autowired
 	private OrderService OrderService;
 
+	@RequestMapping("/claim")
+	@ResponseBody
+	public void claim(String id) {
+		Item item = new Item();
+		item.setItem_id(id);
+		item.setState("002");
+
+		OrderService.updateItem(item);
+	}
+	@RequestMapping("/cancelAudit")
+	@ResponseBody
+	public void cancelAudit(String id) {
+		Item item = new Item();
+		item.setItem_id(id);
+		item.setState("001");
+
+		OrderService.updateItem(item);
+	}
 	@RequestMapping("/getItemTypes")
 	@ResponseBody
 	public List<ItemType> getItemTypes() {
@@ -274,6 +292,15 @@ public class OrderController {
 		map.put("vo", vo);
 
 		List<Item> list = OrderService.getItemListForPage(map);
+
+		if (list != null) {
+			for (Item item : list) {
+				if(item.getState().equals("008") && sa.isShowClaim()) {
+					item.setShowClaim(true);
+				}
+			}
+		}
+
 		int count = OrderService.getItemCount(map);
 		int totalpage = ((count - 1) / rows) + 1;
 		result.setPage(page);

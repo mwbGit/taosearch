@@ -10,11 +10,7 @@ package com.taosearch.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -308,7 +304,34 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<NavStateCount> getnavstateinfo(SimpleAuthorization sa) {
-		return OrderDao.getnavstateinfo(sa);
+		List<NavStateCount> stateCounts = OrderDao.getnavstateinfo(sa);
+		List<NavStateCount> resoult = new ArrayList<>();
+		Map<String, NavStateCount> map = new HashMap<>();
+
+		for (NavStateCount stateCount : stateCounts) {
+			map.put(stateCount.getState(),stateCount);
+		}
+
+		resoult.add(map.get("000"));
+		resoult.add(map.get("001"));
+		resoult.add(map.get("008"));
+		resoult.add(map.get("002"));
+		resoult.add(map.get("003"));
+		resoult.add(map.get("009"));
+		resoult.add(map.get("004"));
+		resoult.add(map.get("005"));
+		resoult.add(map.get("006"));
+		resoult.add(map.get("007"));
+		resoult.add(map.get("112"));
+		resoult.add(map.get("667"));
+		resoult.add(map.get("999"));
+
+		return resoult;
+	}
+
+	@Override
+	public void updateItem(Item item) {
+		OrderDao.updateItemAndAddLog(item);
 	}
 
 	@Override

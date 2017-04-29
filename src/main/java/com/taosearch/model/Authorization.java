@@ -8,9 +8,6 @@
 */
 package com.taosearch.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
 * @ClassName: Authorization
 * @Description: TODO(这里用一句话描述这个类的作用)
@@ -18,9 +15,23 @@ import lombok.Setter;
 * @date 2017年3月23日 下午4:35:24
 *
 */
-@Getter
-@Setter
 public class Authorization {
 	private Integer id;
 	private String authorization;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getAuthorization() {
+		return authorization;
+	}
+
+	public void setAuthorization(String authorization) {
+		this.authorization = authorization;
+	}
 }

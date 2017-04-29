@@ -226,9 +226,13 @@ function initGrid() {
 									formatter : function(val, row) {
 										var str = "<a href='#' onclick='skipInfo(\""
 												+ row.item_id + "\")'>查看</a>";
-										if(row.state=='001'||row.state=='002'||row.state=='112'){
+										if(row.state=='001'||row.state=='002'||row.state=='008'||row.state=='112'){
 											str+="</br><a href='#' onclick='skipupdateItemInfo(\""
 												+ row.item_id + "\")'>再次提交</a>";
+										}
+										if(row.showClaim){
+											str+="</br><a href='#' onclick='claim(\""
+												+ row.item_id + "\")'>认领审核</a>";
 										}
 										return str;
 									}
@@ -291,6 +295,17 @@ function initUserTeam() {
 								+ datas[i].team_id + '">' + datas[i].team_name
 								+ '</option>');
 			}
+		}
+	});
+}
+function claim(id) {
+	$.ajax({
+		url : $ctx + '/order/claim?id=' + id,
+		type : 'get',
+		async : false,
+		dataType : 'json',
+		success : function(datas) {
+			alert("成功");
 		}
 	});
 }
@@ -507,6 +522,12 @@ function getItemState(str) {
 		break;
 	case '000':
 		value = '全部商品';
+		break;
+	case '008':
+		value = '审核中';
+		break;
+	case '009':
+		value = '即将结束';
 		break;
 	default:
 		value = '';

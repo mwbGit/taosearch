@@ -63,15 +63,22 @@
 								<div id="query_splb_end_time_div" class="input-append date form-group">
 									<input id="query_end_time" name="query_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
 								</div>
+
 							</div></td>
 					<tr>
 				</table>
 				<table>
 					<tr>
 						<td>商品ID：</td>
-						<td><input id="query_item_no" name="item_no" class="form-control"></td>
+						<td><input style="width:150px;" id="query_item_no" name="item_no" class="form-control"></td>
 						<td>关键字：</td>
-						<td><input id="query_key_item_name" name="item_name" class="form-control"></td>
+						<td><input style="width:150px;" id="query_key_item_name" name="item_name" class="form-control"></td>
+						<td>QQ：</td>
+						<td><input style="width:100px;" id="qqq" name="qq" class="form-control"></td>
+						<td>优惠券领取数量：</td>
+						<td><input style="width:100px;" id="coupon_get_num_min" name="coupon_get_num_min" class="form-control"></td>
+						<td>-</td>
+						<td><input style="width:100px;" id="coupon_get_num_max" name="coupon_get_num_max" class="form-control"></td>
 						<td><button class="btn btn-primary form-control" type="button" onclick="queryItem()">
 								<i class="glyphicon glyphicon-search"></i>搜索
 							</button></td>
