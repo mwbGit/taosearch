@@ -387,9 +387,49 @@ public class OrderController {
 	public void queryFinancialStatementsForExcel(HttpServletRequest request, QueryFinancialVo vo, HttpServletResponse response) {
 		SimpleAuthorization sa = (SimpleAuthorization) request.getSession().getAttribute("userAuthorization");
 		Map<String, Object> map = new HashMap<String, Object>();
+		String order = "";
+		if (StringUtils.isNotBlank(vo.getSsje())) {
+			order += "ssje " + vo.getSsje();
+		}else {
+			order += "totle " + (StringUtils.isBlank(vo.getTotle())? "desc":vo.getTotle());
+		}
+		vo.setOrder(order);
 		map.put("sa", sa);
 		map.put("vo", vo);
 		List<FinancialStatements> list = OrderService.getFinancialStatementsForExcel(map);
+		FinancialStatements financial = new FinancialStatements();
+		financial.setJjl("0");
+		financial.setSsje("0");
+		financial.setYsje("0");
+		financial.setKdj("0");
+		financial.setUsername("合计");
+		for (FinancialStatements statements : list) {
+			financial.setTotle(financial.getTotle() + statements.getTotle());
+			financial.setDscnum(financial.getDscnum() + statements.getDscnum());
+			financial.setJjjsnum(financial.getJjjsnum() + statements.getJjjsnum());
+			financial.setShznum(financial.getShznum() + statements.getShznum());
+			financial.setDesnum(financial.getDesnum() + statements.getDesnum());
+			financial.setTgznum(financial.getTgznum() + statements.getTgznum());
+			financial.setYjsnum(financial.getYjsnum() + statements.getYjsnum());
+			financial.setDfknum(financial.getDfknum() + statements.getDfknum());
+			financial.setFkznum(financial.getFkznum() + statements.getFkznum());
+			financial.setYfknum(financial.getYfknum() + statements.getYfknum());
+			financial.setBhnum(financial.getBhnum() + statements.getBhnum());
+			financial.setJjfknum(financial.getJjfknum() + statements.getJjfknum());
+			financial.setJjnum(financial.getJjnum() + statements.getJjnum());
+			financial.setDaynum(financial.getDaynum() + statements.getDaynum());
+
+			if (statements.getJjl() != null)
+				financial.setJjl(new BigDecimal(financial.getJjl()).add(new BigDecimal(statements.getJjl())) + "");
+			if (statements.getSsje() != null)
+				financial.setSsje(new BigDecimal(financial.getSsje()).add(new BigDecimal(statements.getSsje())) +"");
+			if (statements.getYsje() != null)
+				financial.setYsje(new BigDecimal(financial.getYsje()).add(new BigDecimal(statements.getYsje())) +"");
+			if (statements.getKdj() != null)
+				financial.setKdj(new BigDecimal(financial.getKdj()).add(new BigDecimal(statements.getKdj())) +"");
+		}
+		list.add(financial);
+
 		// 数据写入Excel
 		XSSFWorkbook wb = new XSSFWorkbook();
 		XSSFSheet sheet = wb.createSheet("财务报表");
@@ -497,13 +537,13 @@ public class OrderController {
 			cell.setCellValue(tr.getYfknum());
 			cell.setCellStyle(style);
 			cell = row.createCell(14);
-			cell.setCellValue(tr.getKdj() + "");
+			cell.setCellValue(tr.getKdj()== null? "0" : tr.getKdj());
 			cell.setCellStyle(style);
 			cell = row.createCell(15);
-			cell.setCellValue(tr.getSsje()+ "");
+			cell.setCellValue(tr.getSsje()== null? "0" : tr.getSsje());
 			cell.setCellStyle(style);
 			cell = row.createCell(16);
-			cell.setCellValue(tr.getYsje()+ "");
+			cell.setCellValue(tr.getYsje()== null? "0" : tr.getYsje());
 			cell.setCellStyle(style);
 		}
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); // 生成流对象

@@ -572,7 +572,17 @@
 		ON i.`user_id`=u.`user_id`
 		GROUP BY
 		u.`username`
-		ORDER BY
-		ysje DESC
+		<if test="vo.order == 'ssje desc'">
+			ORDER BY  ssje desc
+		</if>
+		<if test="vo.order == 'ssje asc'">
+			ORDER BY  ssje asc
+		</if>
+		<if test="vo.order == 'totle desc'">
+			ORDER BY  totle desc
+		</if>
+		<if test="vo.order == 'totle asc'">
+			ORDER BY  totle asc
+		</if>
 	</select>
 </mapper>
