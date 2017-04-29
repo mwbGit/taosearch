@@ -8,9 +8,6 @@
 */
 package com.taosearch.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
 * @ClassName: ItemFinancialStatements
 * @Description: TODO(这里用一句话描述这个类的作用)
@@ -21,22 +18,40 @@ import lombok.Setter;
 
 public class FinancialStatements {
 	private String username;
-	private String totle;
-	private String dscnum;
-	private String desnum;
-	private String tgznum;
-	private String yjsnum;
-	private String dfknum;
-	private String fkznum;
-	private String yfknum;
-	private String bhnum;
-	private String jjfknum;
-	private String jjnum;
-	private String daynum;
+	private int totle;
+	private int dscnum;
+	private int shznum;
+	private int jjjsnum;
+	private int desnum;
+	private int tgznum;
+	private int yjsnum;
+	private int dfknum;
+	private int fkznum;
+	private int yfknum;
+	private int bhnum;
+	private int jjfknum;
+	private int jjnum;
+	private int daynum;
 	private String jjl;
 	private String ssje;
 	private String ysje;
 	private String kdj;
+
+	public int getShznum() {
+		return shznum;
+	}
+
+	public void setShznum(int shznum) {
+		this.shznum = shznum;
+	}
+
+	public int getJjjsnum() {
+		return jjjsnum;
+	}
+
+	public void setJjjsnum(int jjjsnum) {
+		this.jjjsnum = jjjsnum;
+	}
 
 	public String getUsername() {
 		return username;
@@ -46,99 +61,99 @@ public class FinancialStatements {
 		this.username = username;
 	}
 
-	public String getTotle() {
+	public int getTotle() {
 		return totle;
 	}
 
-	public void setTotle(String totle) {
+	public void setTotle(int totle) {
 		this.totle = totle;
 	}
 
-	public String getDscnum() {
+	public int getDscnum() {
 		return dscnum;
 	}
 
-	public void setDscnum(String dscnum) {
+	public void setDscnum(int dscnum) {
 		this.dscnum = dscnum;
 	}
 
-	public String getDesnum() {
+	public int getDesnum() {
 		return desnum;
 	}
 
-	public void setDesnum(String desnum) {
+	public void setDesnum(int desnum) {
 		this.desnum = desnum;
 	}
 
-	public String getTgznum() {
+	public int getTgznum() {
 		return tgznum;
 	}
 
-	public void setTgznum(String tgznum) {
+	public void setTgznum(int tgznum) {
 		this.tgznum = tgznum;
 	}
 
-	public String getYjsnum() {
+	public int getYjsnum() {
 		return yjsnum;
 	}
 
-	public void setYjsnum(String yjsnum) {
+	public void setYjsnum(int yjsnum) {
 		this.yjsnum = yjsnum;
 	}
 
-	public String getDfknum() {
+	public int getDfknum() {
 		return dfknum;
 	}
 
-	public void setDfknum(String dfknum) {
+	public void setDfknum(int dfknum) {
 		this.dfknum = dfknum;
 	}
 
-	public String getFkznum() {
+	public int getFkznum() {
 		return fkznum;
 	}
 
-	public void setFkznum(String fkznum) {
+	public void setFkznum(int fkznum) {
 		this.fkznum = fkznum;
 	}
 
-	public String getYfknum() {
+	public int getYfknum() {
 		return yfknum;
 	}
 
-	public void setYfknum(String yfknum) {
+	public void setYfknum(int yfknum) {
 		this.yfknum = yfknum;
 	}
 
-	public String getBhnum() {
+	public int getBhnum() {
 		return bhnum;
 	}
 
-	public void setBhnum(String bhnum) {
+	public void setBhnum(int bhnum) {
 		this.bhnum = bhnum;
 	}
 
-	public String getJjfknum() {
+	public int getJjfknum() {
 		return jjfknum;
 	}
 
-	public void setJjfknum(String jjfknum) {
+	public void setJjfknum(int jjfknum) {
 		this.jjfknum = jjfknum;
 	}
 
-	public String getJjnum() {
+	public int getJjnum() {
 		return jjnum;
 	}
 
-	public void setJjnum(String jjnum) {
+	public void setJjnum(int jjnum) {
 		this.jjnum = jjnum;
 	}
 
-	public String getDaynum() {
+	public int getDaynum() {
 		return daynum;
 	}
 
-	public void setDaynum(String daynum) {
+	public void setDaynum(int daynum) {
 		this.daynum = daynum;
 	}
 

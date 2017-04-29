@@ -26,6 +26,33 @@ public class QueryFinancialVo {
 	private String create_end_time;
 	private String update_start_time;
 	private String update_end_time;
+	private String ssje;
+	private String totle;
+	private String order;
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public String getSsje() {
+		return ssje;
+	}
+
+	public void setSsje(String ssje) {
+		this.ssje = ssje;
+	}
+
+	public String getTotle() {
+		return totle;
+	}
+
+	public void setTotle(String totle) {
+		this.totle = totle;
+	}
 
 	public String getTeam_id() {
 		return team_id;

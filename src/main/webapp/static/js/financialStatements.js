@@ -80,6 +80,16 @@ function initGrid() {
 								}
 							}
 						}, {
+						title : '审核中',
+						field : 'shznum',
+						formatter : function(val, row) {
+							if (val == null || val == "") {
+								return "";
+							} else {
+								return val;
+							}
+						}
+					},{
 							title : '驳回',
 							field : 'bhnum',
 							formatter : function(val, row) {
@@ -130,8 +140,8 @@ function initGrid() {
 								}
 							}
 						}, {
-							title : '已结束',
-							field : 'yjsnum',
+							title : '即将结束',
+							field : 'jjjsnum',
 							formatter : function(val, row) {
 								if (val == null || val == "") {
 									return "";
@@ -139,7 +149,18 @@ function initGrid() {
 									return val;
 								}
 							}
-						}, {
+						},
+					{
+						title : '已结束',
+						field : 'yjsnum',
+						formatter : function(val, row) {
+							if (val == null || val == "") {
+								return "";
+							} else {
+								return val;
+							}
+						}
+					}, {
 							title : '待付款',
 							field : 'dfknum',
 							formatter : function(val, row) {

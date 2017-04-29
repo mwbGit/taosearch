@@ -415,7 +415,10 @@
 		THEN i.state
 		END)desnum,
 		COUNT(CASE WHEN i.state='003' THEN i.state END)
-		tgznum,COUNT(CASE WHEN
+		tgznum,
+		COUNT(CASE WHEN i.state='008' THEN i.state END)shznum,
+		COUNT(CASE WHEN i.state='009' THEN i.state END)jjjsnum,
+		COUNT(CASE WHEN
 		i.state='004' THEN i.state END)yjsnum,
 		COUNT(CASE WHEN i.state='005' THEN i.state END) dfknum,COUNT(CASE WHEN
 		i.state='006' THEN i.state END)fkznum,
@@ -463,8 +466,20 @@
 		ON i.`user_id`=u.`user_id`
 		GROUP BY
 		u.`username`
-		ORDER BY
-		ysje DESC
+
+		<if test="vo.order == 'ssje desc'">
+			ORDER BY  ssje desc
+		</if>
+		<if test="vo.order == 'ssje asc'">
+			ORDER BY  ssje asc
+		</if>
+		<if test="vo.order == 'totle desc'">
+			ORDER BY  totle desc
+		</if>
+		<if test="vo.order == 'totle asc'">
+			ORDER BY  totle asc
+		</if>
+
 		LIMIT #{pagestart},#{rows}
 	</select>
 	<select id="getFinancialStatementsCount" parameterType="map"

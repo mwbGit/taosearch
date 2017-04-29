@@ -92,7 +92,7 @@
 <!-- 	<legend></legend> -->
 <div class="col-xs-15 col-sm-15 col-md-15">
 	<div class="book_theme_flag1">
-		<table id="case_Info" class="table table-bordered table-advance table-hover table-condensed" style="font-size: 12px;">
+		<table id="case_Info"  class="table table-bordered table-advance table-hover table-condensed" style="font-size: 12px;">
 		</table>
 	</div>
 	<div id="case_paginator" style="align: center; float: left; cursor: pointer;"></div>

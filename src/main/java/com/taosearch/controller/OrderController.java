@@ -10,6 +10,7 @@ package com.taosearch.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -280,7 +282,11 @@ public class OrderController {
 
 	@RequestMapping("/queryItemlistForPage")
 	@ResponseBody
-	public ResultForPage<Item> queryItemlistForPage(HttpServletRequest request, QuerySPLBVo vo, String state, Integer page, Integer rows) {
+	public ResultForPage<Item> queryItemlistForPage(HttpServletRequest request, QuerySPLBVo vo, String statePage, Integer page, Integer rows) {
+		if ("undefined".equals(statePage)){
+			statePage =null;
+		}
+
 		ResultForPage<Item> result = new ResultForPage<Item>();
 		int pagestart = (page - 1) * rows;
 		SimpleAuthorization sa = (SimpleAuthorization) request.getSession().getAttribute("userAuthorization");
@@ -288,7 +294,7 @@ public class OrderController {
 		map.put("pagestart", pagestart);
 		map.put("rows", rows);
 		map.put("sa", sa);
-		map.put("state", state);
+		map.put("state", statePage);
 		map.put("vo", vo);
 
 		List<Item> list = OrderService.getItemListForPage(map);
@@ -314,6 +320,14 @@ public class OrderController {
 	@RequestMapping("/queryFinancialStatementsForPage")
 	@ResponseBody
 	public ResultForPage<FinancialStatements> queryFinancialStatementsForPage(HttpServletRequest request, QueryFinancialVo vo, Integer page, Integer rows) {
+		String order = "";
+		if (StringUtils.isNotBlank(vo.getSsje())) {
+			order += "ssje " + vo.getSsje();
+		}else {
+			order += "totle " + (StringUtils.isBlank(vo.getTotle())? "desc":vo.getTotle());
+		}
+		vo.setOrder(order);
+
 		ResultForPage<FinancialStatements> result = new ResultForPage<FinancialStatements>();
 		int pagestart = (page - 1) * rows;
 		SimpleAuthorization sa = (SimpleAuthorization) request.getSession().getAttribute("userAuthorization");
@@ -331,6 +345,40 @@ public class OrderController {
 		result.setRows(rows);
 		result.setTotals(count);
 		result.setTotalpage(totalpage);
+
+		FinancialStatements financial = new FinancialStatements();
+		financial.setJjl("0");
+		financial.setSsje("0");
+		financial.setYsje("0");
+		financial.setKdj("0");
+		financial.setUsername("合计");
+		for (FinancialStatements statements : list) {
+			financial.setTotle(financial.getTotle() + statements.getTotle());
+			financial.setDscnum(financial.getDscnum() + statements.getDscnum());
+			financial.setJjjsnum(financial.getJjjsnum() + statements.getJjjsnum());
+			financial.setShznum(financial.getShznum() + statements.getShznum());
+			financial.setDesnum(financial.getDesnum() + statements.getDesnum());
+			financial.setTgznum(financial.getTgznum() + statements.getTgznum());
+			financial.setYjsnum(financial.getYjsnum() + statements.getYjsnum());
+			financial.setDfknum(financial.getDfknum() + statements.getDfknum());
+			financial.setFkznum(financial.getFkznum() + statements.getFkznum());
+			financial.setYfknum(financial.getYfknum() + statements.getYfknum());
+			financial.setBhnum(financial.getBhnum() + statements.getBhnum());
+			financial.setJjfknum(financial.getJjfknum() + statements.getJjfknum());
+			financial.setJjnum(financial.getJjnum() + statements.getJjnum());
+			financial.setDaynum(financial.getDaynum() + statements.getDaynum());
+
+			if (statements.getJjl() != null)
+				financial.setJjl(new BigDecimal(financial.getJjl()).add(new BigDecimal(statements.getJjl())) + "");
+			if (statements.getSsje() != null)
+				financial.setSsje(new BigDecimal(financial.getSsje()).add(new BigDecimal(statements.getSsje())) +"");
+			if (statements.getYsje() != null)
+				financial.setYsje(new BigDecimal(financial.getYsje()).add(new BigDecimal(statements.getYsje())) +"");
+			if (statements.getKdj() != null)
+				financial.setKdj(new BigDecimal(financial.getKdj()).add(new BigDecimal(statements.getKdj())) +"");
+		}
+		result.getList().add(financial);
+
 		return result;
 	}
 
@@ -422,7 +470,7 @@ public class OrderController {
 			cell.setCellValue(tr.getBhnum());
 			cell.setCellStyle(style);
 			cell = row.createCell(5);
-			cell.setCellValue(tr.getJjl());
+			cell.setCellValue(tr.getJjl()+ "");
 			cell.setCellStyle(style);
 			cell = row.createCell(6);
 			cell.setCellValue(tr.getJjnum());
@@ -449,13 +497,13 @@ public class OrderController {
 			cell.setCellValue(tr.getYfknum());
 			cell.setCellStyle(style);
 			cell = row.createCell(14);
-			cell.setCellValue(tr.getKdj());
+			cell.setCellValue(tr.getKdj() + "");
 			cell.setCellStyle(style);
 			cell = row.createCell(15);
-			cell.setCellValue(tr.getSsje());
+			cell.setCellValue(tr.getSsje()+ "");
 			cell.setCellStyle(style);
 			cell = row.createCell(16);
-			cell.setCellValue(tr.getYsje());
+			cell.setCellValue(tr.getYsje()+ "");
 			cell.setCellStyle(style);
 		}
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); // 生成流对象
