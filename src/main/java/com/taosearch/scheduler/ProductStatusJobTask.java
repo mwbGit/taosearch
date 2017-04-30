@@ -32,7 +32,7 @@ public class ProductStatusJobTask {
         Date now = new Date();
 
 //        //即将结束 --》结束
-        map.put("state", "008");
+        map.put("state", "009");
         List<Item> end = orderDao.getItemListForPage(map);
         if (CollectionUtils.isNotEmpty(end)) {
             for (Item item : end) {
