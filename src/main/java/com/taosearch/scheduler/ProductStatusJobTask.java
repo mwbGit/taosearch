@@ -57,7 +57,7 @@ public class ProductStatusJobTask {
                     continue;
                 int hour = DateTimeUtility.minuteBetween(now, endTime) / 60;
                 if (hour <= 24) {
-                    item.setState("008");
+                    item.setState("009");
                     orderDao.updateItemAndAddLog(item);
                 }
             }
