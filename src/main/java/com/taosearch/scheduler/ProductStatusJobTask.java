@@ -55,6 +55,7 @@ public class ProductStatusJobTask {
                 Date endTime = DateTimeUtility.parseYYYYMMDDHHMMSS(item.getCoupon_end_time());
                 if (endTime == null)
                     continue;
+                endTime = DateTimeUtility.addDays(endTime,1);
                 int hour = DateTimeUtility.minuteBetween(now, endTime) / 60;
                 if (hour <= 24) {
                     item.setState("009");

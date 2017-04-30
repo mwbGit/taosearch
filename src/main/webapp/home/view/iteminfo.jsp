@@ -64,6 +64,9 @@
 		case '003':
 			$("#item_audit_form_003").show();
 			break;
+			case '009':
+				$("#item_audit_form_003").show();
+				break;
 		case '004':
 			$("#item_audit_form_004").show();
 			break;
