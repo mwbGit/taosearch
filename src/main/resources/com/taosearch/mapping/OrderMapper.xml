@@ -416,7 +416,6 @@
 		END)desnum,
 		COUNT(CASE WHEN i.state='003' THEN i.state END)
 		tgznum,
-		COUNT(CASE WHEN i.state='008' THEN i.state END)shznum,
 		COUNT(CASE WHEN i.state='009' THEN i.state END)jjjsnum,
 		COUNT(CASE WHEN
 		i.state='004' THEN i.state END)yjsnum,

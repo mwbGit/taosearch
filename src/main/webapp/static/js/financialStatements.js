@@ -79,17 +79,7 @@ function initGrid() {
 									return val;
 								}
 							}
-						}, {
-						title : '审核中',
-						field : 'shznum',
-						formatter : function(val, row) {
-							if (val == null || val == "") {
-								return "";
-							} else {
-								return val;
-							}
-						}
-					},{
+						},{
 							title : '驳回',
 							field : 'bhnum',
 							formatter : function(val, row) {

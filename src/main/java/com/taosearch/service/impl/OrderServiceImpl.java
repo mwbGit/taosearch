@@ -314,7 +314,6 @@ public class OrderServiceImpl implements OrderService {
 
 		resoult.add(map.get("000"));
 		resoult.add(map.get("001"));
-		resoult.add(map.get("008"));
 		resoult.add(map.get("002"));
 		resoult.add(map.get("003"));
 		resoult.add(map.get("009"));

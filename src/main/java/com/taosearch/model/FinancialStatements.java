@@ -20,7 +20,6 @@ public class FinancialStatements {
 	private String username;
 	private int totle;
 	private int dscnum;
-	private int shznum;
 	private int jjjsnum;
 	private int desnum;
 	private int tgznum;
@@ -32,18 +31,10 @@ public class FinancialStatements {
 	private int jjfknum;
 	private int jjnum;
 	private int daynum;
-	private String jjl;
-	private String ssje;
-	private String ysje;
-	private String kdj;
-
-	public int getShznum() {
-		return shznum;
-	}
-
-	public void setShznum(int shznum) {
-		this.shznum = shznum;
-	}
+	private int jjl;
+	private int ssje;
+	private int ysje;
+	private int kdj;
 
 	public int getJjjsnum() {
 		return jjjsnum;
@@ -157,35 +148,35 @@ public class FinancialStatements {
 		this.daynum = daynum;
 	}
 
-	public String getJjl() {
+	public int getJjl() {
 		return jjl;
 	}
 
-	public void setJjl(String jjl) {
+	public void setJjl(int jjl) {
 		this.jjl = jjl;
 	}
 
-	public String getSsje() {
+	public int getSsje() {
 		return ssje;
 	}
 
-	public void setSsje(String ssje) {
+	public void setSsje(int ssje) {
 		this.ssje = ssje;
 	}
 
-	public String getYsje() {
+	public int getYsje() {
 		return ysje;
 	}
 
-	public void setYsje(String ysje) {
+	public void setYsje(int ysje) {
 		this.ysje = ysje;
 	}
 
-	public String getKdj() {
+	public int getKdj() {
 		return kdj;
 	}
 
-	public void setKdj(String kdj) {
+	public void setKdj(int kdj) {
 		this.kdj = kdj;
 	}
 }

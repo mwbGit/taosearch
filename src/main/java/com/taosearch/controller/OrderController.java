@@ -299,14 +299,6 @@ public class OrderController {
 
 		List<Item> list = OrderService.getItemListForPage(map);
 
-		if (list != null) {
-			for (Item item : list) {
-				if(item.getState().equals("008") && sa.isShowClaim()) {
-					item.setShowClaim(true);
-				}
-			}
-		}
-
 		int count = OrderService.getItemCount(map);
 		int totalpage = ((count - 1) / rows) + 1;
 		result.setPage(page);
@@ -347,16 +339,15 @@ public class OrderController {
 		result.setTotalpage(totalpage);
 
 		FinancialStatements financial = new FinancialStatements();
-		financial.setJjl("0");
-		financial.setSsje("0");
-		financial.setYsje("0");
-		financial.setKdj("0");
+//		financial.setJjl("0");
+//		financial.setSsje("0");
+//		financial.setYsje("0");
+//		financial.setKdj("0");
 		financial.setUsername("合计");
 		for (FinancialStatements statements : list) {
 			financial.setTotle(financial.getTotle() + statements.getTotle());
 			financial.setDscnum(financial.getDscnum() + statements.getDscnum());
 			financial.setJjjsnum(financial.getJjjsnum() + statements.getJjjsnum());
-			financial.setShznum(financial.getShznum() + statements.getShznum());
 			financial.setDesnum(financial.getDesnum() + statements.getDesnum());
 			financial.setTgznum(financial.getTgznum() + statements.getTgznum());
 			financial.setYjsnum(financial.getYjsnum() + statements.getYjsnum());
@@ -367,15 +358,10 @@ public class OrderController {
 			financial.setJjfknum(financial.getJjfknum() + statements.getJjfknum());
 			financial.setJjnum(financial.getJjnum() + statements.getJjnum());
 			financial.setDaynum(financial.getDaynum() + statements.getDaynum());
-
-			if (statements.getJjl() != null)
-				financial.setJjl(new BigDecimal(financial.getJjl()).add(new BigDecimal(statements.getJjl())) + "");
-			if (statements.getSsje() != null)
-				financial.setSsje(new BigDecimal(financial.getSsje()).add(new BigDecimal(statements.getSsje())) +"");
-			if (statements.getYsje() != null)
-				financial.setYsje(new BigDecimal(financial.getYsje()).add(new BigDecimal(statements.getYsje())) +"");
-			if (statements.getKdj() != null)
-				financial.setKdj(new BigDecimal(financial.getKdj()).add(new BigDecimal(statements.getKdj())) +"");
+			financial.setJjl(financial.getJjl()+statements.getJjl());
+			financial.setSsje(financial.getSsje()+statements.getSsje());
+			financial.setYsje(financial.getYsje() + statements.getYsje());
+			financial.setKdj(financial.getKdj()+statements.getYfknum());
 		}
 		result.getList().add(financial);
 
@@ -398,16 +384,12 @@ public class OrderController {
 		map.put("vo", vo);
 		List<FinancialStatements> list = OrderService.getFinancialStatementsForExcel(map);
 		FinancialStatements financial = new FinancialStatements();
-		financial.setJjl("0");
-		financial.setSsje("0");
-		financial.setYsje("0");
-		financial.setKdj("0");
+
 		financial.setUsername("合计");
 		for (FinancialStatements statements : list) {
 			financial.setTotle(financial.getTotle() + statements.getTotle());
 			financial.setDscnum(financial.getDscnum() + statements.getDscnum());
 			financial.setJjjsnum(financial.getJjjsnum() + statements.getJjjsnum());
-			financial.setShznum(financial.getShznum() + statements.getShznum());
 			financial.setDesnum(financial.getDesnum() + statements.getDesnum());
 			financial.setTgznum(financial.getTgznum() + statements.getTgznum());
 			financial.setYjsnum(financial.getYjsnum() + statements.getYjsnum());
@@ -419,14 +401,10 @@ public class OrderController {
 			financial.setJjnum(financial.getJjnum() + statements.getJjnum());
 			financial.setDaynum(financial.getDaynum() + statements.getDaynum());
 
-			if (statements.getJjl() != null)
-				financial.setJjl(new BigDecimal(financial.getJjl()).add(new BigDecimal(statements.getJjl())) + "");
-			if (statements.getSsje() != null)
-				financial.setSsje(new BigDecimal(financial.getSsje()).add(new BigDecimal(statements.getSsje())) +"");
-			if (statements.getYsje() != null)
-				financial.setYsje(new BigDecimal(financial.getYsje()).add(new BigDecimal(statements.getYsje())) +"");
-			if (statements.getKdj() != null)
-				financial.setKdj(new BigDecimal(financial.getKdj()).add(new BigDecimal(statements.getKdj())) +"");
+			financial.setJjl(financial.getJjl()+statements.getJjl());
+			financial.setSsje(financial.getSsje()+statements.getSsje());
+			financial.setYsje(financial.getYsje()+statements.getYsje());
+			financial.setKdj(financial.getKdj()+statements.getYfknum());
 		}
 		list.add(financial);
 
@@ -537,13 +515,13 @@ public class OrderController {
 			cell.setCellValue(tr.getYfknum());
 			cell.setCellStyle(style);
 			cell = row.createCell(14);
-			cell.setCellValue(tr.getKdj()== null? "0" : tr.getKdj());
+			cell.setCellValue(tr.getKdj());
 			cell.setCellStyle(style);
 			cell = row.createCell(15);
-			cell.setCellValue(tr.getSsje()== null? "0" : tr.getSsje());
+			cell.setCellValue(tr.getSsje());
 			cell.setCellStyle(style);
 			cell = row.createCell(16);
-			cell.setCellValue(tr.getYsje()== null? "0" : tr.getYsje());
+			cell.setCellValue(tr.getYsje());
 			cell.setCellStyle(style);
 		}
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); // 生成流对象
