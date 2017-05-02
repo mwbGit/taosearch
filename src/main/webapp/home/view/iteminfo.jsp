@@ -203,14 +203,20 @@
 				console.log(data);
 				before_audit_status = data.data.state;
 				var key = data.data.state;
-				if(ua=="3"){
-				showFrom(data.data.state);
-				initGrid(data.data.logs);
-				}else if(ua!="3"&&key=="005"&&data.data.item_zfje_state=="0"){
+				if (ua == "3") {
+					if (key == "005" && data.data.item_zfje_state == "0") {
+						$("#upload_item_pay_form").show();
+					} else if (key == "005" && data.data.item_zfje_state == "1") {
+						$("#upload_item_pay2_form").show();
+					}
+
+					showFrom(data.data.state);
+					initGrid(data.data.logs);
+				} else if (ua != "3" && key == "005" && data.data.item_zfje_state == "0") {
 					$("#upload_item_pay_form").show();
-				}else if(ua!="2"&&key=="667"){
+				} else if (ua != "2" && key == "667") {
 					$("#upload_item_pay_again_form").show();
-				}else if(ua!="3"&&key=="005"&&data.data.item_zfje_state=="1"){
+				} else if (ua != "3" && key == "005" && data.data.item_zfje_state == "1") {
 					$("#upload_item_pay2_form").show();
 				}
 				coupon_id = data.data.coupon_id;
