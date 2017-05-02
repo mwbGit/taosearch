@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <c:set var="ua" value="${sessionScope.userAuthorization.authorization}"></c:set>
+<c:set var="isAdmin" value="${sessionScope.userAuthorization.showUser}"></c:set>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -126,7 +127,9 @@
 					<li id="_tjcx"><a href="#" onclick="_tjcx()"><i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;&nbsp;添加商品</a></li>
 					<li id="_syjc"><a href="#" onclick="_syjc()"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;&nbsp;&nbsp;财务管理</a></li>
 					<c:if test="${ua=='3'}">
+					<c:if test="${isAdmin}">
 					<li id="_yhgl"><a href="#" onclick="_yhgl()"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;用户管理</a></li>
+					</c:if>
 					</c:if>
 					<!--  <li id="_zygl"><a href="#" onclick="_zygl()"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;&nbsp;资源管理</a></li>  -->
 				</ul>

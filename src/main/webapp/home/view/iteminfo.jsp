@@ -64,6 +64,9 @@
 		case '003':
 			$("#item_audit_form_003").show();
 			break;
+			case '009':
+				$("#item_audit_form_003").show();
+				break;
 		case '004':
 			$("#item_audit_form_004").show();
 			break;
@@ -169,6 +172,21 @@
 				}
 			}
 		});
+	}
+	function cancelAudit(form_id) {
+		if (!window.confirm("确认取消审核？")){
+			return false;
+		}
+		$.ajax({
+			url : $ctx + '/order/cancelAudit?id=' + item_id,
+			type : 'get',
+			async : false,
+			dataType : 'json',
+			success : function() {
+				gobackpage();
+			}
+		});
+		gobackpage();
 	}
 	function getItemInfo() {
 		console.log("==========================>进入详情页面商品id为" + item_id);
@@ -637,6 +655,9 @@
 					<td><button class="btn btn-primary form-control" type="button" onclick="submitAudit('item_audit_form_001')">
 							<i class="glyphicon glyphicon-saved"></i>提交审核
 						</button></td>
+					<td><button class="btn btn-primary form-control" type="button" onclick="cancelAudit('item_audit_form_001')">
+						<i class="glyphicon glyphicon-saved"></i>取消审核
+					</button></td>
 				</tr>
 			</table>
 		</form>
@@ -653,6 +674,9 @@
 					<td><button class="btn btn-primary form-control" type="button" onclick="submitAudit('item_audit_form_002')">
 							<i class="glyphicon glyphicon-saved"></i>提交审核
 						</button></td>
+					<td><button class="btn btn-primary form-control" type="button" onclick="cancelAudit('item_audit_form_002')">
+						<i class="glyphicon glyphicon-saved"></i>取消审核
+					</button></td>
 				</tr>
 			</table>
 		</form>
@@ -718,6 +742,9 @@
 			<div class="form-inline">
 				<button class="btn btn-primary form-control" onclick="submitAudit('upload_item_paying_form')">
 					<i class="glyphicon glyphicon-open"></i>提交审核
+				</button>
+				<button class="btn btn-primary form-control" type="button" onclick="cancelAudit('upload_item_paying_form')">
+					<i class="glyphicon glyphicon-saved"></i>取消审核
 				</button>
 			</div>
 		</form>

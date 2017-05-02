@@ -43,7 +43,16 @@ public class LoginController {
 				String authorization="1";//普通人员
 				if("1".equals(sa.getAdmin())){
 					authorization="3";//管理员
-				}else if ("0".equals(sa.getAdmin())&&sa.getTeam_id()!=null){
+					sa.setShowUser(true);
+					sa.setShowClaim(true);
+				}else if("4".equals(sa.getAdmin())){
+					authorization="3";//审核员
+					sa.setShowClaim(true);
+				}
+				else if("5".equals(sa.getAdmin())){
+					authorization="3";//财务
+				}
+				else if ("0".equals(sa.getAdmin())&&sa.getTeam_id()!=null){
 					authorization="2";//小组长
 				}
 				sa.setAuthorization(authorization);

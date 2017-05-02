@@ -2,7 +2,8 @@
 SQLyog v10.2 
 MySQL - 5.5.28 : Database - taosearch
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -39,7 +40,7 @@ CREATE TABLE `t_coupon` (
   `coupon_url` varchar(200) DEFAULT NULL,
   `activity_start_time` datetime DEFAULT NULL,
   `coupon_rest_num` int(11) DEFAULT NULL,
-  `coupon_get_num` int(11) DEFAULT NULL,
+  `coupon_get_num` int(11) DEFAULT '0',
   `coupon_use_num` int(11) DEFAULT NULL,
   PRIMARY KEY (`coupon_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -126,7 +127,7 @@ CREATE TABLE `t_item_state_dic` (
 
 /*Data for the table `t_item_state_dic` */
 
-insert  into `t_item_state_dic`(`state`,`state_name`) values ('001','待审核'),('002','待二审'),('003','推广中'),('004','已结束'),('005','待付款'),('006','付款中'),('007','已付款'),('112','驳回'),('667','拒绝付款'),('999','拒绝');
+insert  into `t_item_state_dic`(`state`,`state_name`) values ('001','待审核'),('002','待二审'),('003','推广中'),('004','已结束'),('005','待付款'),('006','付款中'),('007','已付款'),('112','驳回'),('667','拒绝付款'),('999','拒绝'),('008','审核中'),('009','即将结束');
 
 /*Table structure for table `t_item_type` */
 
@@ -201,3 +202,5 @@ CREATE TABLE `t_user_authorization_cfg` (
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+UPDATE `t_coupon` set coupon_get_num = 0 WHERE coupon_get_num is NULL;

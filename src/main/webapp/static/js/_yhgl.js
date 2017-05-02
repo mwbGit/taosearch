@@ -80,16 +80,20 @@ function initGrid() {
 									}
 								},
 								{
-									title : '管理员',
+									title : '角色',
 									field : 'admin',
 									formatter : function(val) {
 										if (val == null || val == "") {
 											return "";
 										} else {
 											if (val == '1') {
-												return '是';
+												return '管理员';
 											} else if (val == '0') {
-												return '否';
+												return '录单员';
+											} else if (val == '4') {
+												return '审核员';
+											} else if (val == '5') {
+												return '财务';
 											}
 										}
 									}
@@ -242,6 +246,9 @@ function saveUser() {
 }
 /* 修改用户资料状态 1启用 0停用 */
 function updateUserState(indexId) {
+	if (!window.confirm("确认删除？")){
+		return false;
+	}
 	var rowData = gridDatas.list[indexId];
 	console.log(rowData);
 	var data;
@@ -282,6 +289,9 @@ function skipTeamList() {
 }
 /* 用户密码重置 */
 function resettingPWD(indexId) {
+	if (!window.confirm("确认重置密码？")){
+		return false;
+	}
 	var rowData = gridDatas.list[indexId];
 	$.ajax({
 		url : resettingPwdUrl,

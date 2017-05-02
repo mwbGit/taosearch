@@ -8,9 +8,6 @@
 */
 package com.taosearch.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
 * @ClassName: NavStateCount
 * @Description: TODO(这里用一句话描述这个类的作用)
@@ -18,9 +15,24 @@ import lombok.Setter;
 * @date 2017年4月6日 下午3:10:07
 *
 */
-@Getter
-@Setter
+
 public class NavStateCount {
 	private String state;
 	private int num;
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
 }

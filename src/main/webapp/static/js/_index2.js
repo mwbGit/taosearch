@@ -7,7 +7,7 @@ var ImgUrl = $ctx + '/img/download';
 var $case_infoGrid = $("#case_Info");
 var $case_paginator = $("#case_paginator");
 var gridDatas;
-var rowForPage = 20;
+var rowForPage = 10;
 var queryParamsData;
 var page = 1;
 var baseUrl = $ctx;
@@ -35,7 +35,7 @@ $(function() {
  * @returns
  */
 function initGrid() {
-	var gridDatas = getGridDatas(caseInfoUrl + '?page=' + page + '&rows='
+	var gridDatas = getGridDatas(caseInfoUrl + '?statePage=000&page=' + page + '&rows='
 			+ rowForPage);
 	console.log(gridDatas);
 	$case_infoGrid
@@ -224,12 +224,13 @@ function initGrid() {
 									title : '操作',
 									field : 'state',
 									formatter : function(val, row) {
-										var str = "<a href='#' onclick='skipInfo(\""
+										var str = "<a 10%href='#' onclick='skipInfo(\""
 												+ row.item_id + "\")'>查看</a>";
 										if(row.state=='001'||row.state=='002'||row.state=='112'){
 											str+="</br><a href='#' onclick='skipupdateItemInfo(\""
 												+ row.item_id + "\")'>再次提交</a>";
 										}
+
 										return str;
 									}
 								} ] ],
@@ -250,7 +251,7 @@ function initGrid() {
 		onPageClicked : function(e, originalEvent, type, pages) {
 			// loadGrid(caseInfoUrl+"?rows="+rowForPage+"&page="+pages);
 			$case_infoGrid.datagrid('loadData', {
-				rows : getGridDatas(caseInfoUrl + "?rows=" + rowForPage
+				rows : getGridDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
 						+ "&page=" + pages).list
 			});
 		}
@@ -291,6 +292,17 @@ function initUserTeam() {
 								+ datas[i].team_id + '">' + datas[i].team_name
 								+ '</option>');
 			}
+		}
+	});
+}
+function claim(id) {
+	$.ajax({
+		url : $ctx + '/order/claim?id=' + id,
+		type : 'get',
+		async : false,
+		dataType : 'json',
+		success : function(datas) {
+			alert("成功");
 		}
 	});
 }
@@ -449,7 +461,7 @@ function ItemByStateChange(state, obj) {
 		state : state
 	};
 	$.ajax({
-		url : caseInfoUrl + '?page=' + page + '&rows=' + rowForPage,
+		url : caseInfoUrl + '?statePage='+item_state+'&page=' + page + '&rows=' + rowForPage,
 		data : data,
 		type : 'post',
 		async : false,
@@ -463,7 +475,7 @@ function ItemByStateChange(state, obj) {
 				totalPages : datas.totalpage,
 				onPageClicked : function(e, originalEvent, type, pages) {
 					$case_infoGrid.datagrid('loadData', {
-						rows : getDatas(caseInfoUrl + "?rows=" + rowForPage
+						rows : getDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
 								+ "&page=" + pages, queryParamsData).list
 					});
 				}
@@ -508,6 +520,9 @@ function getItemState(str) {
 	case '000':
 		value = '全部商品';
 		break;
+	case '009':
+		value = '即将结束';
+		break;
 	default:
 		value = '';
 	}
@@ -537,7 +552,7 @@ function loadGrid(url) {
 		totalPages : gridDatas.totalpage,
 		onPageClicked : function(e, originalEvent, type, pages) {
 			$case_infoGrid.datagrid('loadData', {
-				rows : getGridDatas(caseInfoUrl + "?rows=" + rowForPage
+				rows : getGridDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
 						+ "&page=" + pages).list
 			});
 		}
@@ -588,7 +603,7 @@ function queryItem() {
 	queryParamsData = data;
 	console.info(111, data);
 	$.ajax({
-		url : caseInfoUrl + '?page=' + page + '&rows=' + rowForPage,
+		url : caseInfoUrl + '?statePage='+item_state+'&page=' + page + '&rows=' + rowForPage,
 		data : data,
 		type : 'post',
 		async : false,
@@ -602,7 +617,7 @@ function queryItem() {
 				totalPages : datas.totalpage,
 				onPageClicked : function(e, originalEvent, type, pages) {
 					$case_infoGrid.datagrid('loadData', {
-						rows : getDatas(caseInfoUrl + "?rows=" + rowForPage
+						rows : getDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
 								+ "&page=" + pages, queryParamsData).list
 					});
 				}

@@ -184,7 +184,7 @@
 				<table style="width: 90%; border-collapse: separate; border-spacing: 10px">
 					<tr>
 						<td style="width: 10%">商品链接：</td>
-						<td><textarea readonly="readonly" id="item_url_id" name="item_url" class="form-control" style="resize: none; width: 99%; overflow-y: scroll;" required></textarea><span style="color: #cc0001">*</span></td>
+						<td><textarea id="item_url_id" name="item_url" class="form-control" style="resize: none; width: 99%; overflow-y: scroll;" required></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
 						<td>商品ID：</td>
@@ -192,7 +192,7 @@
 					</tr>
 					<tr>
 						<td>商品分类：</td>
-						<td><select name="item_type" id="item_type_select" style="width: 150px;" class="form-control" disabled="disabled">
+						<td><select name="item_type" id="item_type_select" style="width: 150px;" class="form-control" >
 								<option value="">所有分类</option>
 						</select><span style="color: #cc0001">*</span></td>
 					</tr>
@@ -210,7 +210,7 @@
 					</tr>
 					<tr>
 						<td>优惠券地址：</td>
-						<td><textarea readonly="readonly" id="coupon_url_id" required name="coupon_url" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+						<td><textarea id="coupon_url_id" required name="coupon_url" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
 						<td>佣金比例：</td>

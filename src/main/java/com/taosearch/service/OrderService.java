@@ -53,6 +53,8 @@ public interface OrderService {
 
 	MyResult<String> saveItemAttachemt1(ItemAuditLog auditLog, Double item_ssje, HttpServletRequest request);
 
+	public void updateItem(Item item);
+
 	MyResult<String> updateItemAndAddLog(ItemAuditLog auditLog, Item item);
 
 	List<FinancialStatements> getFinancialStatementsForPage(Map<String, Object> map);

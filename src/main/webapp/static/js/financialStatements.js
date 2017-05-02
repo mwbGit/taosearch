@@ -79,7 +79,7 @@ function initGrid() {
 									return val;
 								}
 							}
-						}, {
+						},{
 							title : '驳回',
 							field : 'bhnum',
 							formatter : function(val, row) {
@@ -130,8 +130,8 @@ function initGrid() {
 								}
 							}
 						}, {
-							title : '已结束',
-							field : 'yjsnum',
+							title : '即将结束',
+							field : 'jjjsnum',
 							formatter : function(val, row) {
 								if (val == null || val == "") {
 									return "";
@@ -139,7 +139,18 @@ function initGrid() {
 									return val;
 								}
 							}
-						}, {
+						},
+					{
+						title : '已结束',
+						field : 'yjsnum',
+						formatter : function(val, row) {
+							if (val == null || val == "") {
+								return "";
+							} else {
+								return val;
+							}
+						}
+					}, {
 							title : '待付款',
 							field : 'dfknum',
 							formatter : function(val, row) {
@@ -407,6 +418,8 @@ function queryItem() {
 function downloadCase() {
 	var team_id = $("#query_team_select").val();
 	var user_id = $("#query_user_select").val();
+	var totle = $("#totle").val();
+	var ysje = $("#ysje").val();
 	var create_start_time = $("#create_start_time").val();
 	var create_end_time = $("#create_end_time").val();
 	var update_start_time = $("#update_start_time").val();
@@ -415,7 +428,7 @@ function downloadCase() {
 			+ team_id + '&user_id=' + user_id + '&create_start_time='
 			+ create_start_time + '&create_end_time=' + create_end_time
 			+ '&update_start_time=' + update_start_time + '&update_end_time='
-			+ update_end_time);
+			+ update_end_time +'&totle=' + totle + '&ssje=' +ysje);
 }
 // 序列化表单
 function serializeObject(form) {// 将表单元素中的值序列化成对象

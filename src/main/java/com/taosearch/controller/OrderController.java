@@ -10,6 +10,7 @@ package com.taosearch.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -63,6 +65,24 @@ public class OrderController {
 	@Autowired
 	private OrderService OrderService;
 
+	@RequestMapping("/claim")
+	@ResponseBody
+	public void claim(String id) {
+		Item item = new Item();
+		item.setItem_id(id);
+		item.setState("002");
+
+		OrderService.updateItem(item);
+	}
+	@RequestMapping("/cancelAudit")
+	@ResponseBody
+	public void cancelAudit(String id) {
+		Item item = new Item();
+		item.setItem_id(id);
+		item.setState("001");
+
+		OrderService.updateItem(item);
+	}
 	@RequestMapping("/getItemTypes")
 	@ResponseBody
 	public List<ItemType> getItemTypes() {
@@ -262,7 +282,11 @@ public class OrderController {
 
 	@RequestMapping("/queryItemlistForPage")
 	@ResponseBody
-	public ResultForPage<Item> queryItemlistForPage(HttpServletRequest request, QuerySPLBVo vo, String state, Integer page, Integer rows) {
+	public ResultForPage<Item> queryItemlistForPage(HttpServletRequest request, QuerySPLBVo vo, String statePage, Integer page, Integer rows) {
+		if ("undefined".equals(statePage)){
+			statePage =null;
+		}
+
 		ResultForPage<Item> result = new ResultForPage<Item>();
 		int pagestart = (page - 1) * rows;
 		SimpleAuthorization sa = (SimpleAuthorization) request.getSession().getAttribute("userAuthorization");
@@ -270,10 +294,11 @@ public class OrderController {
 		map.put("pagestart", pagestart);
 		map.put("rows", rows);
 		map.put("sa", sa);
-		map.put("state", state);
+		map.put("state", statePage);
 		map.put("vo", vo);
 
 		List<Item> list = OrderService.getItemListForPage(map);
+
 		int count = OrderService.getItemCount(map);
 		int totalpage = ((count - 1) / rows) + 1;
 		result.setPage(page);
@@ -287,6 +312,14 @@ public class OrderController {
 	@RequestMapping("/queryFinancialStatementsForPage")
 	@ResponseBody
 	public ResultForPage<FinancialStatements> queryFinancialStatementsForPage(HttpServletRequest request, QueryFinancialVo vo, Integer page, Integer rows) {
+		String order = "";
+		if (StringUtils.isNotBlank(vo.getSsje())) {
+			order += "ssje " + vo.getSsje();
+		}else {
+			order += "totle " + (StringUtils.isBlank(vo.getTotle())? "desc":vo.getTotle());
+		}
+		vo.setOrder(order);
+
 		ResultForPage<FinancialStatements> result = new ResultForPage<FinancialStatements>();
 		int pagestart = (page - 1) * rows;
 		SimpleAuthorization sa = (SimpleAuthorization) request.getSession().getAttribute("userAuthorization");
@@ -304,6 +337,34 @@ public class OrderController {
 		result.setRows(rows);
 		result.setTotals(count);
 		result.setTotalpage(totalpage);
+
+		FinancialStatements financial = new FinancialStatements();
+//		financial.setJjl("0");
+//		financial.setSsje("0");
+//		financial.setYsje("0");
+//		financial.setKdj("0");
+		financial.setUsername("合计");
+		for (FinancialStatements statements : list) {
+			financial.setTotle(financial.getTotle() + statements.getTotle());
+			financial.setDscnum(financial.getDscnum() + statements.getDscnum());
+			financial.setJjjsnum(financial.getJjjsnum() + statements.getJjjsnum());
+			financial.setDesnum(financial.getDesnum() + statements.getDesnum());
+			financial.setTgznum(financial.getTgznum() + statements.getTgznum());
+			financial.setYjsnum(financial.getYjsnum() + statements.getYjsnum());
+			financial.setDfknum(financial.getDfknum() + statements.getDfknum());
+			financial.setFkznum(financial.getFkznum() + statements.getFkznum());
+			financial.setYfknum(financial.getYfknum() + statements.getYfknum());
+			financial.setBhnum(financial.getBhnum() + statements.getBhnum());
+			financial.setJjfknum(financial.getJjfknum() + statements.getJjfknum());
+			financial.setJjnum(financial.getJjnum() + statements.getJjnum());
+			financial.setDaynum(financial.getDaynum() + statements.getDaynum());
+			financial.setJjl(financial.getJjl()+statements.getJjl());
+			financial.setSsje(financial.getSsje()+statements.getSsje());
+			financial.setYsje(financial.getYsje() + statements.getYsje());
+			financial.setKdj(financial.getKdj()+statements.getYfknum());
+		}
+		result.getList().add(financial);
+
 		return result;
 	}
 
@@ -312,9 +373,41 @@ public class OrderController {
 	public void queryFinancialStatementsForExcel(HttpServletRequest request, QueryFinancialVo vo, HttpServletResponse response) {
 		SimpleAuthorization sa = (SimpleAuthorization) request.getSession().getAttribute("userAuthorization");
 		Map<String, Object> map = new HashMap<String, Object>();
+		String order = "";
+		if (StringUtils.isNotBlank(vo.getSsje())) {
+			order += "ssje " + vo.getSsje();
+		}else {
+			order += "totle " + (StringUtils.isBlank(vo.getTotle())? "desc":vo.getTotle());
+		}
+		vo.setOrder(order);
 		map.put("sa", sa);
 		map.put("vo", vo);
 		List<FinancialStatements> list = OrderService.getFinancialStatementsForExcel(map);
+		FinancialStatements financial = new FinancialStatements();
+
+		financial.setUsername("合计");
+		for (FinancialStatements statements : list) {
+			financial.setTotle(financial.getTotle() + statements.getTotle());
+			financial.setDscnum(financial.getDscnum() + statements.getDscnum());
+			financial.setJjjsnum(financial.getJjjsnum() + statements.getJjjsnum());
+			financial.setDesnum(financial.getDesnum() + statements.getDesnum());
+			financial.setTgznum(financial.getTgznum() + statements.getTgznum());
+			financial.setYjsnum(financial.getYjsnum() + statements.getYjsnum());
+			financial.setDfknum(financial.getDfknum() + statements.getDfknum());
+			financial.setFkznum(financial.getFkznum() + statements.getFkznum());
+			financial.setYfknum(financial.getYfknum() + statements.getYfknum());
+			financial.setBhnum(financial.getBhnum() + statements.getBhnum());
+			financial.setJjfknum(financial.getJjfknum() + statements.getJjfknum());
+			financial.setJjnum(financial.getJjnum() + statements.getJjnum());
+			financial.setDaynum(financial.getDaynum() + statements.getDaynum());
+
+			financial.setJjl(financial.getJjl()+statements.getJjl());
+			financial.setSsje(financial.getSsje()+statements.getSsje());
+			financial.setYsje(financial.getYsje()+statements.getYsje());
+			financial.setKdj(financial.getKdj()+statements.getYfknum());
+		}
+		list.add(financial);
+
 		// 数据写入Excel
 		XSSFWorkbook wb = new XSSFWorkbook();
 		XSSFSheet sheet = wb.createSheet("财务报表");
@@ -395,7 +488,7 @@ public class OrderController {
 			cell.setCellValue(tr.getBhnum());
 			cell.setCellStyle(style);
 			cell = row.createCell(5);
-			cell.setCellValue(tr.getJjl());
+			cell.setCellValue(tr.getJjl()+ "");
 			cell.setCellStyle(style);
 			cell = row.createCell(6);
 			cell.setCellValue(tr.getJjnum());
