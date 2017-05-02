@@ -352,8 +352,8 @@
 						<tr>
 							<td>设置角色：</td>
 							<td><select id="showUserForadmin" name="admin" class="form-control">
-								<option class="form-control" value="1">录单员</option>
-								<option class="form-control" value="0">管理员</option>
+								<option class="form-control" value="0">录单员</option>
+								<option class="form-control" value="1">管理员</option>
 								<option class="form-control" value="4">审核员</option>
 								<option class="form-control" value="5">财务</option>
 							</select></td>
@@ -404,8 +404,8 @@
 						<tr>
 							<td>设置角色：</td>
 							<td><select id="showUserForadmin" name="admin" class="form-control">
-								<option class="form-control" value="1">录单员</option>
-								<option class="form-control" value="0">管理员</option>
+								<option class="form-control" value="0">录单员</option>
+								<option class="form-control" value="1">管理员</option>
 								<option class="form-control" value="4">审核员</option>
 								<option class="form-control" value="5">财务</option>
 							</select></td>

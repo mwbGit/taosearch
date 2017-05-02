@@ -64,7 +64,7 @@
 		case '003':
 			$("#item_audit_form_003").show();
 			break;
-			case '009':
+		case '009':
 				$("#item_audit_form_003").show();
 				break;
 		case '004':
@@ -218,6 +218,7 @@
 				case '001':
 				case '002':
 				case '003':
+				case '009':
 				case '004':
 				case '112':
 				case '999':
@@ -411,6 +412,9 @@
 			break;
 		case '003':
 			value = '推广中';
+			break;
+		case '009':
+			value = '即将结束';
 			break;
 		case '004':
 			value = '已结束';
