@@ -48,7 +48,7 @@ public class MD5 {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(md5("12345678"));
-		System.out.println(MD5Encoder.encode(MD5.md5("12345678")));
+		System.out.println(md5("123"));
+		System.out.println(MD5Encoder.encode(MD5.md5("123")));
 	}
 }
