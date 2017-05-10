@@ -201,7 +201,21 @@ public class OrderController {
 		auditLog.setAudit_remarks("更改后再次提交");
 		item.setUser_id(user.getUser_id());
 		item.setState("001");
+
+
+		ItemInfo info = OrderService.getitemInfoById(item.getItem_id());
+
+		Coupon coupon = new Coupon();
+		coupon.setCoupon_id(info.getCoupon_id());
+		coupon.setActivity_start_time(item.getActivity_start_time());
+		coupon.setCoupon_start_time(item.getCoupon_start_time());
+		coupon.setCoupon_end_time(item.getCoupon_end_time());
+		coupon.setCoupon_url(item.getCoupon_url());
+
+		OrderService.updateCoupon(coupon);
+
 		result = OrderService.updateItemAndAddLog(auditLog, item);
+
 		return result;
 	}
 

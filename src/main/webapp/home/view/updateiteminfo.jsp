@@ -122,8 +122,8 @@
 				for (var i = 0; i < datas.length; i++) {
 					$("#item_type_select").append(
 							'<option class="form-control" value="'
-									+ datas[i].type_id + '">'
-									+ datas[i].type_name + '</option>');
+							+ datas[i].type_id + '">'
+							+ datas[i].type_name + '</option>');
 				}
 			}
 		});
@@ -140,38 +140,38 @@
 		var key = type;
 		var value;
 		switch (key) {
-		case '女装':
-			value = '001';
-			break;
-		case '男装':
-			value = '002';
-			break;
-		case '内衣':
-			value = '003';
-			break;
-		case '母婴':
-			value = '004';
-			break;
-		case '化妆品':
-			value = '005';
-			break;
-		case '居家':
-			value = '006';
-			break;
-		case '鞋包配饰':
-			value = '007';
-			break;
-		case '美食':
-			value = '008';
-			break;
-		case '文体车品':
-			value = '009';
-			break;
-		case '数码家电':
-			value = '010';
-			break;
-		default:
-			value = '';
+			case '女装':
+				value = '001';
+				break;
+			case '男装':
+				value = '002';
+				break;
+			case '内衣':
+				value = '003';
+				break;
+			case '母婴':
+				value = '004';
+				break;
+			case '化妆品':
+				value = '005';
+				break;
+			case '居家':
+				value = '006';
+				break;
+			case '鞋包配饰':
+				value = '007';
+				break;
+			case '美食':
+				value = '008';
+				break;
+			case '文体车品':
+				value = '009';
+				break;
+			case '数码家电':
+				value = '010';
+				break;
+			default:
+				value = '';
 		}
 		return value;
 	}
@@ -193,12 +193,12 @@
 					<tr>
 						<td>商品分类：</td>
 						<td><select name="item_type" id="item_type_select" style="width: 150px;" class="form-control" >
-								<option value="">所有分类</option>
+							<option value="">所有分类</option>
 						</select><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
 						<td>活动类型：</td>
-						<td><input disabled="disabled" type="radio" name="item_hdlx" value="001" checked="checked">普通活动&nbsp;&nbsp;<input disabled="disabled" type="radio" name="item_hdlx" value="002">淘抢购&nbsp;&nbsp;<input disabled="disabled" type="radio" name="item_hdlx" value="003">聚划算</td>
+						<td><input type="radio" name="item_hdlx" value="001" checked="checked">普通活动&nbsp;&nbsp;<input  type="radio" name="item_hdlx" value="002">淘抢购&nbsp;&nbsp;<input type="radio" name="item_hdlx" value="003">聚划算</td>
 					</tr>
 					<tr>
 						<td>商品名称：</td>
@@ -218,7 +218,7 @@
 					</tr>
 					<tr>
 						<td>计划类别：</td>
-						<td><input disabled="disabled" type="radio" name="item_jhlb" value="001" checked="checked">通用<input disabled="disabled" type="radio" name="item_jhlb" value="002">定向<input disabled="disabled" type="radio" name="item_jhlb" value="003">鹊桥</td>
+						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input  type="radio" name="item_jhlb" value="002">定向<input  type="radio" name="item_jhlb" value="003">鹊桥</td>
 					</tr>
 					<tr id="item_jhlj_tr_id">
 						<td>定向连接：</td>
@@ -227,19 +227,19 @@
 					<tr>
 						<td>活动开始时间：</td>
 						<td><div id="activity_start_time_div" class="input-append date form-group">
-								<input  style="width: 30%" id="activity_start_time" name="activity_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
-							</div></td>
+							<input  style="width: 30%" id="activity_start_time" name="activity_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+						</div></td>
 					</tr>
 					<tr>
 						<td>优惠券有效期：</td>
 						<td><div class="form-inline">
-								<div id="coupon_start_time_div" class="input-append date form-group">
-									<input id="coupon_start_time" name="coupon_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
-								</div>
-								<div id="coupon_end_time_div" class="input-append date form-group">
-									<input id="coupon_end_time" name="coupon_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
-								</div>
-							</div></td>
+							<div id="coupon_start_time_div" class="input-append date form-group">
+								<input id="coupon_start_time" name="coupon_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
+							</div>
+							<div id="coupon_end_time_div" class="input-append date form-group">
+								<input id="coupon_end_time" name="coupon_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+							</div>
+						</div></td>
 					</tr>
 					<tr>
 						<td>备注信息：</td>
@@ -264,10 +264,10 @@
 					<tr>
 						<td></td>
 						<td><div class="form-inline">
-								<button class="btn btn-primary form-control" type="submit">
-									<i class="glyphicon glyphicon-saved"></i>再次提交
-								</button>
-							</div></td>
+							<button class="btn btn-primary form-control" type="submit">
+								<i class="glyphicon glyphicon-saved"></i>再次提交
+							</button>
+						</div></td>
 						<td></td>
 					</tr>
 				</table>

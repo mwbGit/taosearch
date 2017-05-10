@@ -64,7 +64,7 @@
 		case '003':
 			$("#item_audit_form_003").show();
 			break;
-			case '009':
+		case '009':
 				$("#item_audit_form_003").show();
 				break;
 		case '004':
@@ -203,14 +203,20 @@
 				console.log(data);
 				before_audit_status = data.data.state;
 				var key = data.data.state;
-				if(ua=="3"){
-				showFrom(data.data.state);
-				initGrid(data.data.logs);
-				}else if(ua!="3"&&key=="005"&&data.data.item_zfje_state=="0"){
+				if (ua == "3") {
+					if (key == "005" && data.data.item_zfje_state == "0") {
+						$("#upload_item_pay_form").show();
+					} else if (key == "005" && data.data.item_zfje_state == "1") {
+						$("#upload_item_pay2_form").show();
+					}
+
+					showFrom(data.data.state);
+					initGrid(data.data.logs);
+				} else if (ua != "3" && key == "005" && data.data.item_zfje_state == "0") {
 					$("#upload_item_pay_form").show();
-				}else if(ua!="2"&&key=="667"){
+				} else if (ua != "2" && key == "667") {
 					$("#upload_item_pay_again_form").show();
-				}else if(ua!="3"&&key=="005"&&data.data.item_zfje_state=="1"){
+				} else if (ua != "3" && key == "005" && data.data.item_zfje_state == "1") {
 					$("#upload_item_pay2_form").show();
 				}
 				coupon_id = data.data.coupon_id;
@@ -218,6 +224,7 @@
 				case '001':
 				case '002':
 				case '003':
+				case '009':
 				case '004':
 				case '112':
 				case '999':
@@ -411,6 +418,9 @@
 			break;
 		case '003':
 			value = '推广中';
+			break;
+		case '009':
+			value = '即将结束';
 			break;
 		case '004':
 			value = '已结束';

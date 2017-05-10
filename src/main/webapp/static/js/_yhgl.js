@@ -6,7 +6,7 @@ var resettingPwdUrl = $ctx + '/user/updateUserPassword';
 var $user_infoGrid = $("#user_Info");
 var $user_paginator = $("#user_paginator");
 var gridDatas;
-var rowForPage = 5;
+var rowForPage = 20;
 var queryParamsData;
 $(function() {
 	// 获取数据信息

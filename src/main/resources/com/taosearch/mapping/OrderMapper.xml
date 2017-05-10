@@ -285,7 +285,19 @@
 				coupon_get_num=#{coupon_get_num},
 			</if>
 			<if test="coupon_use_num != null">
-				coupon_use_num=#{coupon_use_num}
+				coupon_use_num=#{coupon_use_num},
+			</if>
+			<if test="coupon_start_time != null and coupon_start_time != ''">
+				coupon_start_time=#{coupon_start_time},
+			</if>
+			<if test="coupon_end_time != null and coupon_end_time != ''">
+				coupon_end_time=#{coupon_end_time},
+			</if>
+			<if test="coupon_url != null and coupon_url != ''">
+				coupon_url=#{coupon_url},
+			</if>
+			<if test="activity_start_time != null and activity_start_time != ''">
+				activity_start_time=#{activity_start_time}
 			</if>
 		</set>
 		where
@@ -366,8 +378,14 @@
 		update t_item
 		<set>
 			updatetime=NOW(),
+			<if test="item_no != null and item_no != ''">
+				item_no=#{item_no},
+			</if>
 			<if test="item_name != null and item_name != ''">
 				item_name=#{item_name},
+			</if>
+			<if test="item_url != null and item_url != ''">
+				item_url=#{item_url},
 			</if>
 			<if test="item_md != null and item_md != ''">
 				item_md=#{item_md},
