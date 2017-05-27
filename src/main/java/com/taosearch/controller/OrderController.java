@@ -311,6 +311,12 @@ public class OrderController {
 		if ("undefined".equals(statePage)){
 			statePage =null;
 		}
+		if (StringUtils.isBlank(vo.getActivity_begin_time())){
+			vo.setActivity_begin_time(null);
+		}
+		if (StringUtils.isBlank(vo.getActivity_end_time())){
+			vo.setActivity_end_time(null);
+		}
 
 		ResultForPage<Item> result = new ResultForPage<Item>();
 		int pagestart = (page - 1) * rows;

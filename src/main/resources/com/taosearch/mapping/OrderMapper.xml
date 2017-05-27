@@ -188,6 +188,12 @@
 		<if test="vo.coupon_get_num_max != null">
 			<![CDATA[and c.coupon_get_num<=#{vo.coupon_get_num_max}]]>
 		</if>
+		<if test="vo.activity_begin_time != null">
+			<![CDATA[and c.activity_start_time >= #{vo.activity_begin_time}]]>
+		</if>
+		<if test="vo.activity_end_time != null">
+			<![CDATA[and c.activity_start_time <= #{vo.activity_end_time}]]>
+		</if>
 		</where>
 		ORDER BY i.`updatetime` DESC
 		LIMIT
@@ -230,6 +236,12 @@
 			</if>
 			<if test="vo.coupon_get_num_max != null">
 				<![CDATA[and c.coupon_get_num<=#{vo.coupon_get_num_max}]]>
+			</if>
+			<if test="vo.activity_begin_time != null">
+				<![CDATA[and c.activity_start_time >= #{vo.activity_begin_time}]]>
+			</if>
+			<if test="vo.activity_end_time != null">
+				<![CDATA[and c.activity_start_time <= #{vo.activity_end_time}]]>
 			</if>
 		</where>
 	</select>
