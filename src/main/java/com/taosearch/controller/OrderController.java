@@ -192,7 +192,21 @@ public class OrderController {
 			result.setMessage("数据传输异常未收到值");
 			return result;
 		}
+
+		ItemInfo info = OrderService.getitemInfoById(item.getItem_id());
 		SysUser user = (SysUser) request.getSession().getAttribute("loginUser");
+
+		if (info == null || !info.getState().equals("112")) {
+			String coupon_id = Util.getUUID();
+			item.setItem_id(Util.getUUID());
+			item.setUser_id(user.getUser_id());
+			item.setState("001");
+			item.setCoupon_id(coupon_id);
+			result = OrderService.saveItemInfo(item);
+
+			return result;
+		}
+
 		ItemAuditLog auditLog = new ItemAuditLog();
 		auditLog.setAfter_audit_status("001");
 		auditLog.setBefore_audit_status(before_audit_status);
@@ -201,9 +215,6 @@ public class OrderController {
 		auditLog.setAudit_remarks("更改后再次提交");
 		item.setUser_id(user.getUser_id());
 		item.setState("001");
-
-
-		ItemInfo info = OrderService.getitemInfoById(item.getItem_id());
 
 		Coupon coupon = new Coupon();
 		coupon.setCoupon_id(info.getCoupon_id());

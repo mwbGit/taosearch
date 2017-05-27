@@ -225,11 +225,9 @@ function initGrid() {
 									field : 'state',
 									formatter : function(val, row) {
 										var str = "<a 10%href='#' onclick='skipInfo(\""
-												+ row.item_id + "\")'>查看</a>";
-										if(row.state=='001'||row.state=='002'||row.state=='112'){
-											str+="</br><a href='#' onclick='skipupdateItemInfo(\""
-												+ row.item_id + "\")'>再次提交</a>";
-										}
+											+ row.item_id + "\")'>查看</a>";
+										str += "</br><a href='#' onclick='skipupdateItemInfo(\"" + row.item_id + "\")'>再次提交</a>";
+
 
 										return str;
 									}
