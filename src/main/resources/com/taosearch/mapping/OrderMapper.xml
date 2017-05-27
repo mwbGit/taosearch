@@ -145,7 +145,7 @@
 	</insert>
 
 	<select id="getItemUrlCount" parameterType="String" resultType="int">
-		select count(*) from t_item where item_url=#{item_url} AND state IN ('002','003','001')
+		select count(*) from t_item where item_url=#{item_url} AND state IN ('002','003','001','112')
 	</select>
 	<select id="getItemListForPage" parameterType="map"
 		resultType="com.taosearch.model.Item">
