@@ -72,6 +72,7 @@ CREATE TABLE `t_item` (
   `qq` varchar(30) DEFAULT NULL,
   `remark` varchar(200) DEFAULT NULL,
   `item_image_backup` varchar(200) DEFAULT NULL,
+  `item_main_image` varchar(200) DEFAULT NULL,
   `item_website_type` varchar(10) DEFAULT NULL,
   `item_jhlb` varchar(10) DEFAULT NULL,
   `item_jhlj` varchar(255) DEFAULT NULL,

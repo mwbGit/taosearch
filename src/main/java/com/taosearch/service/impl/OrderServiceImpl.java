@@ -56,6 +56,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public MyResult<String> saveItemInfo(Item item) {
 		MyResult<String> result = new MyResult<String>();
+
 		int num1 = OrderDao.saveCouponInfo(item);
 		if (num1 <= 0) {
 			result.setCode(9999);

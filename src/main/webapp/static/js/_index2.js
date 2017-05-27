@@ -175,7 +175,7 @@ function initGrid() {
 									+ getTimeDay(val)
 									+ '</br><a target="_blank" href="'
 									+ row.coupon_url
-									+ '">查看优惠卷连接</a></br>' +
+									+ '">查看优惠券链接</a></br>' +
 									'结束时间：'
 									+ getTimeDay(row.coupon_end_time);
 								if (row.state != '001'
@@ -355,6 +355,9 @@ function getItemjhlb(str) {
 			break;
 		case '003':
 			value = '鹊桥';
+			break;
+		case '004':
+			value = '营销计划';
 			break;
 		default:
 			value = '';
