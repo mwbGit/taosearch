@@ -26,6 +26,19 @@
 			startView : 0,
 			autoclose : true
 		});
+		$('#query_hd_start_time_div').datetimepicker({
+			todayBtn : true,
+			showMeridian : true,
+			startView : 0,
+			autoclose : true
+		});
+
+		$('#query_hd_end_time_div').datetimepicker({
+			todayBtn : true,
+			showMeridian : true,
+			startView : 0,
+			autoclose : true
+		});
 	})
 </script>
 <style type="text/css">
@@ -62,6 +75,16 @@
 								</div>
 								<div id="query_splb_end_time_div" class="input-append date form-group">
 									<input id="query_end_time" name="query_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+								</div>
+
+							</div></td>
+						<td>活动时间：</td>
+						<td><div class="form-inline">
+								<div id="query_hd_start_time_div" class="input-append date form-group">
+									<input id="activity_begin_time" name="activity_begin_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
+								</div>
+								<div id="query_hd_end_time_div" class="input-append date form-group">
+									<input id="activity_end_time" name="activity_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
 								</div>
 
 							</div></td>

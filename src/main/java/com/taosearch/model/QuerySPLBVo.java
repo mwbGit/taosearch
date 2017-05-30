@@ -27,6 +27,8 @@ public class QuerySPLBVo {
 	private String qq;
 	private Integer coupon_get_num_min;
 	private Integer coupon_get_num_max;
+	private String activity_begin_time;
+	private String activity_end_time;
 
 	public String getQq() {
 		return qq;
@@ -106,5 +108,21 @@ public class QuerySPLBVo {
 
 	public void setCoupon_get_num_max(Integer coupon_get_num_max) {
 		this.coupon_get_num_max = coupon_get_num_max;
+	}
+
+	public String getActivity_end_time() {
+		return activity_end_time;
+	}
+
+	public void setActivity_end_time(String activity_end_time) {
+		this.activity_end_time = activity_end_time;
+	}
+
+	public String getActivity_begin_time() {
+		return activity_begin_time;
+	}
+
+	public void setActivity_begin_time(String activity_begin_time) {
+		this.activity_begin_time = activity_begin_time;
 	}
 }

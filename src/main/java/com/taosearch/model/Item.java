@@ -42,6 +42,7 @@ public class Item {
 	private String qq;// 联系qq
 	private String remark;// 备注
 	private String item_image_backup;// 补充主图
+	private String item_main_image;//
 	private String item_website_type;// 商品网站类型 1淘宝 2天猫
 	private String coupon_url;// 优惠券地址
 	private String activity_start_time;// 活动开始时间
@@ -228,6 +229,14 @@ public class Item {
 
 	public void setItem_image_backup(String item_image_backup) {
 		this.item_image_backup = item_image_backup;
+	}
+
+	public String getItem_main_image() {
+		return item_main_image;
+	}
+
+	public void setItem_main_image(String item_main_image) {
+		this.item_main_image = item_main_image;
 	}
 
 	public String getItem_website_type() {

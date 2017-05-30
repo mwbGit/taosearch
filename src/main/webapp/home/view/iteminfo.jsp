@@ -237,7 +237,7 @@
 						$("#item_info_jhlj_tr_id").hide();
 					}
 					$('#itemInfo_activity_start_time_id').val(
-							getTimeDay(data.data.activity_start_time));
+							getTimeHHDay(data.data.activity_start_time));
 					$('#itemInfo_coupon_start_time_id').val(
 							getTimeDay(data.data.coupon_start_time));
 					$('#itemInfo_coupon_end_time_id').val(
@@ -369,6 +369,9 @@
 		case '003':
 			value = '鹊桥';
 			break;
+		case '004':
+			value = '营销计划';
+			break;
 		default:
 			value = '';
 		}
@@ -404,6 +407,13 @@
 			return "";
 		} else {
 			return str.substring(0, 10);
+		}
+	}
+	function getTimeHHDay(str) {
+		if (str == null || str == "") {
+			return "";
+		} else {
+			return str.substring(0, 16);
 		}
 	}
 	function getItemState(str) {
@@ -480,6 +490,11 @@
 					</tr>
 					<tr>
 						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
+						<td>商品主图：</td>
+						<td><textarea name="item_main_image" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
+					</tr>
+					<tr>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
 						<td>商品名称：</td>
 						<td><textarea name="item_name" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
@@ -525,7 +540,7 @@
 					</tr>
 					<tr>
 						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
-						<td>补充主图：</td>
+						<td>视频地址：</td>
 						<td><textarea name="item_image_backup" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>

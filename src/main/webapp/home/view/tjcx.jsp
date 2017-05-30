@@ -67,6 +67,11 @@
 						<td><input type="radio" name="item_hdlx" value="001" checked="checked">普通活动&nbsp;&nbsp;<input type="radio" name="item_hdlx" value="002">淘抢购&nbsp;&nbsp;<input type="radio" name="item_hdlx" value="003">聚划算</td>
 					</tr>
 					<tr>
+						<td>商品主图：</td>
+						<td><textarea id="item_main_image" required name="item_main_image" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+
+					</tr>
+					<tr>
 						<td>商品名称：</td>
 						<td><textarea id="item_name_id" name="item_name" required data-max="20" data-min="12" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">12到20个字符*</span></td>
 					</tr>
@@ -90,7 +95,7 @@
 					</tr>
 					<tr>
 						<td>计划类别：</td>
-						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input type="radio" name="item_jhlb" value="002">定向<input type="radio" name="item_jhlb" value="003">鹊桥</td>
+						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input type="radio" name="item_jhlb" value="002">定向<input type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划</td>
 					</tr>
 					<tr id="item_jhlj_tr_id">
 						<td>定向连接：</td>
@@ -99,7 +104,7 @@
 					<tr>
 						<td>活动开始时间：</td>
 						<td><div id="activity_start_time_div" class="input-append date form-group">
-								<input style="width: 30%" id="activity_start_time" name="activity_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+								<input style="width: 30%" id="activity_start_time" name="activity_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd hh:mm">
 							</div></td>
 					</tr>
 					<tr>
@@ -118,7 +123,7 @@
 						<td><textarea id="remark_id" name="remark" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 					</tr>
 					<tr>
-						<td>补充主图：</td>
+						<td>视频地址：</td>
 						<td><textarea id="item_image_backup_id" name="item_image_backup" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 					</tr>
 					<tr>
