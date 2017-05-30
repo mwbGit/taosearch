@@ -3,6 +3,8 @@
 <%@ page import="com.taosearch.util.Result"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<script language="javascript" type="text/javascript" src="${ctx }/static/My97DatePicker/WdatePicker.js"></script>
+
 <script type="text/javascript">
 	var item_id = "${param.item_id}";
 	var page = "${param.page}";
@@ -67,6 +69,33 @@
 		});
 
 	}
+
+	function getItemInfo1() {
+		console.log("=========>开始逻辑")
+		var item_url = $("#item_url_id").val();
+		console.log(item_url);
+		var data = {
+			"item_url" : item_url
+		}
+		$.ajax({
+			url : $ctx + '/order/getItemInfo',
+			data : data,
+			type : 'post',
+			dataType : 'json',
+			success : function(data) {
+				if (data.code == 1) {
+					$("#item_no_id").val(data.data.item_no);
+					$("#item_name_id").val(data.data.item_name);
+					$("#item_image_id").val(data.data.item_image);
+					$("#item_title_id").val(data.data.item_title);
+					$("#item_website_type_id").val(data.data.item_website_type);
+				}else{
+					$('#alert_dialog_danger').html(data.message);
+					$('#modal_danger').modal('show');
+				}
+			}
+		});
+	}
 	// 序列化表单
 	function serializeObject(form) {// 将表单元素中的值序列化成对象
 		var o = {};
@@ -102,7 +131,7 @@
 					$("#item_jhlj_tr_id").hide();
 				}
 				$('#activity_start_time').val(
-						getTimeHHDay(data.data.activity_start_time));
+						data.data.activity_start_time);
 				$('#coupon_start_time').val(
 						getTimeDay(data.data.coupon_start_time));
 				$('#coupon_end_time')
@@ -195,6 +224,12 @@
 						<td><textarea id="item_url_id" name="item_url" class="form-control" style="resize: none; width: 99%; overflow-y: scroll;" required></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
+						<td></td>
+						<td><div class="form-inline">
+							<a class="btn btn-primary form-control" onclick="getItemInfo1()" href="#">获取产品链接</a>
+						</div></td>
+					</tr>
+					<tr>
 						<td>商品ID：</td>
 						<td class="form-inline"><input  id="item_no_id" name="item_no" style="width: 30%" class="form-control"><span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
 					</tr>
@@ -210,7 +245,7 @@
 					</tr>
 					<tr>
 						<td>商品主图：</td>
-						<td><textarea id="item_main_image" required name="item_main_image" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+						<td><textarea id="item_main_image" name="item_main_image" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 					</tr>
 					<tr>
 						<td>商品名称：</td>
@@ -236,10 +271,11 @@
 						<td>定向连接：</td>
 						<td><textarea  id="item_jhlj_id" name="item_jhlj" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
+
 					<tr>
 						<td>活动开始时间：</td>
-						<td><div id="activity_start_time_div" class="input-append date form-group">
-							<input  style="width: 30%" id="activity_start_time" name="activity_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd hh:mm">
+						<td><div id="activity_start_time_div1" class="input-append date form-group">
+							<input type="text" name="activity_start_time" id="activity_start_time" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
 						</div></td>
 					</tr>
 					<tr>
