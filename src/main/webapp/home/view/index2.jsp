@@ -42,9 +42,9 @@
 	})
 </script>
 <style type="text/css">
-.navbar {
-	min-height: 30px
-}
+	.navbar {
+		min-height: 30px
+	}
 </style>
 <script src="${ctx }/static/js/_index2.js"></script>
 <div class="col-xs-12 col-sm-12 col-md-12 row">
@@ -59,43 +59,43 @@
 			<form class=" col-xs-15 col-sm-15 col-md-15" id="query_splb_form" role="form">
 				<table>
 					<tr>
-						<td><select name="item_type" id="query_item_type_select" style="width: 150px;" class="form-control">
-								<option value="">所有分类</option>
+						<td width="12%"><select name="item_type" id="query_item_type_select" class="form-control">
+							<option value="">所有分类</option>
 						</select></td>
-						<td><select name="team_id" id="query_team_select" onchange="query_team_selectchange()" style="width: 150px;" class="form-control">
-								<option value="">选择业务员小组</option>
+						<td width="15%"> <select name="team_id" id="query_team_select" onchange="query_team_selectchange()" class="form-control">
+							<option value="">选择小组</option>
 						</select></td>
-						<td><select name="user_id" id="query_user_select" style="width: 150px;" class="form-control">
-								<option value="">选择业务员</option>
+						<td width="12%"><select name="user_id" id="query_user_select"  class="form-control">
+							<option value="">选择业务员</option>
 						</select></td>
-						<td>提交时间：</td>
-						<td><div class="form-inline">
-								<div id="query_splb_start_time_div" class="input-append date form-group">
-									<input id="query_start_time" name="query_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
-								</div>
-								<div id="query_splb_end_time_div" class="input-append date form-group">
-									<input id="query_end_time" name="query_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
-								</div>
+						<td width="8%">提交时间：</td>
+						<td width="22%"><div class="form-inline">
+							<div id="query_splb_start_time_div" class="input-append date form-group">
+								<input style="width: 100px" id="query_start_time" name="query_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
+							</div>
+							<div id="query_splb_end_time_div" class="input-append date form-group">
+								<input style="width: 100px" id="query_end_time" name="query_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+							</div>
 
-							</div></td>
-						<td>活动时间：</td>
-						<td><div class="form-inline">
-								<div id="query_hd_start_time_div" class="input-append date form-group">
-									<input id="activity_begin_time" name="activity_begin_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
-								</div>
-								<div id="query_hd_end_time_div" class="input-append date form-group">
-									<input id="activity_end_time" name="activity_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
-								</div>
+						</div></td>
+						<td width="8%">活动时间：</td>
+						<td width="25%"><div class="form-inline">
+							<div id="query_hd_start_time_div" class="input-append date form-group">
+								<input style="width: 100px" id="activity_begin_time" name="activity_begin_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
+							</div>
+							<div id="query_hd_end_time_div" class="input-append date form-group">
+								<input style="width: 100px" id="activity_end_time" name="activity_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+							</div>
 
-							</div></td>
+						</div></td>
 					<tr>
 				</table>
 				<table>
 					<tr>
 						<td>商品ID：</td>
-						<td><input style="width:150px;" id="query_item_no" name="item_no" class="form-control"></td>
+						<td><input style="width:100px;" id="query_item_no" name="item_no" class="form-control"></td>
 						<td>关键字：</td>
-						<td><input style="width:150px;" id="query_key_item_name" name="item_name" class="form-control"></td>
+						<td><input style="width:100px;" id="query_key_item_name" name="item_name" class="form-control"></td>
 						<td>QQ：</td>
 						<td><input style="width:100px;" id="qqq" name="qq" class="form-control"></td>
 						<td>优惠券领取数量：</td>
@@ -103,8 +103,8 @@
 						<td>-</td>
 						<td><input style="width:100px;" id="coupon_get_num_max" name="coupon_get_num_max" class="form-control"></td>
 						<td><button class="btn btn-primary form-control" type="button" onclick="queryItem()">
-								<i class="glyphicon glyphicon-search"></i>搜索
-							</button></td>
+							<i class="glyphicon glyphicon-search"></i>搜索
+						</button></td>
 					</tr>
 				</table>
 				<hr />

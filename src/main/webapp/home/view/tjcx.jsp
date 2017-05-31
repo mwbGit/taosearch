@@ -3,6 +3,8 @@
 <%@ page import="com.taosearch.util.Result"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<script language="javascript" type="text/javascript" src="${ctx }/static/My97DatePicker/WdatePicker.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		$('#activity_start_time_div').datetimepicker({
@@ -68,7 +70,7 @@
 					</tr>
 					<tr>
 						<td>商品主图：</td>
-						<td><textarea id="item_main_image" required name="item_main_image" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+						<td><textarea id="item_main_image" name="item_main_image" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 
 					</tr>
 					<tr>
@@ -103,9 +105,9 @@
 					</tr>
 					<tr>
 						<td>活动开始时间：</td>
-						<td><div id="activity_start_time_div" class="input-append date form-group">
-								<input style="width: 30%" id="activity_start_time" name="activity_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd hh:mm">
-							</div></td>
+						<td><div id="activity_start_time_div1" class="input-append date form-group">
+							<input type="text" name="activity_start_time" id="d233" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+						</div></td>
 					</tr>
 					<tr>
 						<td>优惠券有效期：</td>
