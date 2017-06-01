@@ -203,7 +203,9 @@
 				console.log(data);
 				before_audit_status = data.data.state;
 				var key = data.data.state;
-				if (ua == "3") {
+				if (ua != "2" && key == "667") {
+					$("#upload_item_pay_again_form").show();
+				}else if (ua == "3") {
 					if (key == "005" && data.data.item_zfje_state == "0") {
 						$("#upload_item_pay_form").show();
 					} else if (key == "005" && data.data.item_zfje_state == "1") {
@@ -614,7 +616,7 @@
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12">
 	<form action="${ctx }/order/uploadpayInfo" enctype="multipart/form-data" method="post" id="upload_item_pay_form">
-		<input name="item_id" id="upload_item_pay_item_id" type="hidden"> <input name="after_audit_status" value="005" type="hidden"> <input name="before_audit_status" value="005" type="hidden">
+		<input name="item_id" id="upload_item_pay_item_id" type="hidden"> <input name="after_audit_status" value="006" type="hidden"> <input name="before_audit_status" value="005" type="hidden">
 		<table style="border-collapse: separate; border-spacing: 20px;">
 			<tr>
 				<td>支付金额：</td>
@@ -630,7 +632,7 @@
 		</table>
 	</form>
 	<form action="${ctx }/order/uploadpayInfo" enctype="multipart/form-data" method="post" id="upload_item_pay_again_form">
-		<input name="item_id" id="upload_item_pay_again_item_id" type="hidden"> <input name="after_audit_status" value="005" type="hidden"> <input name="before_audit_status" value="667" type="hidden">
+		<input name="item_id" id="upload_item_pay_again_item_id" type="hidden"> <input name="after_audit_status" value="006" type="hidden"> <input name="before_audit_status" value="667" type="hidden">
 		<table style="border-collapse: separate; border-spacing: 20px;">
 			<tr>
 				<td>支付金额：</td>
