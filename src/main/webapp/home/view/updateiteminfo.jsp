@@ -75,7 +75,8 @@
 		var item_url = $("#item_url_id").val();
 		console.log(item_url);
 		var data = {
-			"item_url" : item_url
+			"item_url" : item_url,
+			"status" : before_audit_status
 		}
 		$.ajax({
 			url : $ctx + '/order/getItemInfo',

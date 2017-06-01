@@ -98,7 +98,7 @@ public class OrderController {
 
 	@RequestMapping("/getItemInfo")
 	@ResponseBody
-	public MyResult<Item> getItemInfo(String item_url) {
+	public MyResult<Item> getItemInfo(String item_url, String status) {
 		MyResult<Item> result = new MyResult<Item>();
 		Item item = new Item();
 		if (item_url == null || "".equals(item_url)) {
@@ -106,8 +106,9 @@ public class OrderController {
 			result.setMessage("请输入商品地址");
 			return result;
 		}
+
 		int count = OrderService.getItemUrlCount(item_url);
-		if (count > 0) {
+		if (!"112".equals(status) && count > 0) {
 			result.setCode(2222);
 			result.setMessage("此商品已有人提交过");
 			return result;
