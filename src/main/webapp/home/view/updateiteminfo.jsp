@@ -125,6 +125,7 @@
 				console.log(data);
 				before_audit_status = data.data.state;
 				$('#item_update_form').form('load', data.data);
+				$("#item_no_id").val("");
 				if (data.data.item_jhlb == '002') {
 					$("#item_jhlj_tr_id").show();
 				} else {
