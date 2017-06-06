@@ -403,6 +403,9 @@
 			<if test="item_image_backup != null and item_image_backup != ''">
 				item_image_backup=#{item_image_backup},
 			</if>
+			<if test="item_main_image != null and item_main_image != ''">
+				item_main_image=#{item_main_image},
+			</if>
 			<if test="item_url != null and item_url != ''">
 				item_url=#{item_url},
 			</if>

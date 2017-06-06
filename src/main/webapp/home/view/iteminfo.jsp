@@ -26,9 +26,11 @@
 		$("#upload_item_pay_again_form").hide();
 		$("#upload_item_pay_form").hide();
 		$("#upload_item_pay2_form").hide();
+		$("#upload_item_pay3_form").hide();
 		$("#upload_item_pay_again_item_id").val(item_id);
 		$("#upload_item_pay_item_id").val(item_id);
 		$("#upload_item_pay2_item_id").val(item_id);
+		$("#upload_item_pay2_item_id1").val(item_id);
 		getItemInfo();
 
 		$('#activity_start_time_div').datetimepicker({
@@ -123,6 +125,22 @@
 		p=options;
 		$("#upload_item_pay2_form").ajaxForm(p);
 	}
+	function upload_item_paying_form1() {
+		var options = {
+			success : function(data) {
+				if (data.code == 1) {
+					$('#alert_dialog_success').html(data.message);
+					$('#modal_success').modal('show');
+					gobackpage();
+				} else {
+					$('#alert_dialog_danger').html(data.message);
+					$('#modal_danger').modal('show');
+				}
+			}
+		};
+		p=options;
+		$("#upload_item_pay3_form").ajaxForm(p);
+	}
 	function updateCoupon(form_id) {
 		var data = serializeObject($("#" + form_id));
 		data.coupon_id = coupon_id;
@@ -203,11 +221,19 @@
 				console.log(data);
 				before_audit_status = data.data.state;
 				var key = data.data.state;
-				if (ua == "3") {
+				if (ua != "2" && key == "667" && data.data.item_zfje_state == "0") {
+					$("#upload_item_pay_again_form").show();
+				}else if (ua != "2" && key == "667" && data.data.item_zfje_state == "1") {
+					$("#upload_item_pay3_form").show();
+				}
+				else if (ua == "3") {
 					if (key == "005" && data.data.item_zfje_state == "0") {
 						$("#upload_item_pay_form").show();
 					} else if (key == "005" && data.data.item_zfje_state == "1") {
 						$("#upload_item_pay2_form").show();
+					}
+					else if (key == "667" && data.data.item_zfje_state == "1") {
+						$("#upload_item_pay3_form").show();
 					}
 
 					showFrom(data.data.state);
@@ -218,6 +244,8 @@
 					$("#upload_item_pay_again_form").show();
 				} else if (ua != "3" && key == "005" && data.data.item_zfje_state == "1") {
 					$("#upload_item_pay2_form").show();
+				} else if (ua != "3" && key == "667" && data.data.item_zfje_state == "1") {
+					$("#upload_item_pay3_form").show();
 				}
 				coupon_id = data.data.coupon_id;
 				switch(key){
@@ -630,7 +658,7 @@
 		</table>
 	</form>
 	<form action="${ctx }/order/uploadpayInfo" enctype="multipart/form-data" method="post" id="upload_item_pay_again_form">
-		<input name="item_id" id="upload_item_pay_again_item_id" type="hidden"> <input name="after_audit_status" value="005" type="hidden"> <input name="before_audit_status" value="667" type="hidden">
+		<input name="item_id" id="upload_item_pay_again_item_id" type="hidden"> <input name="after_audit_status" value="667" type="hidden"> <input name="before_audit_status" value="667" type="hidden">
 		<table style="border-collapse: separate; border-spacing: 20px;">
 			<tr>
 				<td>支付金额：</td>
@@ -660,6 +688,24 @@
 		<div class="form-inline">
 			<button class="btn btn-primary form-control" onclick="upload_item_paying_form()">
 				<i class="glyphicon glyphicon-open"></i>提交实收金额
+			</button>
+		</div>
+	</form>
+	<form action="${ctx }/order/uploadpayingInfo" enctype="multipart/form-data" method="post" id="upload_item_pay3_form">
+		<input name="item_id" id="upload_item_pay2_item_id1" type="hidden"><input name="after_audit_status" value="006" type="hidden"> <input name="before_audit_status" value="005" type="hidden">
+		<table style="border-collapse: separate; border-spacing: 20px;">
+			<tr>
+				<td>实收金额：</td>
+				<td><input name="item_ssje" class="form-control"></td>
+				<td>附件：</td>
+				<td><input id="item_attachment" name="item_attachment" type="file" multiple="multiple"></td>
+				<td>备注：</td>
+				<td><textarea id="audit_remarks_id" name="audit_remarks" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
+			</tr>
+		</table>
+		<div class="form-inline">
+			<button class="btn btn-primary form-control" onclick="upload_item_paying_form1()">
+				<i class="glyphicon glyphicon-open"></i>再次提交实收金额
 			</button>
 		</div>
 	</form>
