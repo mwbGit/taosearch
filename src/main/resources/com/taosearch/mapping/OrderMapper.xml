@@ -468,8 +468,8 @@
 		COUNT(CASE WHEN i.state='667' THEN i.state END)
 		jjfknum,COUNT(CASE WHEN
 		i.state='999' THEN i.state END)jjnum,
-		FORMAT(COUNT(*)/(DATEDIFF(MAX(i.`createtime`),MIN(i.`createtime`))+1),2)
-		daynum,FORMAT(COUNT(CASE WHEN i.state='999' THEN i.state
+		COUNT(*)-COUNT(CASE WHEN i.state='999' THEN i.state END) daynum,
+		FORMAT(COUNT(CASE WHEN i.state='999' THEN i.state
 		END)/COUNT(*)*100,2) jjl,
 		SUM(CASE WHEN i.state='007' THEN item_ssje
 		END)
@@ -518,7 +518,12 @@
 		<if test="vo.order == 'totle asc'">
 			ORDER BY  totle asc
 		</if>
-
+		<if test="vo.order == 'daynum desc'">
+			ORDER BY  daynum desc
+		</if>
+		<if test="vo.order == 'daynum asc'">
+			ORDER BY  daynum asc
+		</if>
 		LIMIT #{pagestart},#{rows}
 	</select>
 	<select id="getFinancialStatementsCount" parameterType="map"
@@ -574,8 +579,8 @@
 		COUNT(CASE WHEN i.state='667' THEN i.state END)
 		jjfknum,COUNT(CASE WHEN
 		i.state='999' THEN i.state END)jjnum,
-		FORMAT(COUNT(*)/(DATEDIFF(MAX(i.`createtime`),MIN(i.`createtime`))+1),2)
-		daynum,FORMAT(COUNT(CASE WHEN i.state='999' THEN i.state
+		COUNT(*)-COUNT(CASE WHEN i.state='999' THEN i.state END) daynum,
+		FORMAT(COUNT(CASE WHEN i.state='999' THEN i.state
 		END)/COUNT(*)*100,2) jjl,
 		SUM(CASE WHEN i.state='007' THEN item_ssje
 		END)
@@ -622,6 +627,12 @@
 		</if>
 		<if test="vo.order == 'totle asc'">
 			ORDER BY  totle asc
+		</if>
+		<if test="vo.order == 'daynum desc'">
+			ORDER BY  daynum desc
+		</if>
+		<if test="vo.order == 'daynum asc'">
+			ORDER BY  daynum asc
 		</if>
 	</select>
 </mapper>

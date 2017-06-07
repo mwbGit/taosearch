@@ -347,8 +347,10 @@ public class OrderController {
 		String order = "";
 		if (StringUtils.isNotBlank(vo.getSsje())) {
 			order += "ssje " + vo.getSsje();
-		}else {
-			order += "totle " + (StringUtils.isBlank(vo.getTotle())? "desc":vo.getTotle());
+		} else if (StringUtils.isNotBlank(vo.getDaynum())) {
+			order += "daynum " + vo.getDaynum();
+		} else {
+			order += "totle " + (StringUtils.isBlank(vo.getTotle()) ? "desc" : vo.getTotle());
 		}
 		vo.setOrder(order);
 
@@ -408,8 +410,10 @@ public class OrderController {
 		String order = "";
 		if (StringUtils.isNotBlank(vo.getSsje())) {
 			order += "ssje " + vo.getSsje();
-		}else {
-			order += "totle " + (StringUtils.isBlank(vo.getTotle())? "desc":vo.getTotle());
+		} else if (StringUtils.isNotBlank(vo.getDaynum())) {
+			order += "daynum " + vo.getDaynum();
+		} else {
+			order += "totle " + (StringUtils.isBlank(vo.getTotle()) ? "desc" : vo.getTotle());
 		}
 		vo.setOrder(order);
 		map.put("sa", sa);
@@ -457,7 +461,7 @@ public class OrderController {
 		c3.setCellValue("提报数量");
 		c3.setCellStyle(style);
 		XSSFCell c4 = firstRow.createCell(3);
-		c4.setCellValue("日均提报");
+		c4.setCellValue("有效单");
 		c4.setCellStyle(style);
 		XSSFCell c5 = firstRow.createCell(4);
 		c5.setCellValue("驳回");

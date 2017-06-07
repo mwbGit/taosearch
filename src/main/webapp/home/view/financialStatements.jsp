@@ -68,6 +68,12 @@
 							<option value="asc">升序</option>
 							<option value="desc">降序</option>
 						</select></td>
+						<td>有效单排序：</td>
+						<td><select name="daynum" id="daynum" style="width: 150px;" class="form-control">
+							<option value=""></option>
+							<option value="asc">升序</option>
+							<option value="desc">降序</option>
+						</select></td>
 
 					</tr>
 					<tr>
