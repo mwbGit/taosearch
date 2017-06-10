@@ -28,6 +28,7 @@ public class QueryFinancialVo {
 	private String update_end_time;
 	private String ssje;
 	private String totle;
+	private String daynum;
 	private String order;
 
 	public String getOrder() {
@@ -52,6 +53,14 @@ public class QueryFinancialVo {
 
 	public void setTotle(String totle) {
 		this.totle = totle;
+	}
+
+	public String getDaynum() {
+		return daynum;
+	}
+
+	public void setDaynum(String daynum) {
+		this.daynum = daynum;
 	}
 
 	public String getTeam_id() {

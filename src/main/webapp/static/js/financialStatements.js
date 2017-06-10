@@ -60,7 +60,7 @@ function initGrid() {
 								}
 							}
 						}, {
-							title : '日均提报',
+							title : '有效单',
 							field : 'daynum',
 							formatter : function(val, row) {
 								if (val == null || val == "") {

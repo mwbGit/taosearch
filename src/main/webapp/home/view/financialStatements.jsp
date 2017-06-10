@@ -68,6 +68,12 @@
 							<option value="asc">升序</option>
 							<option value="desc">降序</option>
 						</select></td>
+						<td>有效单排序：</td>
+						<td><select name="daynum" id="daynum" style="width: 150px;" class="form-control">
+							<option value=""></option>
+							<option value="asc">升序</option>
+							<option value="desc">降序</option>
+						</select></td>
 
 					</tr>
 					<tr>
@@ -105,7 +111,10 @@
 						</td>
 						<td><button style="width:100px;" class="btn btn-primary form-control" type="button" onclick="queryItem()">
 							<i class="glyphicon glyphicon-search"></i>搜索
-						</button><button style="width:100px;" class="btn btn-primary form-control" type="button" style="width: 40%"onclick="downloadCase()">
+						</button>
+						</td>
+						<td>
+							<button style="width:100px;" class="btn btn-primary form-control" type="button" style="width: 40%"onclick="downloadCase()">
 							<i class="glyphicon glyphicon-download-alt"></i>导出
 						</button></td>
 					</tr>
