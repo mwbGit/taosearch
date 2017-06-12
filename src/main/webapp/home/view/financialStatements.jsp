@@ -50,26 +50,26 @@
 				<table>
 					<tr>
 						<td>选择小组：</td>
-						<td><select name="team_id" id="query_team_select" onchange="query_team_selectchange()" style="width: 150px;" class="form-control">
-							<option value="">选择业务员小组</option>
+						<td><select name="team_id" id="query_team_select" onchange="query_team_selectchange()" style="width: 100px;" class="form-control">
+							<option value="">选择小组</option>
 						</select></td>
-						<td><select name="user_id" id="query_user_select" style="width: 150px;" class="form-control">
-							<option value="">选择业务员</option>
+						<td><select name="user_id" id="query_user_select" style="width: 100px;" class="form-control">
+							<option value=""></option>
 						</select></td>
 						<td>提交数量排序：</td>
-						<td><select name="totle" id="totle"  style="width: 150px;" class="form-control">
+						<td><select name="totle" id="totle"  style="width: 100px;" class="form-control">
 							<option value=""></option>
 							<option value="asc">升序</option>
 							<option value="desc">降序</option>
 						</select></td>
 						<td>实收金额排序：</td>
-						<td><select name="ssje" id="ysje" style="width: 150px;" class="form-control">
+						<td><select name="ssje" id="ysje" style="width: 100px;" class="form-control">
 							<option value=""></option>
 							<option value="asc">升序</option>
 							<option value="desc">降序</option>
 						</select></td>
 						<td>有效单排序：</td>
-						<td><select name="daynum" id="daynum" style="width: 150px;" class="form-control">
+						<td><select name="daynum" id="daynum" style="width: 100px;" class="form-control">
 							<option value=""></option>
 							<option value="asc">升序</option>
 							<option value="desc">降序</option>
@@ -81,14 +81,14 @@
 						<td>
 							<div class="form-inline">
 								<div id="query_create_start_time_div" class="input-append date form-group">
-									<input style="width:150px;"  id="create_start_time" name="create_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
+									<input style="width:100px;"  id="create_start_time" name="create_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
 								</div>
 							</div>
 						</td>
 						<td>
 							<div class="form-inline">
 								<div id="query_create_end_time_div" class="input-append date form-group">
-									<input style="width:150px;"  id="create_end_time" name="create_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+									<input style="width:100px;"  id="create_end_time" name="create_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
 								</div>
 							</div>
 						</td>
@@ -98,14 +98,14 @@
 						<td>
 							<div class="form-inline">
 								<div id="query_update_start_time_div" class="input-append date form-group">
-									<input style="width:150px;"  id="update_start_time" name="update_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
+									<input style="width:100px;"  id="update_start_time" name="update_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
 								</div>
 							</div>
 						</td>
 						<td>
 							<div class="form-inline">
 								<div id="query_update_end_time_div" class="input-append date form-group">
-									<input style="width:150px;" id="update_end_time" name="update_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+									<input style="width:100px;" id="update_end_time" name="update_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
 								</div>
 							</div>
 						</td>

@@ -298,7 +298,7 @@ function initUserTeam() {
 		success : function(datas) {
 			$("#query_team_select").html("");
 			$("#query_team_select").append(
-				'<option class="form-control" value="">选择业务员小组</option>');
+				'<option class="form-control" value="">选择小组</option>');
 			for (var i = 0; i < datas.length; i++) {
 				$("#query_team_select").append(
 					'<option class="form-control" value="'
