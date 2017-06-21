@@ -1,9 +1,12 @@
 package com.taosearch.scheduler;
 
 import com.taosearch.dao.OrderDao;
+import com.taosearch.model.Coupon;
 import com.taosearch.model.Item;
 import com.taosearch.model.QuerySPLBVo;
 import com.taosearch.model.SimpleAuthorization;
+import com.taosearch.service.dataoke.DaoLaoKeService;
+import com.taosearch.service.dataoke.api.ProductMO;
 import com.taosearch.util.DateTimeUtility;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class ProductStatusJobTask {
 
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private DaoLaoKeService daoLaoKeService;
 
     public void run() throws Exception {
         Map<String, Object>  map = new HashMap<>();
@@ -95,6 +101,33 @@ public class ProductStatusJobTask {
                 }
             }
         }
-//
+
+        //推广中 更新优惠券
+        map.put("state", "003");
+        List<Item> list3 = orderDao.getItemListForPage(map);
+        if (CollectionUtils.isNotEmpty(list3)) {
+            int count = 1;
+            for (Item item : list3) {
+                Date startTime = DateTimeUtility.parseYYYYMMDDHHMMSS(item.getCoupon_start_time());
+                if(startTime.after(now)){
+                    continue;
+                }
+                ProductMO mo = daoLaoKeService.getProductMO(item.getItem_no());
+                if (count % 50 == 0) {
+                    Thread.sleep(60000);
+                    mo = daoLaoKeService.getProductMO(item.getItem_no());
+                }
+
+                if (mo != null) {
+                    Coupon coupon = new Coupon();
+                    coupon.setCoupon_id(item.getCoupon_id());
+                    coupon.setCoupon_get_num(mo.getCouponReceiveNumber());
+                    coupon.setCoupon_rest_num(mo.getCouponSurplusNumber());
+
+                    orderDao.updateCoupon(coupon);
+                }
+                count ++;
+            }
+        }
     }
 }
