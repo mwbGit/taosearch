@@ -6,6 +6,7 @@ import com.taosearch.model.Item;
 import com.taosearch.model.QuerySPLBVo;
 import com.taosearch.model.SimpleAuthorization;
 import com.taosearch.service.dataoke.DaoLaoKeService;
+import com.taosearch.service.dataoke.api.IDaoLaoKeService;
 import com.taosearch.service.dataoke.api.ProductMO;
 import com.taosearch.util.DateTimeUtility;
 import org.apache.commons.collections.CollectionUtils;
@@ -26,7 +27,7 @@ public class ProductStatusJobTask {
     private OrderDao orderDao;
 
     @Autowired
-    private DaoLaoKeService daoLaoKeService;
+    private IDaoLaoKeService daoLaoKeService;
 
     public void run() throws Exception {
         Map<String, Object>  map = new HashMap<>();
