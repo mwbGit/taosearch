@@ -384,6 +384,9 @@
         Url2.select(); // 选择对象
         document.execCommand("Copy"); // 执行浏览器复制命令
     }
+    function addFile(obj) {
+        $(obj).next().append('<input  name="item_attachment" type="file" multiple="multiple">');
+    }
     function getItemjhlb(str) {
         var key = str;
         var value;
@@ -650,8 +653,9 @@
 			<tr>
 				<td>支付金额：</td>
 				<td><input name="item_zfje" class="form-control"></td>
-				<td>添加附件：</td>
-				<td><input id="item_attachment" name="item_attachment" type="file" multiple="multiple"></td>
+				<td style="width: 10%">附件：</td>
+				<td><button type="button" onclick="addFile(this)">+</button>
+					<li style="list-style-type: none;width: 200px"></li></td>
 				<td>备注：</td>
 				<td><textarea id="audit_remarks_id" name="audit_remarks" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 				<td><button class="btn btn-primary form-control" onclick="upload_item_pay_form()">
@@ -665,9 +669,10 @@
 		<table style="border-collapse: separate; border-spacing: 20px;">
 			<tr>
 				<td>支付金额：</td>
-				<td><input name="item_zfje" class="form-control"></td>
-				<td>添加附件：</td>
-				<td><input id="item_attachment" name="item_attachment" type="file" multiple="multiple"></td>
+				<td><input style="width:100px" name="item_zfje" class="form-control"></td>
+				<td style="width: 10%">附件：</td>
+				<td><button type="button" onclick="addFile(this)">+</button>
+					<li style="list-style-type: none;width: 200px"></li></td>
 				<td>备注：</td>
 				<td><textarea id="audit_remarks_id" name="audit_remarks" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 				<td><button class="btn btn-primary form-control" onclick="upload_item_pay_again_form()">
@@ -681,10 +686,12 @@
 		<table style="border-collapse: separate; border-spacing: 20px;">
 			<tr>
 				<td>实收金额：</td>
-				<td><input name="item_ssje" class="form-control"></td>
-				<td>附件：</td>
-				<td><input id="item_attachment" name="item_attachment" type="file" multiple="multiple"></td>
+				<td><input style="width: 100px" name="item_ssje" class="form-control"></td>
+				<td style="width: 10%">附件：</td>
+				<td><button type="button" onclick="addFile(this)">+</button>
+					<li style="list-style-type: none;width: 200px"></li></td>
 				<td>备注：</td>
+
 				<td><textarea id="audit_remarks_id" name="audit_remarks" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 			</tr>
 		</table>
@@ -699,9 +706,10 @@
 		<table style="border-collapse: separate; border-spacing: 20px;">
 			<tr>
 				<td>实收金额：</td>
-				<td><input name="item_ssje" class="form-control"></td>
-				<td>附件：</td>
-				<td><input id="item_attachment" name="item_attachment" type="file" multiple="multiple"></td>
+				<td><input style="width: 100px" name="item_ssje" class="form-control"></td>
+				<td style="width: 10%">附件：</td>
+				<td><button type="button" onclick="addFile(this)">+</button>
+					<li style="list-style-type: none;width: 200px"></li></td>
 				<td>备注：</td>
 				<td><textarea id="audit_remarks_id" name="audit_remarks" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 			</tr>
