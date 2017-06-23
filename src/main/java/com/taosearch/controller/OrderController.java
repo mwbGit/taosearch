@@ -20,6 +20,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.taosearch.service.dataoke.api.IDaoLaoKeService;
+import com.taosearch.service.dataoke.api.ProductMO;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
@@ -65,14 +67,38 @@ public class OrderController {
 	@Autowired
 	private OrderService OrderService;
 
-	@RequestMapping("/claim")
-	@ResponseBody
-	public void claim(String id) {
-		Item item = new Item();
-		item.setItem_id(id);
-		item.setState("002");
+	@Autowired
+	private IDaoLaoKeService daoLaoKeService;
 
-		OrderService.updateItem(item);
+	@RequestMapping("/getDataoke")
+	@ResponseBody
+	public Item claim(String item_url) {
+		String id = Util.URLRequest(item_url).get("id");
+		Item item = new Item();
+		item.setItem_no(id);
+		if (StringUtils.isBlank(id)){
+			item.setShowClaim(true);
+			return item;
+		}
+
+		ProductMO mo = daoLaoKeService.getProductMO(id);
+		if (mo != null) {
+			if (mo.getDiscountPrice() != null) {
+				item.setItem_qhjg(mo.getDiscountPrice().doubleValue());
+			}
+			if (mo.getGeneral() != null) {
+				item.setItem_yjbl(mo.getGeneral().doubleValue());
+			} else if (mo.getMagpie() != null) {
+				item.setItem_yjbl(mo.getMagpie().doubleValue());
+			}
+			item.setCoupon_get_num(mo.getCouponReceiveNumber());
+			item.setCoupon_rest_num(mo.getCouponSurplusNumber());
+			item.setCoupon_end_time(mo.getCouponEndTime());
+		}else {
+			item.setShowClaim(true);
+		}
+
+		return item;
 	}
 	@RequestMapping("/cancelAudit")
 	@ResponseBody
@@ -325,9 +351,13 @@ public class OrderController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagestart", pagestart);
 		map.put("rows", rows);
-		map.put("sa", sa);
 		map.put("state", statePage);
 		map.put("vo", vo);
+		if (vo.isHz()){
+			sa = new SimpleAuthorization();
+			sa.setAuthorization("3");
+		}
+		map.put("sa", sa);
 
 		List<Item> list = OrderService.getItemListForPage(map);
 
@@ -360,8 +390,8 @@ public class OrderController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagestart", pagestart);
 		map.put("rows", rows);
-		map.put("sa", sa);
 		map.put("vo", vo);
+		map.put("sa", sa);
 
 		List<FinancialStatements> list = OrderService.getFinancialStatementsForPage(map);
 		int count = OrderService.getFinancialStatementsCount(map);

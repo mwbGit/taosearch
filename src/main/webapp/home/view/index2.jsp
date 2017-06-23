@@ -53,16 +53,18 @@
 			<form class=" col-xs-15 col-sm-15 col-md-15" id="query_splb_form1" role="form">
 				<table>
 					<tr><td>
-						<input  style="width:300px;" id="query_item_no1" name="item_no" class="form-control" placeholder="粘贴产品链接"></td>
-						<td><button class="btn btn-primary form-control" type="button" onclick="queryItem()">
+						<input  style="width:300px;" id="taoke_url" name="item_no" class="form-control" placeholder="粘贴产品链接"></td>
+						<td><button class="btn btn-primary form-control" type="button" onclick="getDataokeDatas()">
 							<i class="glyphicon glyphicon-search"></i>搜索
 						</button>	</td>
-						<td id="td6"><span style="color: red" id="span6">&nbsp&nbsp查询无结果</span></td>
-						<td id="td1">&nbsp卷后价格：<span style="color: red" id="span">1</span></td>
-						<td id="td2" style="display: none">&nbsp 佣金比例：<span id="span2" style="color: red">1</span></td>
-						<td id="td3" style="display: none">&nbsp 领取数量：<span id="span3" style="color: red">1</span></td>
-						<td id="td4" style="display: none"> &nbsp 剩余数量：<span id="span4" style="color: red">1</span></td>
-						<td id="td5" style="display: none"> &nbsp 优惠券起止时间：<span id="span5" style="color: red">1</span></td>
+						<td id="td6"  style="display: none"><span style="color: red" id="span6">&nbsp&nbsp查询无结果</span></td>
+						<td id="td1" style="display: none">&nbsp卷后价格：<span style="color: red" id="span1"></span></td>
+						<td id="td2" style="display: none">&nbsp 佣金比例：<span id="span2" style="color: red"></span></td>
+						<td id="td3" style="display: none">&nbsp 领取数量：<span id="span3" style="color: red"></span></td>
+						<td id="td4" style="display: none"> &nbsp 剩余数量：<span id="span4" style="color: red"></span></td>
+					</tr>
+					<tr><td colspan="2">&nbsp</td>
+						<td colspan="5" id="td5" style=" display: none"> &nbsp优惠券结束时间：<span id="span5" style="color: red"></span></td>
 					</tr>
 				</table>
 			</form>
@@ -78,14 +80,14 @@
 						<td width="12%"><select name="item_type" id="query_item_type_select" class="form-control">
 							<option value="">所有分类</option>
 						</select></td>
-						<td width="15%"> <select name="team_id" id="query_team_select" onchange="query_team_selectchange()" class="form-control">
+						<td width="12%"> <select name="team_id" id="query_team_select" onchange="query_team_selectchange()" class="form-control">
 							<option value="">选择小组</option>
 						</select></td>
 						<td width="12%"><select name="user_id" id="query_user_select"  class="form-control">
 							<option value="">选择业务员</option>
 						</select></td>
 						<td width="8%">提交时间：</td>
-						<td width="22%"><div class="form-inline">
+						<td width="25%"><div class="form-inline">
 							<div id="query_splb_start_time_div" class="input-append date form-group">
 								<input style="width: 100px" id="query_start_time" name="query_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
 							</div>

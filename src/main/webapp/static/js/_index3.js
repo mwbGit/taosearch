@@ -21,7 +21,6 @@ $(function() {
     if ($p_rows != "") {
         rowForPage = $p_rows
     }
-    initnavstateinfo();
     // 获取数据信息
     initGrid();
     initItemType();
@@ -35,7 +34,7 @@ $(function() {
  * @returns
  */
 function initGrid() {
-    var gridDatas = getGridDatas(caseInfoUrl + '?statePage=000&page=' + page + '&rows='
+    var gridDatas = getGridDatas(caseInfoUrl + '?hz=true&statePage=000&page=' + page + '&rows='
         + rowForPage);
     console.log(gridDatas);
     $case_infoGrid
@@ -197,12 +196,13 @@ function initGrid() {
                     },
                     {
                         title : '转化率',
-                        field : 'coupon_use_num',
+                        field : 'item_zfje',
                         formatter : function(val, row) {
-                            if (val == null || val == "") {
+                            if (val == null || val == "" ||
+                                row.coupon_get_num==null ||row.coupon_get_num=="") {
                                 return "";
                             } else {
-                                return  (val * row.item_fwdj).toFixed(0);
+                                return  (((row.item_zfje/row.item_qhjg)/row.coupon_get_num)*100).toFixed(2) ;
                             }
                         }
                     },
@@ -213,7 +213,7 @@ function initGrid() {
                             if (val == null || val == "") {
                                 return "";
                             } else {
-                                return  (((row.item_zfje/row.item_qhjg)/row.coupon_get_num)*100).toFixed(2) ;
+                                return  (val * row.item_fwdj).toFixed(0);
                             }
                         }
                     },
@@ -244,9 +244,8 @@ function initGrid() {
         currentPage : page,
         totalPages : gridDatas.totalpage,
         onPageClicked : function(e, originalEvent, type, pages) {
-            // loadGrid(caseInfoUrl+"?rows="+rowForPage+"&page="+pages);
             $case_infoGrid.datagrid('loadData', {
-                rows : getGridDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
+                rows : getGridDatas(caseInfoUrl + "?hz=true&statePage="+item_state+"&rows=" + rowForPage
                     + "&page=" + pages).list
             });
         }
@@ -421,66 +420,6 @@ function initqueryUserSelect(value) {
             '<option class="form-control" value="">选择业务员</option>');
     }
 }
-function initnavstateinfo() {
-    $.ajax({
-        url : $ctx + '/order/getnavstateinfo',
-        type : 'get',
-        async : false,
-        dataType : 'json',
-        success : function(datas) {
-            $("#nav_state_query").html("");
-            for (var i = 0; i < datas.length; i++) {
-                if (i == 0) {
-                    $("#nav_state_query").append(
-                        "<li><a href='#' onclick='ItemByStateChange(\""
-                        + datas[i].state + "\",this)'>"
-                        + getItemState(datas[i].state) + "("
-                        + datas[i].num + ")</a></li>");
-                } else {
-                    $("#nav_state_query").append(
-                        "<li><a href='#' onclick='ItemByStateChange(\""
-                        + datas[i].state + "\",this)'>"
-                        + getItemState(datas[i].state) + "("
-                        + datas[i].num + ")</a></li>");
-                }
-            }
-            $("#nav_state_query li:first").prop("class", 'active');
-        }
-    });
-}
-function ItemByStateChange(state, obj) {
-    item_state = state;
-    console.log(state);
-    obj = $(obj).parent('li');
-    console.log(obj);
-    var lis = obj.siblings().removeClass('active');
-    obj.addClass('active');
-    var data = {
-        state : state
-    };
-    $.ajax({
-        url : caseInfoUrl + '?statePage='+item_state+'&page=' + page + '&rows=' + rowForPage,
-        data : data,
-        type : 'post',
-        async : false,
-        success : function(datas) {
-            console.info(datas)
-            $case_infoGrid.datagrid('loadData', {
-                rows : datas.list
-            });
-            $case_paginator.bootstrapPaginator({
-                currentPage : 1,
-                totalPages : datas.totalpage,
-                onPageClicked : function(e, originalEvent, type, pages) {
-                    $case_infoGrid.datagrid('loadData', {
-                        rows : getDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
-                            + "&page=" + pages, queryParamsData).list
-                    });
-                }
-            })
-        }
-    });
-}
 function getItemState(str) {
     var key = str;
     var value;
@@ -550,7 +489,7 @@ function loadGrid(url) {
         totalPages : gridDatas.totalpage,
         onPageClicked : function(e, originalEvent, type, pages) {
             $case_infoGrid.datagrid('loadData', {
-                rows : getGridDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
+                rows : getGridDatas(caseInfoUrl + "?hz=true&statePage="+item_state+"&rows=" + rowForPage
                     + "&page=" + pages).list
             });
         }
@@ -591,37 +530,6 @@ function getDatas(url, data) {
     }
 
     return datas;
-}
-/**
- * 多条件查询接口
- */
-function queryItem() {
-    var data = serializeObject($("#query_splb_form"));
-    data.state = item_state;
-    queryParamsData = data;
-    console.info(111, data);
-    $.ajax({
-        url : caseInfoUrl + '?statePage='+item_state+'&page=' + page + '&rows=' + rowForPage,
-        data : data,
-        type : 'post',
-        async : false,
-        success : function(datas) {
-            console.info(datas)
-            $case_infoGrid.datagrid('loadData', {
-                rows : datas.list
-            });
-            $case_paginator.bootstrapPaginator({
-                currentPage : 1,
-                totalPages : datas.totalpage,
-                onPageClicked : function(e, originalEvent, type, pages) {
-                    $case_infoGrid.datagrid('loadData', {
-                        rows : getDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
-                            + "&page=" + pages, queryParamsData).list
-                    });
-                }
-            })
-        }
-    })
 }
 // 序列化表单
 function serializeObject(form) {// 将表单元素中的值序列化成对象

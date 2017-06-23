@@ -270,6 +270,40 @@ function initGrid() {
         }
     });
 }
+function getDataokeDatas(url) {
+    var url = $("#taoke_url").val();
+    $.ajax({
+        url : $ctx + "/order/getDataoke",
+        type : 'post',
+        data : {"item_url":url},
+        async : false,
+        dataType : 'json',
+        success : function(data) {
+            if (data.showClaim){
+                $("#td6").show();
+                $("#td1").hide();
+                $("#td2").hide();
+                $("#td3").hide();
+                $("#td4").hide();
+                $("#td5").hide();
+                return;
+            }
+
+            $("#span1").text(data.item_qhjg);
+            $("#span2").text(data.item_yjbl);
+            $("#span3").text(data.coupon_get_num);
+            $("#span4").text(data.coupon_rest_num);
+            $("#span5").text(data.coupon_end_time);
+            $("#td1").show();
+            $("#td2").show();
+            $("#td3").show();
+            $("#td4").show();
+            $("#td5").show();
+            $("#td6").hide();
+
+        }
+    });
+}
 function initItemType() {
     $.ajax({
         url : $ctx + '/order/getItemTypes',
@@ -610,6 +644,7 @@ function getDatas(url, data) {
 
     return datas;
 }
+
 /**
  * 多条件查询接口
  */

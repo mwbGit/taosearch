@@ -100,9 +100,9 @@
 						<td>-</td>
 						<td><input style="width:60px;" id="coupon_get_num_max" name="coupon_get_num_max" class="form-control"></td>
 						<td>实收金额：</td>
-						<td><input style="width:80px;" id="shje_min" name="coupon_get_num_min" class="form-control"></td>
+						<td><input style="width:80px;" id="shje_min" name="shje_min" class="form-control"></td>
 						<td>-</td>
-						<td><input style="width:80px;" id="shje_max" name="coupon_get_num_max" class="form-control"></td>
+						<td><input style="width:80px;" id="shje_max" name="shje_max" class="form-control"></td>
 
 						<td><input type="hidden" name="hz" value="true"><button class="btn btn-primary form-control" type="button" onclick="queryItem()">
 							<i class="glyphicon glyphicon-search"></i>搜索
