@@ -272,6 +272,10 @@ function initGrid() {
 }
 function getDataokeDatas(url) {
     var url = $("#taoke_url").val();
+
+    if (url === "" || url === null){
+        return;
+    }
     $.ajax({
         url : $ctx + "/order/getDataoke",
         type : 'post',
