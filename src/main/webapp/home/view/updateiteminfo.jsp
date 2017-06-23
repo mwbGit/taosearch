@@ -6,214 +6,214 @@
 <script language="javascript" type="text/javascript" src="${ctx }/static/My97DatePicker/WdatePicker.js"></script>
 
 <script type="text/javascript">
-	var item_id = "${param.item_id}";
-	var page = "${param.page}";
-	var rows = "${param.rows}";
-	var before_audit_status;
-	$(function() {
-		$('#activity_start_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			timepicker:false,    //关闭时间选项
-			startView : 0,
-			autoclose : true
-		});
+    var item_id = "${param.item_id}";
+    var page = "${param.page}";
+    var rows = "${param.rows}";
+    var before_audit_status;
+    $(function() {
+        $('#activity_start_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            timepicker:false,    //关闭时间选项
+            startView : 0,
+            autoclose : true
+        });
 
-		$('#coupon_start_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
-		$('#coupon_end_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
-		$('input[name="item_jhlb"]').change(function() {
-			if ($(this).val() == '002') {
-				$("#item_jhlj_tr_id").show();
-			} else {
-				$("#item_jhlj_tr_id").hide();
-			}
-		});
-		initItemType();
-		getItemInfo();
-		$("#item_update_form").html5Validate(function() {
-			updateItemInfo();
-		});
-	});
-	function updateItemInfo() {
-		var data = serializeObject($("#item_update_form"));
-		data.item_id=item_id;
-		data.before_audit_status=before_audit_status;
-		console.log("==============================>再次提交数据")
-		console.log(data);
-		$.ajax({
-			url : $ctx + '/order/updateItemInfo',
-			data : data,
-			type : 'post',
-			async : false,
-			dataType : 'json',
-			success : function(data) {
-				if (data.code == 1) {
-					$('#alert_dialog_success').html(data.message);
-					$('#modal_success').modal('show');
-					gobackpage();
-				} else {
-					$('#alert_dialog_danger').html(data.message);
-					$('#modal_danger').modal('show');
-				}
-			}
-		});
+        $('#coupon_start_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
+        $('#coupon_end_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
+        $('input[name="item_jhlb"]').change(function() {
+            if ($(this).val() == '002' || $(this).val() == '004') {
+                $("#item_jhlj_tr_id").show();
+            } else {
+                $("#item_jhlj_tr_id").hide();
+            }
+        });
+        initItemType();
+        getItemInfo();
+        $("#item_update_form").html5Validate(function() {
+            updateItemInfo();
+        });
+    });
+    function updateItemInfo() {
+        var data = serializeObject($("#item_update_form"));
+        data.item_id=item_id;
+        data.before_audit_status=before_audit_status;
+        console.log("==============================>再次提交数据")
+        console.log(data);
+        $.ajax({
+            url : $ctx + '/order/updateItemInfo',
+            data : data,
+            type : 'post',
+            async : false,
+            dataType : 'json',
+            success : function(data) {
+                if (data.code == 1) {
+                    $('#alert_dialog_success').html(data.message);
+                    $('#modal_success').modal('show');
+                    gobackpage();
+                } else {
+                    $('#alert_dialog_danger').html(data.message);
+                    $('#modal_danger').modal('show');
+                }
+            }
+        });
 
-	}
+    }
 
-	function getItemInfo1() {
-		console.log("=========>开始逻辑")
-		var item_url = $("#item_url_id").val();
-		console.log(item_url);
-		var data = {
-			"item_url" : item_url,
-			"status" : before_audit_status
-		}
-		$.ajax({
-			url : $ctx + '/order/getItemInfo',
-			data : data,
-			type : 'post',
-			dataType : 'json',
-			success : function(data) {
-				if (data.code == 1) {
-					$("#item_no_id").val(data.data.item_no);
-					$("#item_name_id").val(data.data.item_name);
-					$("#item_image_id").val(data.data.item_image);
-					$("#item_title_id").val(data.data.item_title);
-					$("#item_website_type_id").val(data.data.item_website_type);
-				}else{
-					$('#alert_dialog_danger').html(data.message);
-					$('#modal_danger').modal('show');
-				}
-			}
-		});
-	}
-	// 序列化表单
-	function serializeObject(form) {// 将表单元素中的值序列化成对象
-		var o = {};
-		$.each(form.serializeArray(), function(index_) {
-			if (o[this['name']]) {
-				o[this['name']] = o[this['name']] + "," + this['value'];
+    function getItemInfo1() {
+        console.log("=========>开始逻辑")
+        var item_url = $("#item_url_id").val();
+        console.log(item_url);
+        var data = {
+            "item_url" : item_url,
+            "status" : before_audit_status
+        }
+        $.ajax({
+            url : $ctx + '/order/getItemInfo',
+            data : data,
+            type : 'post',
+            dataType : 'json',
+            success : function(data) {
+                if (data.code == 1) {
+                    $("#item_no_id").val(data.data.item_no);
+                    $("#item_name_id").val(data.data.item_name);
+                    $("#item_image_id").val(data.data.item_image);
+                    $("#item_title_id").val(data.data.item_title);
+                    $("#item_website_type_id").val(data.data.item_website_type);
+                }else{
+                    $('#alert_dialog_danger').html(data.message);
+                    $('#modal_danger').modal('show');
+                }
+            }
+        });
+    }
+    // 序列化表单
+    function serializeObject(form) {// 将表单元素中的值序列化成对象
+        var o = {};
+        $.each(form.serializeArray(), function(index_) {
+            if (o[this['name']]) {
+                o[this['name']] = o[this['name']] + "," + this['value'];
 
-			} else {
-				o[this['name']] = this['value'];
-			}
-		});
-		return o;
-	}
-	function getItemInfo() {
-		console.log("==========================>进入详情页面商品id为" + item_id);
-		var data = {
-			item_id : item_id
-		}
-		$.ajax({
-			url : $ctx + '/order/getItemInfoById',
-			type : 'post',
-			data : data,
-			async : false,
-			dataType : 'json',
-			success : function(data) {
-				data.data.item_type = getItemTypeValue(data.data.item_type);
-				console.log(data);
-				before_audit_status = data.data.state;
-				$('#item_update_form').form('load', data.data);
-				$("#item_no_id").val("");
-				if (data.data.item_jhlb == '002') {
-					$("#item_jhlj_tr_id").show();
-				} else {
-					$("#item_jhlj_tr_id").hide();
-				}
-				$('#activity_start_time').val(
-						data.data.activity_start_time);
-				$('#coupon_start_time').val(
-						getTimeDay(data.data.coupon_start_time));
-				$('#coupon_end_time')
-						.val(getTimeDay(data.data.coupon_end_time));
-			}
-		});
-	}
-	function getTimeHHDay(str) {
-		if (str == null || str == "") {
-			return "";
-		} else {
-			return str.substring(0, 16);
-		}
-	}
-	function initItemType() {
-		$.ajax({
-			url : $ctx + '/order/getItemTypes',
-			type : 'get',
-			async : false,
-			dataType : 'json',
-			success : function(datas) {
-				$("#item_type_select").html("");
-				$("#item_type_select").append(
-						'<option class="form-control" value="">所有分类</option>');
-				for (var i = 0; i < datas.length; i++) {
-					$("#item_type_select").append(
-							'<option class="form-control" value="'
-							+ datas[i].type_id + '">'
-							+ datas[i].type_name + '</option>');
-				}
-			}
-		});
-	}
-	function gobackpage() {
-		p = {
-			page : page,
-			rows : rows
-		}
-		$('#showId').load($ctx + "/home/view/index2.jsp", p);
-		$('#li_name').html("商品列表");
-	}
-	function getItemTypeValue(type) {
-		var key = type;
-		var value;
-		switch (key) {
-			case '女装':
-				value = '001';
-				break;
-			case '男装':
-				value = '002';
-				break;
-			case '内衣':
-				value = '003';
-				break;
-			case '母婴':
-				value = '004';
-				break;
-			case '化妆品':
-				value = '005';
-				break;
-			case '居家':
-				value = '006';
-				break;
-			case '鞋包配饰':
-				value = '007';
-				break;
-			case '美食':
-				value = '008';
-				break;
-			case '文体车品':
-				value = '009';
-				break;
-			case '数码家电':
-				value = '010';
-				break;
-			default:
-				value = '';
-		}
-		return value;
-	}
+            } else {
+                o[this['name']] = this['value'];
+            }
+        });
+        return o;
+    }
+    function getItemInfo() {
+        console.log("==========================>进入详情页面商品id为" + item_id);
+        var data = {
+            item_id : item_id
+        }
+        $.ajax({
+            url : $ctx + '/order/getItemInfoById',
+            type : 'post',
+            data : data,
+            async : false,
+            dataType : 'json',
+            success : function(data) {
+                data.data.item_type = getItemTypeValue(data.data.item_type);
+                console.log(data);
+                before_audit_status = data.data.state;
+                $('#item_update_form').form('load', data.data);
+                $("#item_no_id").val("");
+                if (data.data.item_jhlb == '002' || data.data.item_jhlb == '004') {
+                    $("#item_jhlj_tr_id").show();
+                } else {
+                    $("#item_jhlj_tr_id").hide();
+                }
+                $('#activity_start_time').val(
+                    data.data.activity_start_time);
+                $('#coupon_start_time').val(
+                    getTimeDay(data.data.coupon_start_time));
+                $('#coupon_end_time')
+                    .val(getTimeDay(data.data.coupon_end_time));
+            }
+        });
+    }
+    function getTimeHHDay(str) {
+        if (str == null || str == "") {
+            return "";
+        } else {
+            return str.substring(0, 16);
+        }
+    }
+    function initItemType() {
+        $.ajax({
+            url : $ctx + '/order/getItemTypes',
+            type : 'get',
+            async : false,
+            dataType : 'json',
+            success : function(datas) {
+                $("#item_type_select").html("");
+                $("#item_type_select").append(
+                    '<option class="form-control" value="">所有分类</option>');
+                for (var i = 0; i < datas.length; i++) {
+                    $("#item_type_select").append(
+                        '<option class="form-control" value="'
+                        + datas[i].type_id + '">'
+                        + datas[i].type_name + '</option>');
+                }
+            }
+        });
+    }
+    function gobackpage() {
+        p = {
+            page : page,
+            rows : rows
+        }
+        $('#showId').load($ctx + "/home/view/index2.jsp", p);
+        $('#li_name').html("商品列表");
+    }
+    function getItemTypeValue(type) {
+        var key = type;
+        var value;
+        switch (key) {
+            case '女装':
+                value = '001';
+                break;
+            case '男装':
+                value = '002';
+                break;
+            case '内衣':
+                value = '003';
+                break;
+            case '母婴':
+                value = '004';
+                break;
+            case '化妆品':
+                value = '005';
+                break;
+            case '居家':
+                value = '006';
+                break;
+            case '鞋包配饰':
+                value = '007';
+                break;
+            case '美食':
+                value = '008';
+                break;
+            case '文体车品':
+                value = '009';
+                break;
+            case '数码家电':
+                value = '010';
+                break;
+            default:
+                value = '';
+        }
+        return value;
+    }
 </script>
 <div class="col-xs-12 col-sm-12 col-md-12 row">
 	<div class="" id="book_accordion-element">
@@ -246,6 +246,16 @@
 						<td><input type="radio" name="item_hdlx" value="001" checked="checked">普通活动&nbsp;&nbsp;<input  type="radio" name="item_hdlx" value="002">淘抢购&nbsp;&nbsp;<input type="radio" name="item_hdlx" value="003">聚划算</td>
 					</tr>
 					<tr>
+						<td>活动开始时间：</td>
+						<td><div id="activity_start_time_div1" class="input-append date form-group">
+							<input type="text" name="activity_start_time" id="activity_start_time" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+						</div></td>
+					</tr>
+					<tr>
+						<td>备注信息：</td>
+						<td><textarea id="remark_id" name="remark" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
+					</tr>
+					<tr>
 						<td>商品主图：</td>
 						<td><textarea id="item_main_image" name="item_main_image" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 					</tr>
@@ -262,25 +272,6 @@
 						<td><textarea id="coupon_url_id" required name="coupon_url" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
-						<td>佣金比例：</td>
-						<td class="form-inline"><input  placeholder="请输入佣金比例，可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_yjbl_id" required name="item_yjbl" style="width: 30%" class="form-control"> <span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
-					</tr>
-					<tr>
-						<td>计划类别：</td>
-						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input  type="radio" name="item_jhlb" value="002">定向<input  type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划</td>
-					</tr>
-					<tr id="item_jhlj_tr_id">
-						<td>定向连接：</td>
-						<td><textarea  id="item_jhlj_id" name="item_jhlj" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
-					</tr>
-
-					<tr>
-						<td>活动开始时间：</td>
-						<td><div id="activity_start_time_div1" class="input-append date form-group">
-							<input type="text" name="activity_start_time" id="activity_start_time" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
-						</div></td>
-					</tr>
-					<tr>
 						<td>优惠券有效期：</td>
 						<td><div class="form-inline">
 							<div id="coupon_start_time_div" class="input-append date form-group">
@@ -292,12 +283,21 @@
 						</div></td>
 					</tr>
 					<tr>
-						<td>备注信息：</td>
-						<td><textarea id="remark_id" name="remark" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
+						<td>佣金比例：</td>
+						<td class="form-inline"><input  placeholder="请输入佣金比例，可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_yjbl_id" required name="item_yjbl" style="width: 30%" class="form-control"> <span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
 					</tr>
 					<tr>
+						<td>计划类别：</td>
+						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input  type="radio" name="item_jhlb" value="002">定向<input  type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划</td>
+					</tr>
+					<tr id="item_jhlj_tr_id">
+						<td>计划连接：</td>
+						<td><textarea  id="item_jhlj_id" name="item_jhlj" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+					</tr>
+
+					<tr>
 						<td>视频地址：</td>
-						<td><textarea id="item_image_backup_id" name="item_image_backup" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
+						<td><textarea placeholder="格式：http://tbm.alicdn.com/8KCicAdNjHXuTZtqyoW/hqEzoXHLRuB%40%40hd.mp4"  id="item_image_backup_id" name="item_image_backup" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 					</tr>
 					<tr>
 						<td>卖点填写：</td>

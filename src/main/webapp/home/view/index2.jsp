@@ -6,40 +6,40 @@
 <c:set var="ua" value="${sessionScope.userAuthorization.authorization}"></c:set>
 <c:set var="team_id" value="${sessionScope.userAuthorization.team_id}"></c:set>
 <script type="text/javascript">
-	var $p_page = "${param.page}";
-	var $p_rows = "${param.rows}";
-	var $ua="${ua}";
-	var $team_id="${team_id}";
-	$(function() {
-		console.log("=========page=====>" + ($p_page == ""));
-		console.log("=========rows=====>" + ($p_rows == ""));
-		$('#query_splb_start_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
+    var $p_page = "${param.page}";
+    var $p_rows = "${param.rows}";
+    var $ua="${ua}";
+    var $team_id="${team_id}";
+    $(function() {
+        console.log("=========page=====>" + ($p_page == ""));
+        console.log("=========rows=====>" + ($p_rows == ""));
+        $('#query_splb_start_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
 
-		$('#query_splb_end_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
-		$('#query_hd_start_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
+        $('#query_splb_end_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
+        $('#query_hd_start_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
 
-		$('#query_hd_end_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
-	})
+        $('#query_hd_end_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
+    })
 </script>
 <style type="text/css">
 	.navbar {
@@ -50,6 +50,22 @@
 <div class="col-xs-12 col-sm-12 col-md-12 row">
 	<div class="" id="book_accordion-element">
 		<div class="col-xs-12 col-sm-12 col-md-12">
+			<form class=" col-xs-15 col-sm-15 col-md-15" id="query_splb_form1" role="form">
+				<table>
+					<tr><td>
+						<input  style="width:300px;" id="query_item_no1" name="item_no" class="form-control" placeholder="粘贴产品链接"></td>
+						<td><button class="btn btn-primary form-control" type="button" onclick="queryItem()">
+							<i class="glyphicon glyphicon-search"></i>搜索
+						</button>	</td>
+						<td id="td6"><span style="color: red" id="span6">&nbsp&nbsp查询无结果</span></td>
+						<td id="td1">&nbsp卷后价格：<span style="color: red" id="span">1</span></td>
+						<td id="td2" style="display: none">&nbsp 佣金比例：<span id="span2" style="color: red">1</span></td>
+						<td id="td3" style="display: none">&nbsp 领取数量：<span id="span3" style="color: red">1</span></td>
+						<td id="td4" style="display: none"> &nbsp 剩余数量：<span id="span4" style="color: red">1</span></td>
+						<td id="td5" style="display: none"> &nbsp 优惠券起止时间：<span id="span5" style="color: red">1</span></td>
+					</tr>
+				</table>
+			</form>
 			<nav class="navbar navbar-default" role="navigation">
 				<div>
 					<ul class="nav navbar-nav" id="nav_state_query">

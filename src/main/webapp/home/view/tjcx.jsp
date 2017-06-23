@@ -6,36 +6,36 @@
 <script language="javascript" type="text/javascript" src="${ctx }/static/My97DatePicker/WdatePicker.js"></script>
 
 <script type="text/javascript">
-	$(function() {
-		$('#activity_start_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
+    $(function() {
+        $('#activity_start_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
 
-		$('#coupon_start_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
-		$('#coupon_end_time_div').datetimepicker({
-			todayBtn : true,
-			showMeridian : true,
-			startView : 0,
-			autoclose : true
-		});
-		$("#item_jhlj_tr_id").hide();
+        $('#coupon_start_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
+        $('#coupon_end_time_div').datetimepicker({
+            todayBtn : true,
+            showMeridian : true,
+            startView : 0,
+            autoclose : true
+        });
+        $("#item_jhlj_tr_id").hide();
 
-		$('input[name="item_jhlb"]').change(function() {
-			if ($(this).val() == '002') {
-				$("#item_jhlj_tr_id").show();
-			} else {
-				$("#item_jhlj_tr_id").hide();
-			}
-		});
-	});
+        $('input[name="item_jhlb"]').change(function() {
+            if ($(this).val() == '002' || $(this).val() == '004') {
+                $("#item_jhlj_tr_id").show();
+            } else {
+                $("#item_jhlj_tr_id").hide();
+            }
+        });
+    });
 </script>
 <script src="${ctx }/static/js/item.js"></script>
 <div class="col-xs-12 col-sm-12 col-md-12 row">
@@ -51,8 +51,8 @@
 					<tr>
 						<td></td>
 						<td><div class="form-inline">
-								<a class="btn btn-primary form-control" onclick="getItemInfo()" href="#">获取产品链接</a>
-							</div></td>
+							<a class="btn btn-primary form-control" onclick="getItemInfo()" href="#">获取产品链接</a>
+						</div></td>
 					</tr>
 					<tr>
 						<td >商品ID：</td>
@@ -61,12 +61,22 @@
 					<tr>
 						<td>商品分类：</td>
 						<td><select name="item_type" id="item_type_select" style="width: 150px;" class="form-control">
-								<option value="">所有分类</option>
+							<option value="">所有分类</option>
 						</select><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
 						<td>活动类型：</td>
 						<td><input type="radio" name="item_hdlx" value="001" checked="checked">普通活动&nbsp;&nbsp;<input type="radio" name="item_hdlx" value="002">淘抢购&nbsp;&nbsp;<input type="radio" name="item_hdlx" value="003">聚划算</td>
+					</tr>
+					<tr>
+						<td>备注信息：</td>
+						<td><textarea id="remark_id" name="remark" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
+					</tr>
+					<tr>
+						<td>活动开始时间：</td>
+						<td><div id="activity_start_time_div1" class="input-append date form-group">
+							<input type="text" name="activity_start_time" id="d233" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+						</div></td>
 					</tr>
 					<tr>
 						<td>商品主图：</td>
@@ -86,11 +96,17 @@
 						<td><textarea id="coupon_url_id" required name="coupon_url" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
-						<td></td>
+						<td>优惠券有效期：</td>
 						<td><div class="form-inline">
-								<a class="btn btn-primary form-control" onclick="getCouponInfo()" href="#">抓取优惠券</a>
-							</div></td>
+							<div id="coupon_start_time_div" class="input-append date form-group">
+								<input id="coupon_start_time" name="coupon_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
+							</div>
+							<div id="coupon_end_time_div" class="input-append date form-group">
+								<input id="coupon_end_time" name="coupon_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
+							</div>
+						</div></td>
 					</tr>
+
 					<tr>
 						<td>佣金比例：</td>
 						<td class="form-inline"><input placeholder="请输入佣金比例，可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_yjbl_id" required name="item_yjbl" style="width: 30%" class="form-control"> <span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
@@ -100,33 +116,14 @@
 						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input type="radio" name="item_jhlb" value="002">定向<input type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划</td>
 					</tr>
 					<tr id="item_jhlj_tr_id">
-						<td>定向连接：</td>
+						<td>计划连接：</td>
 						<td><textarea id="item_jhlj_id" name="item_jhlj" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
-					<tr>
-						<td>活动开始时间：</td>
-						<td><div id="activity_start_time_div1" class="input-append date form-group">
-							<input type="text" name="activity_start_time" id="d233" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
-						</div></td>
-					</tr>
-					<tr>
-						<td>优惠券有效期：</td>
-						<td><div class="form-inline">
-								<div id="coupon_start_time_div" class="input-append date form-group">
-									<input id="coupon_start_time" name="coupon_start_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">-
-								</div>
-								<div id="coupon_end_time_div" class="input-append date form-group">
-									<input id="coupon_end_time" name="coupon_end_time" type="text" class="add-on form-control" data-format="yyyy-MM-dd">
-								</div>
-							</div></td>
-					</tr>
-					<tr>
-						<td>备注信息：</td>
-						<td><textarea id="remark_id" name="remark" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
-					</tr>
+
+
 					<tr>
 						<td>视频地址：</td>
-						<td><textarea id="item_image_backup_id" name="item_image_backup" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
+						<td><textarea placeholder="格式：http://tbm.alicdn.com/8KCicAdNjHXuTZtqyoW/hqEzoXHLRuB%40%40hd.mp4" id="item_image_backup_id" name="item_image_backup" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
 					</tr>
 					<tr>
 						<td>卖点填写：</td>
@@ -143,13 +140,13 @@
 					<tr>
 						<td></td>
 						<td><div class="form-inline">
-								<button class="btn btn-primary form-control" type="submit" >
-									<i class="glyphicon glyphicon-saved"></i>提交
-								</button>
-								<button class="btn btn-primary form-control" type="reset">
-									<i class="glyphicon glyphicon-repeat"></i>重置
-								</button>
-							</div></td>
+							<button class="btn btn-primary form-control" type="submit" >
+								<i class="glyphicon glyphicon-saved"></i>提交
+							</button>
+							<button class="btn btn-primary form-control" type="reset">
+								<i class="glyphicon glyphicon-repeat"></i>重置
+							</button>
+						</div></td>
 						<td></td>
 					</tr>
 				</table>
