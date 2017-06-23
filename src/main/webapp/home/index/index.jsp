@@ -94,8 +94,8 @@
 			$('#_yhgl').attr("class", "");
 			$('#_zscq').attr("class", "");
 			$('#_zygl').attr("class", "active");
-			$('#showId').load("${ctx }/home/view/zygl.jsp");
-			$('#li_name').html("资源管理");
+            $('#showId').load("${ctx }/home/view/index3.jsp");
+			$('#li_name').html("商品汇总");
 		}
 		//获取url中的参数
 		function GetRequest() {
@@ -131,7 +131,7 @@
 					<li id="_yhgl"><a href="#" onclick="_yhgl()"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;用户管理</a></li>
 					</c:if>
 					</c:if>
-					<!--  <li id="_zygl"><a href="#" onclick="_zygl()"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;&nbsp;资源管理</a></li>  -->
+					 <li id="_zygl"><a href="#" onclick="_zygl()"><i class="glyphicon glyphicon-globe"></i>商品汇总</a></li>
 				</ul>
 
 			</div>

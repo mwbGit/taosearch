@@ -27,8 +27,19 @@ public class QuerySPLBVo {
 	private String qq;
 	private Integer coupon_get_num_min;
 	private Integer coupon_get_num_max;
+	private Integer shje_min;
+	private Integer shje_max;
 	private String activity_begin_time;
 	private String activity_end_time;
+	private boolean hz;
+
+	public boolean isHz() {
+		return hz;
+	}
+
+	public void setHz(boolean hz) {
+		this.hz = hz;
+	}
 
 	public String getQq() {
 		return qq;
@@ -60,6 +71,22 @@ public class QuerySPLBVo {
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+
+	public Integer getShje_min() {
+		return shje_min;
+	}
+
+	public void setShje_min(Integer shje_min) {
+		this.shje_min = shje_min;
+	}
+
+	public Integer getShje_max() {
+		return shje_max;
+	}
+
+	public void setShje_max(Integer shje_max) {
+		this.shje_max = shje_max;
 	}
 
 	public String getQuery_start_time() {

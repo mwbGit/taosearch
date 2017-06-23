@@ -154,7 +154,7 @@
 	<select id="getItemListForPage" parameterType="map"
 		resultType="com.taosearch.model.Item">
 		SELECT
-		i.`item_id`,i.`item_image_backup`,i.`item_no`,i.`item_url`,i.`item_name`,i.`item_md`,i.`item_title`,i.`item_type`,i.`item_hdlx`,i.`item_yjbl`,s.`username`,
+		i.`item_id`,i.`item_zfje`,i.`item_ssje`,i.`item_image_backup`,i.`item_no`,i.`item_url`,i.`item_name`,i.`item_md`,i.`item_title`,i.`item_type`,i.`item_hdlx`,i.`item_yjbl`,s.`username`,
 		i.`createtime`,i.`updatetime`,i.`item_qhjg`,i.`state`,i.`item_fwdj`,i.coupon_id,c.`coupon_url`,c.`coupon_start_time`,c.`coupon_end_time`,c.`coupon_get_num`,
 		c.`coupon_rest_num`,c.`coupon_use_num`,i.`item_image`,i.`qq`,i.`remark`,i.`item_image_backup`,i.`item_website_type`,i.`item_jhlb`,i.`item_jhlj`
 		FROM
@@ -170,7 +170,12 @@
 		<if test="vo.query_end_time != null and vo.query_end_time !=''"> 
 			<![CDATA[and createtime<= DATE_ADD(#{vo.query_end_time},INTERVAL 1 DAY)]]>
 		</if>
-
+		<if test="vo.shje_min != null">
+			<![CDATA[and i.`item_ssje` >= #{vo.shje_min}]]>
+		</if>
+		<if test="vo.shje_max != null">
+			<![CDATA[and i.`item_ssje` <= #{vo.shje_max}]]>
+		</if>
 		AND
 		user_id IN(SELECT user_id FROM
 		t_sys_user
@@ -198,8 +203,14 @@
 		<if test="vo.activity_end_time != null">
 			<![CDATA[and c.activity_start_time <= #{vo.activity_end_time}]]>
 		</if>
+
 		</where>
-		ORDER BY i.`updatetime` DESC
+		<if test="vo.hz == true">
+			ORDER BY i.`item_ssje` DESC
+		</if>
+		<if test="vo.hz == false">
+			ORDER BY i.`updatetime` DESC
+		</if>
 		LIMIT
 		#{pagestart},#{rows}
 	</select>
@@ -219,7 +230,12 @@
 		<if test="vo.query_end_time != null and vo.query_end_time !=''">
 			<![CDATA[and createtime<= DATE_ADD(#{vo.query_end_time},INTERVAL 1 DAY)]]>
 		</if>
-
+		<if test="vo.shje_min != null">
+			<![CDATA[and i.`item_ssje` >= #{vo.shje_min}]]>
+		</if>
+		<if test="vo.shje_max != null">
+			<![CDATA[and i.`item_ssje` <= #{vo.shje_max}]]>
+		</if>
 		AND
 		user_id IN(SELECT user_id FROM
 		t_sys_user

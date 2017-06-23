@@ -54,6 +54,24 @@ public class Item {
 	private int coupon_get_num;// 优惠券领取数量
 	private int coupon_use_num;// 优惠券使用数量
 	private boolean showClaim;// 显示认领
+	private String item_ssje;// 实收金额
+	private String item_zfje;// 支付金额
+
+	public String getItem_zfje() {
+		return item_zfje;
+	}
+
+	public void setItem_zfje(String item_zfje) {
+		this.item_zfje = item_zfje;
+	}
+
+	public String getItem_ssje() {
+		return item_ssje;
+	}
+
+	public void setItem_ssje(String item_ssje) {
+		this.item_ssje = item_ssje;
+	}
 
 	public boolean isShowClaim() {
 		return showClaim;
