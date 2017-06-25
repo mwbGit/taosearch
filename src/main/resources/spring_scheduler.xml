@@ -5,6 +5,8 @@
 
     <bean id= "productStatusJobTask" class ="com.taosearch.scheduler.ProductStatusJobTask"/>
 
+    <bean id= "productCouponJobTask" class ="com.taosearch.scheduler.ProductCouponJobTask"/>
+
     <bean id= "productStatusTaskMethod"
           class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="productStatusJobTask"/>
@@ -18,12 +20,24 @@
         <property name="cronExpression" value="0 0 0/1 * * ?" />
     </bean>
 
+    <bean id= "productCouponTaskMethod"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="productCouponJobTask"/>
+        <property name="targetMethod" value="run"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id= "productCouponTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
+        <property name="jobDetail" ref="productCouponTaskMethod" />
+        <property name="cronExpression" value="0 0/1 * * * ?" />
+    </bean>
 
     <bean id= "schedulerFactoryBean"
           class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers" >
             <list>
                 <ref bean="productStatusTaskTrigger" />
+                <ref bean="productCouponTaskTrigger" />
             </list>
         </property>
     </bean>

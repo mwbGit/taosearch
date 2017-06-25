@@ -51,6 +51,13 @@ public class DaoLaoKeService extends AbstractHttpClient implements IDaoLaoKeServ
     }
 
     @Override
+    public ProductMO getProductMO(String productId, String appkey) {
+        setAppKey(appkey);
+
+        return getProductMO(productId);
+    }
+
+    @Override
     public ProductMO getProductMO(String productId) {
         try {
             if (StringUtils.isBlank(productId)) {

@@ -9,4 +9,6 @@ package com.taosearch.service.dataoke.api;
 public interface IDaoLaoKeService {
 
     public ProductMO getProductMO(String productId);
+
+    public ProductMO getProductMO(String productId,String appkey);
 }
