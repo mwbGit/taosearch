@@ -131,7 +131,7 @@
 					<li id="_yhgl"><a href="#" onclick="_yhgl()"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;用户管理</a></li>
 					</c:if>
 					</c:if>
-					 <li id="_zygl"><a href="#" onclick="_zygl()"><i class="glyphicon glyphicon-globe"></i>商品汇总</a></li>
+					 <li id="_zygl"><a href="#" onclick="_zygl()"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;&nbsp;商品汇总</a></li>
 				</ul>
 
 			</div>

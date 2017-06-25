@@ -73,15 +73,14 @@ public class OrderController {
 	@RequestMapping("/getDataoke")
 	@ResponseBody
 	public Item claim(String item_url) {
-		String id = Util.URLRequest(item_url).get("id");
 		Item item = new Item();
-		item.setItem_no(id);
-		if (StringUtils.isBlank(id)){
+		item.setItem_no(item_url);
+		if (StringUtils.isBlank(item_url)){
 			item.setShowClaim(true);
 			return item;
 		}
 
-		ProductMO mo = daoLaoKeService.getProductMO(id);
+		ProductMO mo = daoLaoKeService.getProductMO(item_url);
 		if (mo != null) {
 			if (mo.getDiscountPrice() != null) {
 				item.setItem_qhjg(mo.getDiscountPrice().doubleValue());
@@ -94,6 +93,7 @@ public class OrderController {
 			item.setCoupon_get_num(mo.getCouponReceiveNumber());
 			item.setCoupon_rest_num(mo.getCouponSurplusNumber());
 			item.setCoupon_end_time(mo.getCouponEndTime());
+			item.setItem_name(mo.getName());
 		}else {
 			item.setShowClaim(true);
 		}

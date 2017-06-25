@@ -290,6 +290,7 @@ function getDataokeDatas(url) {
                 $("#td3").hide();
                 $("#td4").hide();
                 $("#td5").hide();
+                $("#td7").hide();
                 return;
             }
 
@@ -298,12 +299,13 @@ function getDataokeDatas(url) {
             $("#span3").text(data.coupon_get_num);
             $("#span4").text(data.coupon_rest_num);
             $("#span5").text(data.coupon_end_time);
+            $("#span7").text(data.item_name);
             $("#td1").show();
             $("#td2").show();
             $("#td3").show();
             $("#td4").show();
             $("#td5").show();
-            $("#td6").hide();
+            $("#td7").show();
 
         }
     });

@@ -185,12 +185,12 @@ function initGrid() {
                     },
                     {
                         title : '跑单量',
-                        field : 'coupon_use_num',
+                        field : 'item_zfje',
                         formatter : function(val, row) {
                             if (val == null || val == "") {
                                 return "";
                             } else {
-                                return  val.toFixed(0) ;
+                                return  (val/row.item_qhjg).toFixed(0);
                             }
                         }
                     },
@@ -213,7 +213,7 @@ function initGrid() {
                             if (val == null || val == "") {
                                 return "";
                             } else {
-                                return  (val * row.item_fwdj).toFixed(0);
+                                return  (val/row.item_qhjg*row.item_fwdj).toFixed(0);
                             }
                         }
                     },

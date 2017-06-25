@@ -53,7 +53,7 @@
 			<form class=" col-xs-15 col-sm-15 col-md-15" id="query_splb_form1" role="form">
 				<table>
 					<tr><td>
-						<input  style="width:300px;" id="taoke_url" name="item_no" class="form-control" placeholder="粘贴产品链接"></td>
+						<input  style="width:300px;" id="taoke_url" name="item_no" class="form-control" placeholder="产品ID"></td>
 						<td><button class="btn btn-primary form-control" type="button" onclick="getDataokeDatas()">
 							<i class="glyphicon glyphicon-search"></i>搜索
 						</button>	</td>
@@ -65,6 +65,11 @@
 					</tr>
 					<tr><td colspan="2">&nbsp</td>
 						<td colspan="5" id="td5" style=" display: none"> &nbsp优惠券结束时间：<span id="span5" style="color: red"></span></td>
+
+					</tr>
+					<tr><td colspan="2">&nbsp</td>
+						<td id="td7" colspan="5" style=" display: none"> &nbsp标题：<span id="span7" style="color: red"></span></td>
+
 					</tr>
 				</table>
 			</form>
