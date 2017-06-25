@@ -29,7 +29,7 @@
 
     <bean id= "productCouponTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
         <property name="jobDetail" ref="productCouponTaskMethod" />
-        <property name="cronExpression" value="0 0/1 * * * ?" />
+        <property name="cronExpression" value="0 0/10 * * * ?" />
     </bean>
 
     <bean id= "schedulerFactoryBean"
