@@ -13,15 +13,14 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.taosearch.service.dataoke.api.IDaoLaoKeService;
 import com.taosearch.service.dataoke.api.ProductMO;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
@@ -80,8 +79,25 @@ public class OrderController {
 			return item;
 		}
 
+		List<SysUser> users = OrderService.getItemUsers(item_url);
+		if (CollectionUtils.isNotEmpty(users)) {
+			String name = "";
+			Map<String,SysUser> map = new HashMap<>();
+
+			for (SysUser user : users) {
+				map.put(user.getUsername(), user);
+			}
+
+			for (String username : map.keySet()) {
+				name += username + "";
+			}
+
+			item.setItem_jhlb(name);
+		}
+
 		ProductMO mo = daoLaoKeService.getProductMO(item_url);
 		if (mo != null) {
+
 			if (mo.getDiscountPrice() != null) {
 				item.setItem_qhjg(mo.getDiscountPrice().doubleValue());
 			}

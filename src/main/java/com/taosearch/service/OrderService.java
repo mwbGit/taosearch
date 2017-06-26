@@ -13,15 +13,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.taosearch.model.Coupon;
-import com.taosearch.model.FinancialStatements;
-import com.taosearch.model.Item;
-import com.taosearch.model.ItemAuditLog;
-import com.taosearch.model.ItemInfo;
-import com.taosearch.model.ItemType;
-import com.taosearch.model.MyResult;
-import com.taosearch.model.NavStateCount;
-import com.taosearch.model.SimpleAuthorization;
+import com.taosearch.model.*;
 
 /**
 * @ClassName: OrderService
@@ -32,6 +24,8 @@ import com.taosearch.model.SimpleAuthorization;
 */
 public interface OrderService {
 	List<ItemType> getItemTypes();
+
+	List<SysUser> getItemUsers(String item_no);
 
 	List<NavStateCount> getnavstateinfo(SimpleAuthorization sa);
 

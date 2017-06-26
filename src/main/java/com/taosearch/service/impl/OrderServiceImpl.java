@@ -54,6 +54,11 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public List<SysUser> getItemUsers(String item_no) {
+		return OrderDao.getItemUsers(item_no);
+	}
+
+	@Override
 	public MyResult<String> saveItemInfo(Item item) {
 		MyResult<String> result = new MyResult<String>();
 

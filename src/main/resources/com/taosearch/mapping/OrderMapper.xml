@@ -61,6 +61,12 @@
 		select type_id,type_name
 		from t_item_type
 	</select>
+
+	<select id="getItemUsers" resultType="com.taosearch.model.SysUser">
+		select su.username
+		from t_sys_user su INNER JOIN t_item i on i.user_id = su.user_id
+		WHERE  i.item_no = #{item_no}
+	</select>
 	<insert id="saveItemInfo" parameterType="com.taosearch.model.Item">
 		insert t_item
 		<set>

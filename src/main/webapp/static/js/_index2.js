@@ -283,6 +283,14 @@ function getDataokeDatas(url) {
         async : false,
         dataType : 'json',
         success : function(data) {
+            if (data.item_jhlb != null) {
+                $("#td8").show();
+                $("#span8").text(data.item_jhlb);
+
+            }else {
+                $("#td8").hide();
+            }
+
             if (data.showClaim){
                 $("#td6").show();
                 $("#td1").hide();

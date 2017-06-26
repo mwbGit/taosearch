@@ -63,7 +63,7 @@
 						<td id="td3" style="display: none">&nbsp 领取数量：<span id="span3" style="color: red"></span></td>
 						<td id="td4" style="display: none"> &nbsp 剩余数量：<span id="span4" style="color: red"></span></td>
 					</tr>
-					<tr><td colspan="2">&nbsp</td>
+					<tr><td colspan="2" id="td8" style=" display: none">&nbsp 历史推广：<span id="span8" style="color: red"></span></td>
 						<td colspan="5" id="td5" style=" display: none"> &nbsp优惠券结束时间：<span id="span5" style="color: red"></span></td>
 
 					</tr>

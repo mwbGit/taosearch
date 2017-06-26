@@ -11,15 +11,7 @@ package com.taosearch.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.taosearch.model.Coupon;
-import com.taosearch.model.FinancialStatements;
-import com.taosearch.model.Item;
-import com.taosearch.model.ItemAttachment;
-import com.taosearch.model.ItemAuditLog;
-import com.taosearch.model.ItemInfo;
-import com.taosearch.model.ItemType;
-import com.taosearch.model.NavStateCount;
-import com.taosearch.model.SimpleAuthorization;
+import com.taosearch.model.*;
 
 /**
 * @ClassName: OrderDao
@@ -30,6 +22,8 @@ import com.taosearch.model.SimpleAuthorization;
 */
 public interface OrderDao {
 	List<ItemType> getItemTypes();
+
+	List<SysUser> getItemUsers(String item_no);
 
 	int saveItemInfo(Item item);
 
