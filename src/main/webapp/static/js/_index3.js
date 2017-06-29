@@ -245,8 +245,7 @@ function initGrid() {
         totalPages : gridDatas.totalpage,
         onPageClicked : function(e, originalEvent, type, pages) {
             $case_infoGrid.datagrid('loadData', {
-                rows : getGridDatas(caseInfoUrl + "?hz=true&statePage="+item_state+"&rows=" + rowForPage
-                    + "&page=" + pages).list
+                rows : getGridDatas(caseInfoUrl + "?hz=true&statePage=000&rows=" + rowForPage +"&page=" + pages).list
             });
         }
     });
@@ -489,8 +488,8 @@ function loadGrid(url) {
         totalPages : gridDatas.totalpage,
         onPageClicked : function(e, originalEvent, type, pages) {
             $case_infoGrid.datagrid('loadData', {
-                rows : getGridDatas(caseInfoUrl + "?hz=true&statePage="+item_state+"&rows=" + rowForPage
-                    + "&page=" + pages).list
+                rows : getGridDatas(caseInfoUrl + "?hz=true&statePage=000&rows=" + rowForPage +"&page=" + pages).list
+
             });
         }
     })
