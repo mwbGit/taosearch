@@ -247,6 +247,17 @@
                 } else if (ua != "3" && key == "667" && data.data.item_zfje_state == "1") {
                     $("#upload_item_pay3_form").show();
                 }
+                if (data.data.coupon_type_id == 1){
+                    $('#coupon_type_id').val("普通卷");
+                    $("#tr_coupon_url_id").show();
+                    $("#tr_coupon_rest_num").show();
+                    $("#tr_item_yjbl_id").show();
+                }else {
+                    $('#coupon_type_id').val("阿里妈妈推广卷");
+                    $("#tr_coupon_url_id").hide();
+                    $("#tr_coupon_rest_num").hide();
+                    $("#tr_item_yjbl_id").hide();
+                }
                 coupon_id = data.data.coupon_id;
                 switch(key){
                     case '001':
@@ -544,17 +555,28 @@
 						<td>券后价格：</td>
 						<td><input name="item_qhjg" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
-					<tr>
+					<tr >
+						<td></td>
+						<td>优惠券类别：</td>
+						<td><input id="coupon_type_id" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
+					<tr id="tr_coupon_url_id">
 						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
 						<td>优惠券地址：</td>
 						<td><textarea name="coupon_url" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
+					</tr>
+					<tr id="tr_coupon_rest_num">
+						<td></td>
+						<td>优惠卷数量：</td>
+						<td><input id="coupon_rest_num" name="coupon_rest_num" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+
 					</tr>
 					<tr>
 						<td></td>
 						<td>优惠券有效期：</td>
 						<td><input id="itemInfo_coupon_start_time_id" name="coupon_start_time" style="width: 15%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly">- <input id="itemInfo_coupon_end_time_id" name="coupon_end_time" style="width: 15%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
-					<tr>
+					<tr id="tr_item_yjbl_id">
 						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
 						<td>佣金比例：</td>
 						<td><input name="item_yjbl" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
@@ -569,8 +591,6 @@
 						<td>计划连接：</td>
 						<td><textarea name="item_jhlj" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea>
 					</tr>
-
-
 
 					<tr>
 						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>

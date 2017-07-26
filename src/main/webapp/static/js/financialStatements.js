@@ -5,7 +5,7 @@ var ImgUrl = $ctx + '/img/download';
 var $case_infoGrid = $("#case_Info");
 var $case_paginator = $("#case_paginator");
 var gridDatas;
-var rowForPage = 20;
+var rowForPage = 50;
 var queryParamsData;
 var page = 1;
 var baseUrl = $ctx;

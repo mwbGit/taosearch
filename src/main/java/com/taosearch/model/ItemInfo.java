@@ -48,6 +48,7 @@ public class ItemInfo {
 	private String coupon_end_time;// 优惠券有效期结束时间
 	private String item_jhlb;// 计划类别001 通用 002 定向 003 鹊桥
 	private String item_jhlj;// 计划连接定向时候需要填写
+	private String coupon_type_id;// 优惠券类型1普通2阿里妈妈
 	private int coupon_rest_num;// 优惠券剩余数量
 	private int coupon_get_num;// 优惠券领取数量
 	private int coupon_use_num;// 优惠券使用数量
@@ -107,6 +108,14 @@ public class ItemInfo {
 
 	public String getItem_type() {
 		return item_type;
+	}
+
+	public String getCoupon_type_id() {
+		return coupon_type_id;
+	}
+
+	public void setCoupon_type_id(String coupon_type_id) {
+		this.coupon_type_id = coupon_type_id;
 	}
 
 	public void setItem_type(String item_type) {

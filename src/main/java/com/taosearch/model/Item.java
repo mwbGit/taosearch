@@ -44,6 +44,7 @@ public class Item {
 	private String item_image_backup;// 补充主图
 	private String item_main_image;//
 	private String item_website_type;// 商品网站类型 1淘宝 2天猫
+	private String coupon_type_id;// 优惠券类型
 	private String coupon_url;// 优惠券地址
 	private String activity_start_time;// 活动开始时间
 	private String coupon_start_time;// 优惠券有效期开始时间
@@ -299,6 +300,14 @@ public class Item {
 
 	public String getItem_jhlb() {
 		return item_jhlb;
+	}
+
+	public String getCoupon_type_id() {
+		return coupon_type_id;
+	}
+
+	public void setCoupon_type_id(String coupon_type_id) {
+		this.coupon_type_id = coupon_type_id;
 	}
 
 	public void setItem_jhlb(String item_jhlb) {

@@ -30,9 +30,28 @@
 
         $('input[name="item_jhlb"]').change(function() {
             if ($(this).val() == '002' || $(this).val() == '004') {
+
+                if ($(this).val() == '004'){
+                    $("#item_jhlj_id").attr("placeholder","如：http://s.click.taobao.com/5evMsiw?pid=mm_0_0_0  （只有商家能提供）");
+                } else {
+                    $("#item_jhlj_id").attr("placeholder","");
+                }
                 $("#item_jhlj_tr_id").show();
             } else {
                 $("#item_jhlj_tr_id").hide();
+            }
+        });
+
+        $('input[name="coupon_type_id"]').change(function() {
+            if ($(this).val() == '1') {
+                $("#tr_coupon_url_id").show();
+                $("#tr_coupon_rest_num").show();
+                $("#tr_item_yjbl_id").show();
+            }else {
+                $("#tr_coupon_url_id").hide();
+                $("#tr_coupon_rest_num").hide();
+                $("#tr_item_yjbl_id").hide();
+
             }
         });
     });
@@ -92,8 +111,17 @@
 						<td class="form-inline"><input placeholder="请输入券后单价，可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_qhjg_id" required name="item_qhjg" style="width: 30%" class="form-control"><span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
 					</tr>
 					<tr>
+						<td>优惠卷类别：</td>
+						<td><input type="radio" name="coupon_type_id" value="1" checked="checked">普通券&nbsp;&nbsp;
+							<input type="radio" name="coupon_type_id" value="2">阿里妈妈推广卷&nbsp;&nbsp;</td>
+					</tr>
+					<tr id="tr_coupon_url_id">
 						<td>优惠券地址：</td>
-						<td><textarea id="coupon_url_id" required name="coupon_url" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+						<td><textarea id="coupon_url_id" name="coupon_url" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+					</tr>
+					<tr id="tr_coupon_rest_num">
+						<td>优惠卷数量：</td>
+						<td class="form-inline"><input id="coupon_rest_num" name="coupon_rest_num" style="width: 10%" class="form-control" pattern="^[0-9]*$"></td>
 					</tr>
 					<tr>
 						<td>优惠券有效期：</td>
@@ -107,17 +135,33 @@
 						</div></td>
 					</tr>
 
-					<tr>
+					<tr id="tr_item_yjbl_id">
 						<td>佣金比例：</td>
-						<td class="form-inline"><input placeholder="请输入佣金比例，可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_yjbl_id" required name="item_yjbl" style="width: 30%" class="form-control"> <span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
+						<td class="form-inline"><input placeholder="请输入佣金比例，可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_yjbl_id"  name="item_yjbl" style="width: 30%" class="form-control"> <span style="color: #cc0001">&nbsp;&nbsp;*</span>
+
+						</td>
 					</tr>
 					<tr>
 						<td>计划类别：</td>
-						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input type="radio" name="item_jhlb" value="002">定向<input type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划</td>
+						<td>
+							<div style="float:left; display:inline">
+								<br>
+								<input  type="radio" name="item_jhlb" value="001" checked="checked">通用<input type="radio" name="item_jhlb" value="002">定向<input type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划
+
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							<div style="float:left; display:inline" >
+
+								阿里妈妈推广券<br>
+								①计划类别必须为营销计划！<br>
+								②请确认商家已将阿里妈妈券绑定在营销计划上！<br>
+								③请确认营销计划已生效（包括预告商品）！</div>
+						</td>
+
 					</tr>
 					<tr id="item_jhlj_tr_id">
 						<td>计划连接：</td>
-						<td><textarea id="item_jhlj_id" name="item_jhlj" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
+						<td><textarea placeholder="" id="item_jhlj_id" name="item_jhlj" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 
 

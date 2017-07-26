@@ -140,6 +140,8 @@
 	<div class="book_theme_flag1">
 		<table id="case_Info"  class="table table-bordered table-advance table-hover table-condensed" style="font-size: 12px;">
 		</table>
+		<button id="hPay" onclick="hPay()" class="btn btn-primary"  type="button" style="width: 8%;display: none" >合并付款</button>
 	</div>
+
 	<div id="case_paginator" style="align: center; float: left; cursor: pointer;"></div>
 </div>

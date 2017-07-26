@@ -14,7 +14,7 @@ var baseUrl = $ctx;
 var item_state;
 var ua = $ua;
 var team_id = $team_id;
-$(function() {
+$(function () {
     if ($p_page != "") {
         page = $p_page
     }
@@ -41,24 +41,24 @@ function initGrid() {
     $case_infoGrid
         .datagrid(
             {
-                columns : [ [
+                columns: [[
                     {
-                        title : '<input type="checkbox" name="choose">',
-                        field : 'item_id',
-                        formatter : function(val, row, indexId) {
+                        title: '<input type="checkbox"  name="choose1">',
+                        field: 'item_id',
+                        formatter: function (val, row, indexId) {
                             console
                                 .log('==============>'
                                     + indexId);
                             var rownum = (gridDatas.page - 1)
                                 * gridDatas.rows + indexId + 1;
-                            return '<input type="checkbox" name="choose" value="'
-                                + val + '">' + rownum;
+                            return '<input type="checkbox" name="checkbox"  value="'
+                                + row.item_id + '">' + rownum;
                         }
                     },
                     {
-                        title : '提交时间',
-                        field : 'createtime',
-                        formatter : function(val) {
+                        title: '提交时间',
+                        field: 'createtime',
+                        formatter: function (val) {
                             if (val == null || val == "") {
                                 return "";
                             } else {
@@ -67,9 +67,9 @@ function initGrid() {
                         }
                     },
                     {
-                        title : '图片',
-                        field : 'item_image',
-                        formatter : function(val, row) {
+                        title: '图片',
+                        field: 'item_image',
+                        formatter: function (val, row) {
                             console.log(row);
                             return '<a target="_blank" href="'
                                 + row.item_url
@@ -79,9 +79,9 @@ function initGrid() {
                         }
                     },
                     {
-                        title : '产品名称',
-                        field : 'item_name',
-                        formatter : function(val, row) {
+                        title: '产品名称',
+                        field: 'item_name',
+                        formatter: function (val, row) {
                             console
                                 .log("==============>"
                                     + baseUrl);
@@ -111,31 +111,31 @@ function initGrid() {
                         }
                     },
                     {
-                        title : '服务单价',
-                        field : 'item_fwdj',
-                        formatter : function(val) {
+                        title: '服务单价',
+                        field: 'item_fwdj',
+                        formatter: function (val) {
                             if (val == null || val == "") {
                                 return "";
                             } else {
-                                return "<span style='color: red'>"+ val +"</span>";
+                                return "<span style='color: red'>" + val + "</span>";
                             }
                         }
                     },
                     {
-                        title : '券后价格',
-                        field : 'item_qhjg',
-                        formatter : function(val, row) {
+                        title: '券后价格',
+                        field: 'item_qhjg',
+                        formatter: function (val, row) {
                             if (val == null || val == "") {
                                 return "";
                             } else {
-                                return "<span style='color: red'>"+ val +"</span>";
+                                return "<span style='color: red'>" + val + "</span>";
                             }
                         }
                     },
                     {
-                        title : '佣金信息',
-                        field : 'item_yjbl',
-                        formatter : function(val, row) {
+                        title: '佣金信息',
+                        field: 'item_yjbl',
+                        formatter: function (val, row) {
                             console.log(val);
                             console.log(row.item_jhlb);
                             if (row.item_jhlb == '002') {
@@ -165,25 +165,30 @@ function initGrid() {
                         }
                     },
                     {
-                        title : '优惠券信息',
-                        field : 'coupon_start_time',
-                        formatter : function(val, row) {
+                        title: '优惠券信息',
+                        field: 'coupon_start_time',
+                        formatter: function (val, row) {
                             if (val == null || val == "") {
                                 return "";
                             } else {
+                                var url = "";
+                                if (row.coupon_type_id == 1) {
+                                    url = '<a target="_blank" href="' + row.coupon_url
+                                        + '">查看优惠券链接</a></br>';
+                                }
                                 var str = '开始时间：'
                                     + getTimeDay(val)
-                                    + '</br><a target="_blank" href="'
-                                    + row.coupon_url
-                                    + '">查看优惠券链接</a></br>' +
+                                    + '</br>' +
+                                    url
+                                    +
                                     '结束时间：'
                                     + getTimeDay(row.coupon_end_time);
                                 if (row.state != '001'
                                     && row.state != '002'
                                     && row.state != '999'
                                     && row.state != '112') {
-                                    str += '</br>领取/剩余：'+
-                                        "<span style='color: red'>"+ row.coupon_get_num +"</span>"
+                                    str += '</br>领取/剩余：' +
+                                        "<span style='color: red'>" + row.coupon_get_num + "</span>"
                                         + '/'
                                         + row.coupon_rest_num;
                                 }
@@ -192,10 +197,10 @@ function initGrid() {
                         }
                     },
                     {
-                        title : '提交人',
-                        field : 'username',
-                        width : 6,
-                        formatter : function(val, row) {
+                        title: '提交人',
+                        field: 'username',
+                        width: 6,
+                        formatter: function (val, row) {
                             if (val == null || val == "") {
                                 return "";
                             } else {
@@ -205,13 +210,13 @@ function initGrid() {
                         }
                     },
                     {
-                        title : '状态',
-                        field : 'state',
-                        width : 6,
-                        formatter : function(val, row) {
+                        title: '状态',
+                        field: 'state',
+                        width: 6,
+                        formatter: function (val, row) {
                             if (row.remark == null
                                 || row.remark == "") {
-                                return "<span style='color: red'>"+ getItemState(val) +"</span>";
+                                return "<span style='color: red'>" + getItemState(val) + "</span>";
                             } else {
                                 if (row.state == "112"
                                     || row.state == "999"
@@ -222,23 +227,23 @@ function initGrid() {
                                     var length = str.length;
                                     var num = Math.ceil(length / 15);
                                     var yy = ''
-                                    if(num > 1){
-                                        for(var i = 0; i < num; i++){
-                                            yy += str.substr(15*i,15) + '</br>'
+                                    if (num > 1) {
+                                        for (var i = 0; i < num; i++) {
+                                            yy += str.substr(15 * i, 15) + '</br>'
                                         }
-                                        return "<span style='color: red'>"+ yy +"</span>";
+                                        return "<span style='color: red'>" + yy + "</span>";
                                     }
-                                    return "<span style='color: red'>"+ str +"</span>";
+                                    return "<span style='color: red'>" + str + "</span>";
                                 } else {
-                                    return "<span style='color: red'>"+ getItemState(val) +"</span>";
+                                    return "<span style='color: red'>" + getItemState(val) + "</span>";
                                 }
                             }
                         }
                     },
                     {
-                        title : '操作',
-                        field : 'state',
-                        formatter : function(val, row) {
+                        title: '操作',
+                        field: 'state',
+                        formatter: function (val, row) {
                             var str = "<a 10%href='#' onclick='skipInfo(\""
                                 + row.item_id + "\")'>查看</a>";
                             str += "</br><a href='#' onclick='skipupdateItemInfo(\"" + row.item_id + "\")'>再次提交</a>";
@@ -246,9 +251,9 @@ function initGrid() {
 
                             return str;
                         }
-                    } ] ],
-                singleSelect : true,// 允许自适应宽度
-                selectChange : function(selected, rowIndex, rowData,
+                    }]],
+                singleSelect: true,// 允许自适应宽度
+                selectChange: function (selected, rowIndex, rowData,
                                         $row) {
                     console.info($row)
                     select_status = selected;
@@ -256,15 +261,15 @@ function initGrid() {
                 }
                 // edit:true
             }).datagrid("loadData", {
-        rows : gridDatas.list
+        rows: gridDatas.list
     });
     $case_paginator.bootstrapPaginator({
-        currentPage : page,
-        totalPages : gridDatas.totalpage,
-        onPageClicked : function(e, originalEvent, type, pages) {
+        currentPage: page,
+        totalPages: gridDatas.totalpage,
+        onPageClicked: function (e, originalEvent, type, pages) {
             // loadGrid(caseInfoUrl+"?rows="+rowForPage+"&page="+pages);
             $case_infoGrid.datagrid('loadData', {
-                rows : getGridDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
+                rows: getGridDatas(caseInfoUrl + "?statePage=" + item_state + "&rows=" + rowForPage
                     + "&page=" + pages).list
             });
         }
@@ -273,25 +278,25 @@ function initGrid() {
 function getDataokeDatas(url) {
     var url = $("#taoke_url").val();
 
-    if (url === "" || url === null){
+    if (url === "" || url === null) {
         return;
     }
     $.ajax({
-        url : $ctx + "/order/getDataoke",
-        type : 'post',
-        data : {"item_url":url},
-        async : false,
-        dataType : 'json',
-        success : function(data) {
+        url: $ctx + "/order/getDataoke",
+        type: 'post',
+        data: {"item_url": url},
+        async: false,
+        dataType: 'json',
+        success: function (data) {
             if (data.item_jhlb != null) {
                 $("#td8").show();
                 $("#span8").text(data.item_jhlb);
 
-            }else {
+            } else {
                 $("#td8").hide();
             }
 
-            if (data.showClaim){
+            if (data.showClaim) {
                 $("#td6").show();
                 $("#td1").hide();
                 $("#td2").hide();
@@ -320,11 +325,11 @@ function getDataokeDatas(url) {
 }
 function initItemType() {
     $.ajax({
-        url : $ctx + '/order/getItemTypes',
-        type : 'get',
-        async : false,
-        dataType : 'json',
-        success : function(datas) {
+        url: $ctx + '/order/getItemTypes',
+        type: 'get',
+        async: false,
+        dataType: 'json',
+        success: function (datas) {
             $("#query_item_type_select").html("");
             $("#query_item_type_select").append(
                 '<option class="form-control" value="">所有分类</option>');
@@ -339,11 +344,11 @@ function initItemType() {
 }
 function initUserTeam() {
     $.ajax({
-        url : $ctx + '/user/getUserTeams',
-        type : 'get',
-        async : false,
-        dataType : 'json',
-        success : function(datas) {
+        url: $ctx + '/user/getUserTeams',
+        type: 'get',
+        async: false,
+        dataType: 'json',
+        success: function (datas) {
             $("#query_team_select").html("");
             $("#query_team_select").append(
                 '<option class="form-control" value="">选择小组</option>');
@@ -358,11 +363,11 @@ function initUserTeam() {
 }
 function claim(id) {
     $.ajax({
-        url : $ctx + '/order/claim?id=' + id,
-        type : 'get',
-        async : false,
-        dataType : 'json',
-        success : function(datas) {
+        url: $ctx + '/order/claim?id=' + id,
+        type: 'get',
+        async: false,
+        dataType: 'json',
+        success: function (datas) {
             alert("成功");
         }
     });
@@ -372,9 +377,9 @@ function skipInfo(id) {
     console.log(gridDatas.page);
     console.log(gridDatas.rows);
     p = {
-        item_id : id,
-        page : gridDatas.page,
-        rows : gridDatas.rows
+        item_id: id,
+        page: gridDatas.page,
+        rows: gridDatas.rows
     }
     $('#showId').load($ctx + "/home/view/iteminfo.jsp", p);
     $('#li_name').html("页面详情");
@@ -384,9 +389,9 @@ function skipupdateItemInfo(id) {
     console.log(gridDatas.page);
     console.log(gridDatas.rows);
     p = {
-        item_id : id,
-        page : gridDatas.page,
-        rows : gridDatas.rows
+        item_id: id,
+        page: gridDatas.page,
+        rows: gridDatas.rows
     }
     $('#showId').load($ctx + "/home/view/updateiteminfo.jsp", p);
     $('#li_name').html("商品再次提交");
@@ -459,16 +464,16 @@ function query_team_selectchange() {
 function initqueryUserSelect(value) {
     if (value != "") {
         var data = {
-            team_id : value
+            team_id: value
         };
         $
             .ajax({
-                url : $ctx + '/user/getTeamUsers',
-                data : data,
-                type : 'post',
-                async : false,
-                dataType : 'json',
-                success : function(datas) {
+                url: $ctx + '/user/getTeamUsers',
+                data: data,
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                success: function (datas) {
                     $("#query_user_select").html("");
                     $("#query_user_select")
                         .append(
@@ -489,11 +494,11 @@ function initqueryUserSelect(value) {
 }
 function initnavstateinfo() {
     $.ajax({
-        url : $ctx + '/order/getnavstateinfo',
-        type : 'get',
-        async : false,
-        dataType : 'json',
-        success : function(datas) {
+        url: $ctx + '/order/getnavstateinfo',
+        type: 'get',
+        async: false,
+        dataType: 'json',
+        success: function (datas) {
             $("#nav_state_query").html("");
             for (var i = 0; i < datas.length; i++) {
                 if (i == 0) {
@@ -514,7 +519,45 @@ function initnavstateinfo() {
         }
     });
 }
+
+function hPay() {
+    var str = document.getElementsByName("checkbox");
+    var objarray = str.length;
+    var item_ids = 0;
+    var item_id1,item_id2,item_id3
+    for (i = 0; i < objarray; i++) {
+        if (str[i].checked == true) {
+            item_ids++;
+            if (item_id1 == null) {
+                item_id1 = str[i].value;
+            } else if (item_id2 == null) {
+                item_id2 = str[i].value;
+            } else if (item_id3 == null) {
+                item_id3 = str[i].value;
+            }
+        }
+    }
+    if (item_ids == 0) {
+        alert("请选择商品");
+    } else if (item_ids > 3){
+        alert("最多选择三个商品");
+    } else {
+        p = {
+            item_id1 : item_id1,
+            item_id2 : item_id2,
+            item_id3 : item_id3
+        }
+        $('#showId').load($ctx + "/home/view/iteminfo1.jsp", p);
+        $('#li_name').html("合并付款");
+    }
+}
 function ItemByStateChange(state, obj) {
+    if (state == 005) {
+        $("#hPay").show();
+    } else {
+        $("#hPay").hide();
+    }
+
     item_state = state;
     console.log(state);
     obj = $(obj).parent('li');
@@ -522,24 +565,24 @@ function ItemByStateChange(state, obj) {
     var lis = obj.siblings().removeClass('active');
     obj.addClass('active');
     var data = {
-        state : state
+        state: state
     };
     $.ajax({
-        url : caseInfoUrl + '?statePage='+item_state+'&page=' + page + '&rows=' + rowForPage,
-        data : data,
-        type : 'post',
-        async : false,
-        success : function(datas) {
+        url: caseInfoUrl + '?statePage=' + item_state + '&page=' + page + '&rows=' + rowForPage,
+        data: data,
+        type: 'post',
+        async: false,
+        success: function (datas) {
             console.info(datas)
             $case_infoGrid.datagrid('loadData', {
-                rows : datas.list
+                rows: datas.list
             });
             $case_paginator.bootstrapPaginator({
-                currentPage : 1,
-                totalPages : datas.totalpage,
-                onPageClicked : function(e, originalEvent, type, pages) {
+                currentPage: 1,
+                totalPages: datas.totalpage,
+                onPageClicked: function (e, originalEvent, type, pages) {
                     $case_infoGrid.datagrid('loadData', {
-                        rows : getDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
+                        rows: getDatas(caseInfoUrl + "?statePage=" + item_state + "&rows=" + rowForPage
                             + "&page=" + pages, queryParamsData).list
                     });
                 }
@@ -609,14 +652,14 @@ function getTimeDay(str) {
 function loadGrid(url) {
     gridDatas = getGridDatas(url);
     $case_infoGrid.datagrid("loadData", {
-        rows : gridDatas.list
+        rows: gridDatas.list
     });
     $case_paginator.bootstrapPaginator({
-        currentPage : page,
-        totalPages : gridDatas.totalpage,
-        onPageClicked : function(e, originalEvent, type, pages) {
+        currentPage: page,
+        totalPages: gridDatas.totalpage,
+        onPageClicked: function (e, originalEvent, type, pages) {
             $case_infoGrid.datagrid('loadData', {
-                rows : getGridDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
+                rows: getGridDatas(caseInfoUrl + "?statePage=" + item_state + "&rows=" + rowForPage
                     + "&page=" + pages).list
             });
         }
@@ -624,10 +667,10 @@ function loadGrid(url) {
 }
 function getGridDatas(url) {
     $.ajax({
-        url : url,
-        type : 'post',
-        async : false,
-        success : function(data) {
+        url: url,
+        type: 'post',
+        async: false,
+        success: function (data) {
             gridDatas = data;
         }
     })
@@ -637,20 +680,20 @@ function getDatas(url, data) {
     var datas;
     if (data == null) {
         $.ajax({
-            url : url,
-            type : 'post',
-            async : false,
-            success : function(data) {
+            url: url,
+            type: 'post',
+            async: false,
+            success: function (data) {
                 datas = data;
             }
         })
     } else {
         $.ajax({
-            url : url,
-            type : 'post',
-            data : data,
-            async : false,
-            success : function(data) {
+            url: url,
+            type: 'post',
+            data: data,
+            async: false,
+            success: function (data) {
                 datas = data;
             }
         })
@@ -668,21 +711,21 @@ function queryItem() {
     queryParamsData = data;
     console.info(111, data);
     $.ajax({
-        url : caseInfoUrl + '?statePage='+item_state+'&page=' + page + '&rows=' + rowForPage,
-        data : data,
-        type : 'post',
-        async : false,
-        success : function(datas) {
+        url: caseInfoUrl + '?statePage=' + item_state + '&page=' + page + '&rows=' + rowForPage,
+        data: data,
+        type: 'post',
+        async: false,
+        success: function (datas) {
             console.info(datas)
             $case_infoGrid.datagrid('loadData', {
-                rows : datas.list
+                rows: datas.list
             });
             $case_paginator.bootstrapPaginator({
-                currentPage : 1,
-                totalPages : datas.totalpage,
-                onPageClicked : function(e, originalEvent, type, pages) {
+                currentPage: 1,
+                totalPages: datas.totalpage,
+                onPageClicked: function (e, originalEvent, type, pages) {
                     $case_infoGrid.datagrid('loadData', {
-                        rows : getDatas(caseInfoUrl + "?statePage="+item_state+"&rows=" + rowForPage
+                        rows: getDatas(caseInfoUrl + "?statePage=" + item_state + "&rows=" + rowForPage
                             + "&page=" + pages, queryParamsData).list
                     });
                 }
@@ -693,7 +736,7 @@ function queryItem() {
 // 序列化表单
 function serializeObject(form) {// 将表单元素中的值序列化成对象
     var o = {};
-    $.each(form.serializeArray(), function(index_) {
+    $.each(form.serializeArray(), function (index_) {
         if (o[this['name']]) {
             o[this['name']] = o[this['name']] + "," + this['value'];
 
