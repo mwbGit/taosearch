@@ -114,7 +114,8 @@
             processData: false,
             success: function (data) {
                 if(data.code != 1) {
-                    alert(data.message);
+                    $('#alert_dialog_danger').html(data.message);
+                    $('#modal_danger').modal('show');
                 }
             }
         });
