@@ -292,17 +292,18 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/uploadpayInfo")
-	@ResponseBody
-	public MyResult<ItemInfo> uploadpayInfo(ItemAuditLog auditLog, Double item_zfje, HttpServletRequest request) {
-		if (item_zfje == null) {
-			MyResult<ItemInfo> result = new MyResult<ItemInfo>();
-			result.setCode(6666);
-			result.setMessage("请输入支付金额");
-			return result;
-		}
-		MyResult<ItemInfo> result = OrderService.saveItemAttachemt(auditLog, item_zfje, request);
+	public MyResult<ItemInfo> uploadpayInfo(ItemAuditLog auditLog, ItemInfo item, HttpServletRequest request) {
+//		if (item_zfje == null) {
+//			MyResult<ItemInfo> result = new MyResult<ItemInfo>();
+//			result.setCode(6666);
+//			result.setMessage("请输入支付金额");
+//			return result;
+//		}
+		MyResult<ItemInfo> result = OrderService.saveItemAttachemt(auditLog, item, request);
+
 		return result;
 	}
+
 
 	@RequestMapping(value = "/uploadpayingInfo")
 	@ResponseBody

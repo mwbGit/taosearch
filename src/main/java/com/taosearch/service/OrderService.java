@@ -43,7 +43,7 @@ public interface OrderService {
 
 	int updateCoupon(Coupon coupon);
 
-	MyResult<ItemInfo> saveItemAttachemt(ItemAuditLog auditLog, Double item_zfje, HttpServletRequest request);
+	MyResult<ItemInfo> saveItemAttachemt(ItemAuditLog auditLog, ItemInfo item_zfje, HttpServletRequest request);
 
 	MyResult<String> saveItemAttachemt1(ItemAuditLog auditLog, Double item_ssje, HttpServletRequest request);
 

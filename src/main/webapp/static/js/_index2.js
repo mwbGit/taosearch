@@ -245,9 +245,8 @@ function initGrid() {
                         field: 'state',
                         formatter: function (val, row) {
                             var str = "<a 10%href='#' onclick='skipInfo(\""
-                                + row.item_id + "\")'>查看</a>";
+                                + row.item_id + "\", \"" + row.state + "\" )'>查看</a>";
                             str += "</br><a href='#' onclick='skipupdateItemInfo(\"" + row.item_id + "\")'>再次提交</a>";
-
 
                             return str;
                         }
@@ -372,7 +371,7 @@ function claim(id) {
         }
     });
 }
-function skipInfo(id) {
+function skipInfo(id, state) {
     console.log(id);
     console.log(gridDatas.page);
     console.log(gridDatas.rows);
@@ -381,8 +380,19 @@ function skipInfo(id) {
         page: gridDatas.page,
         rows: gridDatas.rows
     }
-    $('#showId').load($ctx + "/home/view/iteminfo.jsp", p);
-    $('#li_name').html("页面详情");
+    debugger;
+    if (state == '005') {
+        p = {
+            item_id1: id,
+            page: gridDatas.page,
+            rows: gridDatas.rows
+        }
+        $('#showId').load($ctx + "/home/view/iteminfo1.jsp", p);
+        $('#li_name').html("页面详情");
+    }else {
+        $('#showId').load($ctx + "/home/view/iteminfo.jsp", p);
+        $('#li_name').html("页面详情");
+    }
 }
 function skipupdateItemInfo(id) {
     console.log(id);

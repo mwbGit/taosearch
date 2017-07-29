@@ -379,6 +379,9 @@
 			</if>
 			state=#{after_audit_status},
 			item_zfje=#{item_zfje},
+			<if test="item_ssje != null ">
+				item_ssje=#{item_ssje},
+			</if>
 			item_zfje_state='1'
 		</set>
 		where
