@@ -55,17 +55,17 @@
         var zfje = $("#item_zfje" + typeId).val();
         var qhjg = $("#item_ssje" + typeId).val();
         var get_num = $("#coupon_get_num" + typeId).val();
-        if (zfje == null || zfje == '' || zfje == 0) {
+        if (zfje == null || zfje == '') {
             $('#alert_dialog_danger').html("支付金额不正确！");
             $('#modal_danger').modal('show');
             return false;
         }
-        if (qhjg == null || qhjg == '' || qhjg == 0) {
+        if (qhjg == null || qhjg == '') {
             $('#alert_dialog_danger').html("实收金额不正确！");
             $('#modal_danger').modal('show');
             return false;
         }
-        if (get_num == null || get_num == '' || get_num == 0) {
+        if (get_num == null || get_num == '') {
             $('#alert_dialog_danger').html("优惠券领取数量不正确！");
             $('#modal_danger').modal('show');
             return false;
@@ -80,21 +80,21 @@
         if (item_id1 != '') {
             if (check(1)) {
                 doUpload(1);
-            }else {
+            } else {
                 return
             }
         }
         if (item_id2 != '') {
             if (check(2)) {
                 doUpload(2);
-            }else {
+            } else {
                 return
             }
         }
         if (item_id3 != '') {
             if (check(3)) {
                 doUpload(3);
-            }else {
+            } else {
                 return
             }
         }
@@ -103,9 +103,14 @@
     }
 
     function doUpload(typeId) {
-        var formData = new FormData($( "#upload_item_pay_form" +typeId )[0]);
+
+        $("#item_merge" + typeId).val(itemMerge());
+        $("#item_merge" + typeId).val(itemMerge());
+        $("#item_merge" + typeId).val(itemMerge());
+
+        var formData = new FormData($("#upload_item_pay_form" + typeId)[0]);
         $.ajax({
-            url: '${ctx }/order/uploadpayInfo' ,
+            url: '${ctx }/order/uploadpayInfo',
             type: 'POST',
             data: formData,
             async: false,
@@ -113,7 +118,7 @@
             contentType: false,
             processData: false,
             success: function (data) {
-                if(data.code != 1) {
+                if (data.code != 1) {
                     $('#alert_dialog_danger').html(data.message);
                     $('#modal_danger').modal('show');
                 }
@@ -124,11 +129,37 @@
     function addFile(obj) {
         var formData = new FormData();
         var name = $("input").val();
-        formData.append("file",$("#upload")[0].files[0]);
-        formData.append("name",name);
+        formData.append("file", $("#upload")[0].files[0]);
+        formData.append("name", name);
     }
     function addFile(obj) {
         $(obj).next().append('<input  name="item_attachment" type="file" multiple="multiple">');
+    }
+    function sumShow() {
+        $("#total").text(sum());
+    }
+
+    function itemMerge() {
+        var itemMerge = '';
+        var item_no1 = $("#item_no1").text();
+        var item_no2 = $("#item_no2").text();
+        var item_no3 = $("#item_no3").text();
+        if (item_no1 != null && item_no1 != '') {
+            itemMerge += item_no1;
+        }
+        if (item_no2 != null && item_no2 != '') {
+            itemMerge += '; ' + item_no2;
+        } else {
+            return '';
+        }
+
+        if (item_no3 != null && item_no3 != '') {
+            itemMerge += '; ' + item_no3;
+        }
+        itemMerge += ' 合并付款，实收金额为' + sum() + '元';
+
+        return itemMerge;
+
     }
 
     function sum() {
@@ -146,7 +177,8 @@
         }
 
         var sum = parseInt(qhjg1) + parseInt(qhjg2) + parseInt(qhjg3);
-        $("#total").text(sum);
+
+        return sum;
     }
 
     function gobackpage() {
@@ -185,6 +217,7 @@
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
 						<td><input type="hidden" id="item_id1" name="item_id"></td>
+						<td><input type="hidden" id="item_merge1" name="item_merge"></td>
 					</tr>
 					<tr>
 						<td style="width: 20%">商品标题：</td>
@@ -214,7 +247,7 @@
 					</tr>
 					<tr>
 						<td>支付金额：</td>
-						<td><input type="text" id="item_zfje1" name="item_zfje" style="width: 70px"/>
+						<td><input type="text" id="item_zfje1" name="item_zfje" style="width: 70px" />
 							(券后价格:<span id="item_qhjg1"></span>)
 							<button type="button" onclick="calculate(1)">计算</button>
 						</td>
@@ -231,7 +264,7 @@
 					</tr>
 					<tr>
 						<td>实际收款金额：</td>
-						<td><input type="text" name="item_ssje" id="item_ssje1" style="width: 70px"/></td>
+						<td><input type="text" name="item_ssje" id="item_ssje1" style="width: 70px" value="0"/></td>
 					</tr>
 					<tr>
 						<td>转化率：</td>
@@ -240,7 +273,7 @@
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
-						<td>优惠卷截图：</td>
+						<td>截图：</td>
 						<td style="width: 10%">附件：</td>
 						<td>
 							<button type="button" onclick="addFile(this)">+</button>
@@ -258,6 +291,8 @@
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
 						<td><input type="hidden" id="item_id2" name="item_id"></td>
+						<td><input type="hidden" id="item_merge2" name="item_merge"></td>
+
 					</tr>
 					<tr>
 						<td style="width: 20%">商品标题：</td>
@@ -287,7 +322,7 @@
 					</tr>
 					<tr>
 						<td>支付金额：</td>
-						<td><input type="text" id="item_zfje2" name="item_zfje" style="width: 70px"/>
+						<td><input type="text" id="item_zfje2" name="item_zfje" style="width: 70px" />
 							(券后价格:<span id="item_qhjg2"></span>)
 							<button type="button" onclick="calculate(2)">计算</button>
 						</td>
@@ -304,7 +339,7 @@
 					</tr>
 					<tr>
 						<td>实际收款金额：</td>
-						<td><input type="text" name="item_ssje" id="item_ssje2" style="width: 70px"/></td>
+						<td><input type="text" name="item_ssje" id="item_ssje2" style="width: 70px" value="0"/></td>
 					</tr>
 					<tr>
 						<td>转化率：</td>
@@ -313,7 +348,7 @@
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
-						<td>优惠卷截图：</td>
+						<td>截图：</td>
 						<td style="width: 10%">附件：</td>
 						<td>
 							<button type="button" onclick="addFile(this)">+</button>
@@ -331,6 +366,7 @@
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
 						<td><input type="hidden" id="item_id3" name="item_id"></td>
+						<td><input type="hidden" id="item_merge3" name="item_merge"></td>
 					</tr>
 					<tr>
 						<td style="width: 20%">商品标题：</td>
@@ -377,7 +413,7 @@
 					</tr>
 					<tr>
 						<td>实际收款金额：</td>
-						<td><input type="text" name="item_ssje" id="item_ssje3" style="width: 70px"/></td>
+						<td><input type="text" name="item_ssje" id="item_ssje3" style="width: 70px" value="0"/></td>
 					</tr>
 					<tr>
 						<td>转化率：</td>
@@ -386,7 +422,7 @@
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
-						<td>优惠卷截图：</td>
+						<td>截图：</td>
 						<td style="width: 10%">附件：</td>
 						<td>
 							<button type="button" onclick="addFile(this)">+</button>
@@ -403,8 +439,8 @@
 
 				<tr>
 					<td>
-						<button type="button" onclick="sum()">
-							实收金额计算
+						<button type="button" onclick="sumShow()">
+							实收总额计算
 						</button>
 
 					</td>

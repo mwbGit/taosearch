@@ -205,6 +205,7 @@ public class OrderServiceImpl implements OrderService {
 		map.put("item_zfje", item.getItem_zfje());
 		map.put("item_ssje", item.getItem_ssje());
 		map.put("after_audit_status", "006");
+		map.put("item_merge", item.getItem_merge());
 		map.put("audit_remarks", auditLog.getAudit_remarks());
 		int i = OrderDao.updateItemzfje(map);
 		if (i > 0) {

@@ -300,6 +300,7 @@
                         $("#pay_item_ysje_span").html((data.data.item_zfje/data.data.item_qhjg*data.data.item_fwdj).toFixed(2));
                         $("#pay_item_ssje_span").html(data.data.item_ssje);
                         $("#pay_coupon_zhl_span").html((((data.data.item_zfje/data.data.item_qhjg)/data.data.coupon_get_num)*100).toFixed(2));
+                        $("#item_merge").html(data.data.item_merge);
                         $("#item_info_form").hide();
                         $("#item_pay_info_form").show();
                         break;
@@ -661,6 +662,9 @@
 					<tr>
 						<td>转化率：</td>
 						<td><span id="pay_coupon_zhl_span"></span></td>
+					</tr>
+					<tr>
+						<td colspan="2"><span id="item_merge" style="color: red;font-weight: bold"></span></td>
 					</tr>
 				</table>
 				<div id="item_image_list_div"></div>
