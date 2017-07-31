@@ -44,6 +44,18 @@
                 $("#item_jhlj_tr_id").hide();
             }
         });
+        $('input[name="coupon_type_id"]').change(function() {
+            if ($(this).val() == '1') {
+                $("#tr_coupon_url_id").show();
+                $("#tr_coupon_rest_num").show();
+                $("#tr_item_yjbl_id").show();
+            }else {
+                $("#tr_coupon_url_id").hide();
+                $("#tr_coupon_rest_num").hide();
+                $("#tr_item_yjbl_id").hide();
+
+            }
+        });
         initItemType();
         getItemInfo();
         $("#item_update_form").html5Validate(function() {
@@ -304,6 +316,7 @@
 						<td>优惠券地址：</td>
 						<td><textarea id="coupon_url_id" name="coupon_url" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
+
 					<tr id="tr_coupon_rest_num">
 						<td>优惠卷数量：</td>
 						<td class="form-inline"><input id="coupon_rest_num" name="coupon_rest_num" style="width: 10%" class="form-control" pattern="^[0-9]*$"></td>
@@ -342,11 +355,41 @@
 					</tr>
 					<tr>
 						<td>联系QQ：</td>
-						<td class="form-inline"><input  placeholder="请输入QQ号码" id="qq_id" required name="qq" style="width: 30%" class="form-control" pattern="^[0-9]*$"><span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
+						<td class="form-inline">
+							<div style="float:left; display:inline">
+
+								<input placeholder="请输入QQ号码" id="qq_id" required name="qq" style="width: 90%" class="form-control" pattern="^[0-9]*$">
+								<span style="color: #cc0001">&nbsp;&nbsp;*
+								</span>
+							</div>
+							<div style="float:left; display:inline;color: red" >
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+								阿里妈妈推广券<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①计划类别必须为营销计划！
+							</div>
+
+						</td>
+
 					</tr>
 					<tr>
 						<td>收费单价：</td>
-						<td class="form-inline"><input  placeholder="请输入收费单价，可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_fwdj_id" required name="item_fwdj" style="width: 30%" class="form-control"><span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
+						<td class="form-inline">
+							<div style="float:left; display:inline" >
+
+								<input  placeholder="可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_fwdj_id" required name="item_fwdj" style="width: 90%" class="form-control"><span style="color: #cc0001">&nbsp;&nbsp;&nbsp;*</span>
+							</div>
+							<div style="float:left; display:inline;color: red" >
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								②请确认商家已将阿里妈妈券绑定在营销计划上！<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③请确认营销计划已生效（包括预告商品）！
+							</div>
+						</td>
+
 					</tr>
 					<tr>
 						<td></td>
