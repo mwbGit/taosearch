@@ -48,6 +48,9 @@
                 $("#tr_coupon_rest_num").show();
                 $("#tr_item_yjbl_id").show();
             }else {
+                $("#coupon_url_id").val("");
+                $("#coupon_rest_num").val("0");
+                $("#item_yjbl_id").val("0");
                 $("#tr_coupon_url_id").hide();
                 $("#tr_coupon_rest_num").hide();
                 $("#tr_item_yjbl_id").hide();
