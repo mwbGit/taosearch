@@ -57,6 +57,7 @@ public class ItemInfo {
 	private String item_zfje_state;
 	private List<ItemAttachment> attachments;// 商品附件
 	private List<ItemAuditLog> logs;// 商品审核记录
+	private String item_merge;
 
 	public String getItem_id() {
 		return item_id;
@@ -360,5 +361,13 @@ public class ItemInfo {
 
 	public void setLogs(List<ItemAuditLog> logs) {
 		this.logs = logs;
+	}
+
+	public String getItem_merge() {
+		return item_merge;
+	}
+
+	public void setItem_merge(String item_merge) {
+		this.item_merge = item_merge;
 	}
 }

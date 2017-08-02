@@ -290,15 +290,17 @@
                     case '667':
                         initItemImage(data.data.attachments);
                         $("#pay_item_no_span").html(data.data.item_no);
+                        $("#pay_item_title_span").html(data.data.item_title);
                         $("#pay_item_createtime_span").html(getTimeDay(data.data.createtime));
                         $("#pay_coupon_start_span").html(getTimeDay(data.data.coupon_start_time));
                         $("#pay_coupon_end_span").html(getTimeDay(data.data.coupon_end_time));
                         $("#pay_coupon_get_span").html(data.data.coupon_get_num+"("+(data.data.coupon_get_num+data.data.coupon_rest_num)+")");
                         $("#pay_item_zfje_span").html(data.data.item_zfje+"(券后价格："+data.data.item_qhjg+")");
-                        $("#pay_coupon_use_span").html((data.data.item_zfje/data.data.item_qhjg)+"(服务单价："+data.data.item_fwdj+")");
-                        $("#pay_item_ysje_span").html(data.data.item_zfje/data.data.item_qhjg*data.data.item_fwdj);
+                        $("#pay_coupon_use_span").html((data.data.item_zfje/data.data.item_qhjg).toFixed(2)+"(服务单价："+data.data.item_fwdj+")");
+                        $("#pay_item_ysje_span").html((data.data.item_zfje/data.data.item_qhjg*data.data.item_fwdj).toFixed(2));
                         $("#pay_item_ssje_span").html(data.data.item_ssje);
                         $("#pay_coupon_zhl_span").html((((data.data.item_zfje/data.data.item_qhjg)/data.data.coupon_get_num)*100).toFixed(2));
+                        $("#item_merge").html(data.data.item_merge);
                         $("#item_info_form").hide();
                         $("#item_pay_info_form").show();
                         break;
@@ -618,6 +620,10 @@
 			<form class=" col-xs-12 col-sm-12 col-md-12" id="item_pay_info_form" role="form">
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
+						<td>产品标题：</td>
+						<td><span id="pay_item_title_span"></span></td>
+					</tr>
+					<tr>
 						<td>产品编码：</td>
 						<td><span id="pay_item_no_span"></span></td>
 					</tr>
@@ -656,6 +662,9 @@
 					<tr>
 						<td>转化率：</td>
 						<td><span id="pay_coupon_zhl_span"></span></td>
+					</tr>
+					<tr>
+						<td colspan="2"><span id="item_merge" style="color: red;font-weight: bold"></span></td>
 					</tr>
 				</table>
 				<div id="item_image_list_div"></div>

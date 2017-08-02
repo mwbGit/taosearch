@@ -141,7 +141,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public MyResult<ItemInfo> saveItemAttachemt(ItemAuditLog auditLog, Double item_zfje, HttpServletRequest request) {
+	public MyResult<ItemInfo> saveItemAttachemt(ItemAuditLog auditLog, ItemInfo item, HttpServletRequest request) {
 		MyResult<ItemInfo> result = new MyResult<ItemInfo>();
 		SysUser user = (SysUser) request.getSession().getAttribute("loginUser");
 		// 上传文件的保存路径
@@ -201,16 +201,30 @@ public class OrderServiceImpl implements OrderService {
 
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("item_id", auditLog.getItem_id());
-		map.put("item_zfje", item_zfje);
-		map.put("after_audit_status", auditLog.getAfter_audit_status());
+		map.put("item_id", item.getItem_id());
+		map.put("item_zfje", item.getItem_zfje());
+		map.put("item_ssje", item.getItem_ssje());
+		map.put("after_audit_status", "006");
+		map.put("item_merge", item.getItem_merge());
 		map.put("audit_remarks", auditLog.getAudit_remarks());
 		int i = OrderDao.updateItemzfje(map);
 		if (i > 0) {
+			auditLog.setItem_id(item.getItem_id());
+			auditLog.setBefore_audit_status("005");
+			auditLog.setAfter_audit_status("006");
 			auditLog.setAuditor(user.getUsername());
 			int n = OrderDao.saveAuditLog(auditLog);
 			if (n > 0) {
-				ItemInfo item=OrderDao.getitemInfoById(auditLog.getItem_id());
+				item = OrderDao.getitemInfoById(item.getItem_id());
+
+				Coupon coupon = new Coupon();
+				coupon.setCoupon_id(item.getCoupon_id());
+				coupon.setCoupon_get_num(item.getCoupon_get_num());
+				Double useNum = item.getItem_zfje()/item.getItem_qhjg();
+				coupon.setCoupon_use_num(useNum.intValue());
+
+				OrderDao.updateCoupon(coupon);
+
 				result.setData(item);
 				result.setCode(1);
 				result.setMessage("操作成功");
