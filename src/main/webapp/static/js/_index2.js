@@ -381,7 +381,7 @@ function skipInfo(id, state) {
         rows: gridDatas.rows
     }
     debugger;
-    if (state == '005') {
+    if (state == '005' || state == '667') {
         p = {
             item_id1: id,
             page: gridDatas.page,

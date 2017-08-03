@@ -273,8 +273,7 @@
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
-						<td>截图：</td>
-						<td style="width: 10%">附件：</td>
+						<td style="width: 10%">截图：</td>
 						<td>
 							<button type="button" onclick="addFile(this)">+</button>
 							<li style="list-style-type: none;width: 200px"></li>
@@ -343,13 +342,12 @@
 					</tr>
 					<tr>
 						<td>转化率：</td>
-						<td><span id="coupon_zhl1"></span></td>
+						<td><span id="coupon_zhl2"></span></td>
 					</tr>
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
-						<td>截图：</td>
-						<td style="width: 10%">附件：</td>
+						<td style="width: 10%">截图：</td>
 						<td>
 							<button type="button" onclick="addFile(this)">+</button>
 							<li style="list-style-type: none;width: 200px"></li>
@@ -422,8 +420,7 @@
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
-						<td>截图：</td>
-						<td style="width: 10%">附件：</td>
+						<td style="width: 10%">截图：</td>
 						<td>
 							<button type="button" onclick="addFile(this)">+</button>
 							<li style="list-style-type: none;width: 200px"></li>
