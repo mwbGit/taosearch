@@ -26,6 +26,7 @@ public class Coupon {
 	private Integer coupon_rest_num;
 	private Integer coupon_get_num;
 	private Integer coupon_use_num;
+	private String coupon_type_id;
 
 	public String getCoupon_id() {
 		return coupon_id;
@@ -89,5 +90,13 @@ public class Coupon {
 
 	public void setCoupon_use_num(Integer coupon_use_num) {
 		this.coupon_use_num = coupon_use_num;
+	}
+
+	public String getCoupon_type_id() {
+		return coupon_type_id;
+	}
+
+	public void setCoupon_type_id(String coupon_type_id) {
+		this.coupon_type_id = coupon_type_id;
 	}
 }

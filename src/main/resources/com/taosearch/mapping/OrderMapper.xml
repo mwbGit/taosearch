@@ -157,7 +157,10 @@
 				coupon_type_id=#{coupon_type_id},
 			</if>
 			<if test="coupon_rest_num != null and coupon_rest_num != ''">
-				coupon_rest_num=#{coupon_rest_num}
+				coupon_rest_num=#{coupon_rest_num},
+			</if>
+			<if test="coupon_type_id != null and coupon_type_id != ''">
+				coupon_type_id=#{coupon_type_id}
 			</if>
 		</set>
 	</insert>
@@ -326,6 +329,9 @@
 			</if>
 			<if test="coupon_rest_num != null">
 				coupon_rest_num=#{coupon_rest_num},
+			</if>
+			<if test="coupon_type_id != null">
+				coupon_type_id=#{coupon_type_id},
 			</if>
 			<if test="coupon_get_num != null">
 				coupon_get_num=#{coupon_get_num},

@@ -89,7 +89,7 @@ public class OrderController {
 			}
 
 			for (String username : map.keySet()) {
-				name += username + "";
+				name += username + " ";
 			}
 
 			item.setItem_jhlb(name);
@@ -235,6 +235,12 @@ public class OrderController {
 			result.setMessage("数据传输异常未收到值");
 			return result;
 		}
+		if (item.getCoupon_type_id().equals("2")){
+			item.setCoupon_rest_num(0);
+			item.setItem_yjbl(0d);
+			item.setCoupon_url(" ");
+		}
+
 
 		ItemInfo info = OrderService.getitemInfoById(item.getItem_id());
 		SysUser user = (SysUser) request.getSession().getAttribute("loginUser");
@@ -265,7 +271,8 @@ public class OrderController {
 		coupon.setCoupon_start_time(item.getCoupon_start_time());
 		coupon.setCoupon_end_time(item.getCoupon_end_time());
 		coupon.setCoupon_url(item.getCoupon_url());
-
+		coupon.setCoupon_rest_num(item.getCoupon_rest_num());
+		coupon.setCoupon_type_id(item.getCoupon_type_id());
 		OrderService.updateCoupon(coupon);
 
 		result = OrderService.updateItemAndAddLog(auditLog, item);
