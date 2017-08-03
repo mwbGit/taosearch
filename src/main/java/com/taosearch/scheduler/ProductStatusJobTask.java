@@ -34,6 +34,21 @@ public class ProductStatusJobTask {
         map.put("vo", new QuerySPLBVo());
 
         Date now = new Date();
+//        //结束 --》代付款
+        map.put("state", "004");
+        List<Item> itemList = orderDao.getItemListForPage(map);
+        if (CollectionUtils.isNotEmpty(itemList)) {
+            for (Item item : itemList) {
+                Date endTime = DateTimeUtility.parseYYYYMMDDHHMMSS(item.getCoupon_end_time());
+                if (endTime == null)
+                    continue;
+                endTime = DateTimeUtility.addDays(endTime,2);
+                if (now.after(endTime)) {
+                    item.setState("005");
+                    orderDao.updateItemAndAddLog(item);
+                }
+            }
+        }
 
 //        //即将结束 --》结束
         map.put("state", "009");
