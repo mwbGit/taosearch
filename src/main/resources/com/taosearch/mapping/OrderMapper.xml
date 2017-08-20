@@ -153,9 +153,7 @@
 			<if test="activity_start_time != null and activity_start_time != ''">
 				activity_start_time=#{activity_start_time},
 			</if>
-			<if test="coupon_type_id != null and coupon_type_id != ''">
-				coupon_type_id=#{coupon_type_id},
-			</if>
+
 			<if test="coupon_rest_num != null and coupon_rest_num != ''">
 				coupon_rest_num=#{coupon_rest_num},
 			</if>
