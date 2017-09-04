@@ -58,6 +58,7 @@ public class ItemInfo {
 	private List<ItemAttachment> attachments;// 商品附件
 	private List<ItemAuditLog> logs;// 商品审核记录
 	private String item_merge;
+	private String item_generalize_main_image;
 
 	public String getItem_id() {
 		return item_id;
@@ -369,5 +370,13 @@ public class ItemInfo {
 
 	public void setItem_merge(String item_merge) {
 		this.item_merge = item_merge;
+	}
+
+	public String getItem_generalize_main_image() {
+		return item_generalize_main_image;
+	}
+
+	public void setItem_generalize_main_image(String item_generalize_main_image) {
+		this.item_generalize_main_image = item_generalize_main_image;
 	}
 }

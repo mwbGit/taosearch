@@ -305,6 +305,12 @@
                         $("#item_pay_info_form").show();
                         break;
                 }
+
+                $("#a_item_url").attr("href",data.data.item_url);
+                $("#a_item_main_image").attr("href",data.data.item_main_image);
+                $("#a_coupon_url").attr("href",data.data.coupon_url);
+                $("#a_item_jhlj").attr("href",data.data.item_jhlj);
+                $("#a_item_generalize_main_image").attr("href",data.data.item_generalize_main_image);
             }
         });
     }
@@ -513,7 +519,9 @@
 				<hr />
 				<table style="width: 90%; border-collapse: separate; border-spacing: 20px;">
 					<tr>
-						<td style="width: 10%"><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
+						<td style="width: 10%"><input type="button" onClick="copyText1(this)" value="点击复制" />
+							<a href="" id="a_item_url" target="_blank">查看链接</a>
+						</td>
 						<td style="width: 12%">商品链接：</td>
 						<td class="td3"><textarea name="item_url" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
@@ -543,9 +551,18 @@
 						<td><textarea name="remark" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
-						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" />
+							<a href="" id="a_item_main_image" target="_blank">查看链接</a>
+						</td>
 						<td>商品主图：</td>
 						<td><textarea name="item_main_image" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
+					</tr>
+					<tr>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" />
+							<a href="" id="a_item_generalize_main_image" target="_blank">查看链接</a>
+						</td>
+						<td>推广主图：</td>
+						<td><textarea name="item_generalize_main_image" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
 						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
@@ -563,7 +580,10 @@
 						<td><input id="coupon_type_id" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 					<tr id="tr_coupon_url_id">
-						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" />
+
+							<a href="" id="a_coupon_url" target="_blank">查看链接</a>
+						</td>
 						<td>优惠券地址：</td>
 						<td><textarea name="coupon_url" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
@@ -589,7 +609,9 @@
 						<td><input id="itemInfo_jhlb_id" name="item_jhlb" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 					<tr id="item_info_jhlj_tr_id">
-						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" />
+							<a href="" id="a_item_jhlj" target="_blank">查看链接</a>
+						</td>
 						<td>计划连接：</td>
 						<td><textarea name="item_jhlj" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea>
 					</tr>

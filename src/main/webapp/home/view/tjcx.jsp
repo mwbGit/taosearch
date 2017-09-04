@@ -106,6 +106,11 @@
 
 					</tr>
 					<tr>
+						<td>推广主图：</td>
+						<td><textarea id="item_generalize_main_image" name="item_generalize_main_image" class="form-control" style="resize: none; overflow-y: scroll;"></textarea></td>
+
+					</tr>
+					<tr>
 						<td>商品名称：</td>
 						<td><textarea id="item_name_id" name="item_name" required data-max="20" data-min="12" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">12到20个字符*</span></td>
 					</tr>

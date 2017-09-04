@@ -57,6 +57,7 @@ public class Item {
 	private boolean showClaim;// 显示认领
 	private String item_ssje;// 实收金额
 	private String item_zfje;// 支付金额
+	private String item_generalize_main_image;// 推广主图
 
 	public String getItem_zfje() {
 		return item_zfje;
@@ -344,5 +345,13 @@ public class Item {
 
 	public void setCoupon_use_num(int coupon_use_num) {
 		this.coupon_use_num = coupon_use_num;
+	}
+
+	public String getItem_generalize_main_image() {
+		return item_generalize_main_image;
+	}
+
+	public void setItem_generalize_main_image(String item_generalize_main_image) {
+		this.item_generalize_main_image = item_generalize_main_image;
 	}
 }
