@@ -444,8 +444,8 @@
 			<if test="item_name != null and item_name != ''">
 				item_name=#{item_name},
 			</if>
-			<if test="item_image_backup != null and item_image_backup != ''">
-				item_image_backup=#{item_image_backup},
+			<if test="item_generalize_main_image != null and item_generalize_main_image != ''">
+				item_generalize_main_image=#{item_generalize_main_image},
 			</if>
 			<if test="item_main_image != null and item_main_image != ''">
 				item_main_image=#{item_main_image},
