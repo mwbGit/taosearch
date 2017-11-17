@@ -517,9 +517,21 @@
 		END)/COUNT(*)*100,2) jjl,
 		SUM(CASE WHEN i.state='007' THEN item_ssje
 		END)
-		ssje,SUM(item_zfje/item_qhjg*item_fwdj) ysje,FORMAT(SUM(CASE WHEN
-		i.state='007' THEN item_ssje END)/COUNT(CASE WHEN i.state='007' THEN
-		i.state END),2) kdj
+		ssje,SUM(item_zfje/item_qhjg*item_fwdj) ysje,
+		CAST(
+			SUM(
+				CASE
+				WHEN i.state = '007' THEN
+				item_ssje
+				END
+				) / COUNT(
+				CASE
+				WHEN i.state = '007' THEN
+				i.state
+				END
+				)
+			AS decimal(9,2)
+		) kdj
 		FROM
 		(SELECT * FROM
 		t_item WHERE 1=1

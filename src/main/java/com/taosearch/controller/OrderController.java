@@ -10,23 +10,18 @@ package com.taosearch.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.taosearch.service.dataoke.api.IDaoLaoKeService;
-import com.taosearch.service.dataoke.api.ProductMO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 import org.jsoup.Connection;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -35,20 +30,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.taosearch.model.Coupon;
-import com.taosearch.model.FinancialStatements;
-import com.taosearch.model.Item;
-import com.taosearch.model.ItemAuditLog;
-import com.taosearch.model.ItemInfo;
-import com.taosearch.model.ItemType;
-import com.taosearch.model.MyResult;
-import com.taosearch.model.NavStateCount;
-import com.taosearch.model.QueryFinancialVo;
-import com.taosearch.model.QuerySPLBVo;
-import com.taosearch.model.ResultForPage;
-import com.taosearch.model.SimpleAuthorization;
-import com.taosearch.model.SysUser;
+import com.taosearch.model.*;
 import com.taosearch.service.OrderService;
+import com.taosearch.service.dataoke.api.IDaoLaoKeService;
+import com.taosearch.service.dataoke.api.ProductMO;
 import com.taosearch.util.DownloadUtil;
 import com.taosearch.util.POIUtil;
 import com.taosearch.util.Util;
@@ -449,7 +434,7 @@ public class OrderController {
 			financial.setJjl(financial.getJjl()+statements.getJjl());
 			financial.setSsje(financial.getSsje()+statements.getSsje());
 			financial.setYsje(financial.getYsje() + statements.getYsje());
-			financial.setKdj(financial.getKdj()+statements.getYfknum());
+			financial.setKdj(financial.getKdj()+statements.getKdj());
 		}
 		result.getList().add(financial);
 
@@ -494,7 +479,7 @@ public class OrderController {
 			financial.setJjl(financial.getJjl()+statements.getJjl());
 			financial.setSsje(financial.getSsje()+statements.getSsje());
 			financial.setYsje(financial.getYsje()+statements.getYsje());
-			financial.setKdj(financial.getKdj()+statements.getYfknum());
+			financial.setKdj(financial.getKdj()+statements.getKdj());
 		}
 		list.add(financial);
 
