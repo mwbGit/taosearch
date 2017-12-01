@@ -363,10 +363,13 @@ public class OrderController {
 		map.put("state", statePage);
 		map.put("vo", vo);
 		if (vo.isHz()){
-			sa = new SimpleAuthorization();
-			sa.setAuthorization("3");
+			SimpleAuthorization	sa1 = new SimpleAuthorization();
+			sa1.setAuthorization("3");
+			map.put("sa", sa1);
+
+		} else {
+			map.put("sa", sa);
 		}
-		map.put("sa", sa);
 
 		List<Item> list = OrderService.getItemListForPage(map);
 
