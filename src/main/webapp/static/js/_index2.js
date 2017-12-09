@@ -380,7 +380,6 @@ function skipInfo(id, state) {
         page: gridDatas.page,
         rows: gridDatas.rows
     }
-    debugger;
     if (state == '005' || state == '667') {
         p = {
             item_id1: id,
@@ -592,7 +591,7 @@ function ItemByStateChange(state, obj) {
                 totalPages: datas.totalpage,
                 onPageClicked: function (e, originalEvent, type, pages) {
                     $case_infoGrid.datagrid('loadData', {
-                        rows: getDatas(caseInfoUrl + "?statePage=" + item_state + "&rows=" + rowForPage
+                    rows: getDatas(caseInfoUrl + "?statePage=" + item_state + "&rows=" + rowForPage
                             + "&page=" + pages, queryParamsData).list
                     });
                 }

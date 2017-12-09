@@ -8,7 +8,6 @@
     var item_id2 = "${param.item_id2}";
     var item_id3 = "${param.item_id3}";
 
-    debugger
     if (item_id1 != '') {
         $("#upload_item_pay_form1").show();
         getItemInfo(item_id1, 1);
@@ -76,7 +75,6 @@
 
     function commit() {
 
-        debugger;
         if (item_id1 != '') {
             if (check(1)) {
                 doUpload(1);

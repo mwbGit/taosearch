@@ -1,6 +1,6 @@
 var select_status;
 var onSelectRow;
-var caseInfoUrl = $ctx + '/order/queryItemlistForPage';
+var caseInfoUrl = $ctx + '/order/queryItemlistForPage1';
 var DicCommObjItemUrl = $ctx
     + '/caseInfoController/queryDicCommObjItemByTypeId';
 var ImgUrl = $ctx + '/img/download';
