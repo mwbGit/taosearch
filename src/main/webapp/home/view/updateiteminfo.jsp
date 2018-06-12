@@ -32,12 +32,17 @@
             autoclose : true
         });
         $('input[name="item_jhlb"]').change(function() {
-            if ($(this).val() == '002' || $(this).val() == '004') {
+            if ($(this).val() == '002' || $(this).val() == '004' || $(this).val() == '005') {
 
                 if ($(this).val() == '004'){
                     $("#item_jhlj_id").attr("placeholder","如：http://s.click.taobao.com/5evMsiw?pid=mm_0_0_0  （只有商家能提供）");
                 } else {
                     $("#item_jhlj_id").attr("placeholder","");
+                }
+                if ($(this).val() == '005'){
+                    $("#jh_td_id").html("活动ID:");
+                }else {
+                    $("#jh_td_id").html("计划链接:");
                 }
                 $("#item_jhlj_tr_id").show();
             } else {
@@ -145,7 +150,9 @@
                 before_audit_status = data.data.state;
                 $('#item_update_form').form('load', data.data);
                 $("#item_no_id").val("");
-                if (data.data.item_jhlb == '002' || data.data.item_jhlb == '004') {
+                if (data.data.item_jhlb == '005'){
+                    $("#jh_td_id").html("活动ID:");
+                } else if (data.data.item_jhlb == '002' || data.data.item_jhlb == '004') {
                     $("#item_jhlj_tr_id").show();
                 } else {
                     $("#item_jhlj_tr_id").hide();
@@ -343,10 +350,11 @@
 					</tr>
 					<tr >
 						<td>计划类别：</td>
-						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input  type="radio" name="item_jhlb" value="002">定向<input  type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划</td>
+						<td><input type="radio" name="item_jhlb" value="001" checked="checked">通用<input  type="radio" name="item_jhlb" value="002">定向
+							<input  type="radio" name="item_jhlb" value="003">鹊桥<input type="radio" name="item_jhlb" value="004">营销计划<input type="radio" name="item_jhlb" value="005">营销计划—团长</td>
 					</tr>
 					<tr id="item_jhlj_tr_id">
-						<td>计划连接：</td>
+						<td id="jh_td_id">计划链接：</td>
 						<td><textarea  id="item_jhlj_id" name="item_jhlj" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 
@@ -359,15 +367,30 @@
 						<td><textarea id="item_md_id" required name="item_md" class="form-control" style="resize: none; overflow-y: scroll;"></textarea><span style="color: #cc0001">*</span></td>
 					</tr>
 					<tr>
+						<td>联系电话：</td>
+						<td>
+							<input placeholder="请输入电话号码" id="phone_id" required name="phone" style="width: 15%"
+								   class="form-control" pattern="^[0-9]*$">
+						</td>
+					</tr>
+					<tr>
 						<td>联系QQ：</td>
 						<td class="form-inline">
-							<div style="float:left; display:inline">
+							<input placeholder="请输入QQ号码" id="qq_id" required name="qq" style="width: 15%"
+								   class="form-control" pattern="^[0-9]*$">
+						</td>
 
-								<input placeholder="请输入QQ号码" id="qq_id" required name="qq" style="width: 90%" class="form-control" pattern="^[0-9]*$">
+					</tr>
+					<tr>
+						<td>收费类型：</td>
+						<td class="form-inline">
+							<div style="float:left; display:inline;width: 30%">
+								<input type="radio" name="item_sflx" value="0" checked="checked">线下结算
+								<input type="radio" name="item_sflx" value="1">团长结算
 								<span style="color: #cc0001">&nbsp;&nbsp;*
 								</span>
 							</div>
-							<div style="float:left; display:inline;color: red" >
+							<div style="float:left; display:inline;color: red">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -382,11 +405,15 @@
 					<tr>
 						<td>收费单价：</td>
 						<td class="form-inline">
-							<div style="float:left; display:inline" >
+							<div style="float:left; display:inline;width: 30%">
 
-								<input  placeholder="可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_fwdj_id" required name="item_fwdj" style="width: 90%" class="form-control"><span style="color: #cc0001">&nbsp;&nbsp;&nbsp;*</span>
+								<input placeholder="可保留两位小数" pattern="^[0-9]+(.[0-9]{1,2})?$" id="item_fwdj_id" required
+									   name="item_fwdj"  class="form-control"><span
+									style="color: #cc0001">&nbsp;&nbsp;&nbsp;*</span>
+
+
 							</div>
-							<div style="float:left; display:inline;color: red" >
+							<div style="float:left; display:inline;color: red">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								②请确认商家已将阿里妈妈券绑定在营销计划上！<br>

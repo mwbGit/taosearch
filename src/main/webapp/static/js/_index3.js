@@ -339,6 +339,9 @@ function getItemjhlb(str) {
         case '004':
             value = '营销计划';
             break;
+        case '005':
+            value = '营销计划-团长';
+            break;
         default:
             value = '';
     }

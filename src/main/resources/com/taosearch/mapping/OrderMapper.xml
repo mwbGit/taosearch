@@ -24,6 +24,8 @@
 		<result column="item_main_image" property="item_main_image" />
 		<result column="item_generalize_main_image" property="item_generalize_main_image" />
 		<result column="qq" property="qq" />
+		<result column="phone" property="phone" />
+		<result column="item_sflx" property="item_sflx" />
 		<result column="item_zfje_state" property="item_zfje_state" />
 		<result column="remark" property="remark" />
 		<result column="item_image_backup" property="item_image_backup" />
@@ -119,6 +121,12 @@
 			</if>
 			<if test="qq != null and qq != ''">
 				qq=#{qq},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone=#{phone},
+			</if>
+			<if test="item_sflx != null and item_sflx != ''">
+				item_sflx=#{item_sflx},
 			</if>
 			<if test="item_jhlb != null and item_jhlb != ''">
 				item_jhlb=#{item_jhlb},
@@ -289,7 +297,7 @@
 		i.`item_id`,i.`item_no`,i.`item_generalize_main_image`,i.item_main_image,i.`item_url`,i.`item_name`,i.`item_md`,i.`item_merge`,i.`item_title`,t.`type_name`
 		item_type,i.`item_hdlx`,i.`item_yjbl`,u.`username`,i.`item_ssje`,i.item_zfje,i.item_zfje_state,
 		i.`createtime`,i.`updatetime`,i.`item_qhjg`,i.`state`,i.`item_fwdj`,i.`coupon_id`,c.`coupon_url`,c.`coupon_type_id`,c.`coupon_start_time`,c.`coupon_end_time`,c.`coupon_get_num`,
-		c.`coupon_rest_num`,c.`coupon_use_num`,i.`item_image`,i.`qq`,i.`remark`,i.`item_image_backup`,i.`item_website_type`,i.`item_jhlb`,i.`item_jhlj`,
+		c.`coupon_rest_num`,c.`coupon_use_num`,i.`item_image`,i.`qq`, i.phone, i.item_sflx, i.`remark`,i.`item_image_backup`,i.`item_website_type`,i.`item_jhlb`,i.`item_jhlj`,
 		l.`log_id`,l.`before_audit_status`,l.`after_audit_status`,l.`auditor`,l.`audit_time`,l.`audit_remarks`,
 		a.`attachment_id`,a.`attachment_value`,a.`attachment_user_name`,a.`attachment_createtime`,c.`activity_start_time`
 		from
@@ -470,6 +478,12 @@
 			</if>
 			<if test="qq != null and qq != ''">
 				qq=#{qq},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone=#{phone},
+			</if>
+			<if test="item_sflx != null and item_sflx != ''">
+				item_sflx=#{item_sflx},
 			</if>
 			<if test="item_jhlb != null and item_jhlb != ''">
 				item_jhlb=#{item_jhlb},

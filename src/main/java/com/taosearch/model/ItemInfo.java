@@ -38,6 +38,7 @@ public class ItemInfo {
 	private String coupon_id;// 优惠券id
 	private String item_image;// 商品主图URL
 	private String qq;// 联系qq
+	private String phone;// 联系qq
 	private String remark;// 备注
 	private String item_image_backup;// 补充主图
 	private String item_main_image;// 补充主图
@@ -59,6 +60,7 @@ public class ItemInfo {
 	private List<ItemAuditLog> logs;// 商品审核记录
 	private String item_merge;
 	private String item_generalize_main_image;
+	private String item_sflx;// 收费类型 0线下结算 1团长结算
 
 	public String getItem_id() {
 		return item_id;
@@ -138,6 +140,14 @@ public class ItemInfo {
 
 	public void setItem_yjbl(double item_yjbl) {
 		this.item_yjbl = item_yjbl;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getUser_id() {
@@ -378,5 +388,13 @@ public class ItemInfo {
 
 	public void setItem_generalize_main_image(String item_generalize_main_image) {
 		this.item_generalize_main_image = item_generalize_main_image;
+	}
+
+	public String getItem_sflx() {
+		return item_sflx;
+	}
+
+	public void setItem_sflx(String item_sflx) {
+		this.item_sflx = item_sflx;
 	}
 }

@@ -270,7 +270,13 @@
                         $('#item_info_form').form('load', data.data);
                         $('#itemInfo_hdlx_id').val(getItemhdlx(data.data.item_hdlx));
                         $('#itemInfo_jhlb_id').val(getItemjhlb(data.data.item_jhlb));
-                        if (data.data.item_jhlb == '002' || data.data.item_jhlb == '004') {
+                        $('#itemInfo_sflb_id').val(getItemSflx(data.data.item_sflx));
+                        if (data.data.item_jhlb == '002' || data.data.item_jhlb == '004'|| data.data.item_jhlb == '005') {
+                            if (data.data.item_jhlb == '005'){
+                                $("#jh_td_id").html("活动ID:");
+                            }else {
+                                $("#jh_td_id").html("计划链接:");
+                            }
                             $("#item_info_jhlj_tr_id").show();
                         } else {
                             $("#item_info_jhlj_tr_id").hide();
@@ -406,6 +412,21 @@
     function addFile(obj) {
         $(obj).next().append('<input  name="item_attachment" type="file" multiple="multiple">');
     }
+    function getItemSflx(str) {
+        var key = str;
+        var value;
+        switch (key) {
+            case '0':
+                value = '线下结算';
+                break;
+            case '1':
+                value = ' 团长结算';
+                break;
+            default:
+                value = '';
+        }
+        return value;
+    }
     function getItemjhlb(str) {
         var key = str;
         var value;
@@ -421,6 +442,9 @@
                 break;
             case '004':
                 value = '营销计划';
+                break;
+            case '005':
+                value = '营销计划—团长';
                 break;
             default:
                 value = '';
@@ -612,7 +636,7 @@
 						<td><input type="button" onClick="copyText1(this)" value="点击复制" />
 							<a href="" id="a_item_jhlj" target="_blank">查看链接</a>
 						</td>
-						<td>计划连接：</td>
+						<td id="jh_td_id">计划链接：</td>
 						<td><textarea name="item_jhlj" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea>
 					</tr>
 
@@ -628,8 +652,18 @@
 					</tr>
 					<tr>
 						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td>联系电话：</td>
+						<td><input name="phone" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
 						<td>联系QQ：</td>
 						<td><input name="qq" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>收费类型：</td>
+						<td><input id="itemInfo_sflb_id" name="item_sflx" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>

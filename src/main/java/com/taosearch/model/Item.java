@@ -39,6 +39,7 @@ public class Item {
 	private Double item_fwdj;// 服务单价
 	private String coupon_id;// 优惠券id
 	private String item_image;// 商品主图URL
+	private String phone;// 联系qq
 	private String qq;// 联系qq
 	private String remark;// 备注
 	private String item_image_backup;// 补充主图
@@ -57,6 +58,7 @@ public class Item {
 	private boolean showClaim;// 显示认领
 	private String item_ssje;// 实收金额
 	private String item_zfje;// 支付金额
+	private String item_sflx;// 收费类型 0线下结算 1团长结算
 	private String item_generalize_main_image;// 推广主图
 
 	public String getItem_zfje() {
@@ -235,6 +237,14 @@ public class Item {
 		this.qq = qq;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getRemark() {
 		return remark;
 	}
@@ -337,6 +347,14 @@ public class Item {
 
 	public void setCoupon_get_num(int coupon_get_num) {
 		this.coupon_get_num = coupon_get_num;
+	}
+
+	public String getItem_sflx() {
+		return item_sflx;
+	}
+
+	public void setItem_sflx(String item_sflx) {
+		this.item_sflx = item_sflx;
 	}
 
 	public int getCoupon_use_num() {
