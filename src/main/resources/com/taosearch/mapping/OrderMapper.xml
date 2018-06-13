@@ -183,7 +183,7 @@
 		SELECT
 		i.`item_id`,i.`item_zfje`,i.`item_ssje`,i.`item_image_backup`,i.`item_no`,i.`item_url`,i.`item_name`,i.`item_md`,i.`item_title`,i.`item_type`,i.`item_hdlx`,i.`item_yjbl`,s.`username`,
 		i.`createtime`,i.`updatetime`,i.`item_qhjg`,i.`state`,i.`item_fwdj`,i.coupon_id,c.`coupon_url`,c.coupon_type_id, c.`coupon_start_time`,c.`coupon_end_time`,c.`coupon_get_num`,
-		c.`coupon_rest_num`,c.`coupon_use_num`,i.`item_image`,i.`qq`,i.`remark`,i.`item_image_backup`,i.`item_website_type`,i.`item_jhlb`,i.`item_jhlj`
+		c.`coupon_rest_num`,c.`coupon_use_num`,i.`item_image`,i.`qq`,i.phone,i.`remark`,i.`item_image_backup`,i.`item_website_type`,i.`item_jhlb`,i.`item_jhlj`
 		FROM
 		(SELECT * FROM t_item WHERE 1=1
 		<if test="state != null and state != '' and state != '000'.toString() ">and state = #{state} </if>

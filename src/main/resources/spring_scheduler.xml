@@ -36,8 +36,8 @@
           class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers" >
             <list>
-                <!--<ref bean="productStatusTaskTrigger" />-->
-                <!--<ref bean="productCouponTaskTrigger" />-->
+                <ref bean="productStatusTaskTrigger" />
+                <ref bean="productCouponTaskTrigger" />
             </list>
         </property>
     </bean>
