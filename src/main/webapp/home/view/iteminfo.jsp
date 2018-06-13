@@ -417,10 +417,10 @@
         var value;
         switch (key) {
             case '0':
-                value = '线下结算';
+                value = '线下结算 单/元';
                 break;
             case '1':
-                value = ' 团长结算';
+                value = '团长结算 单/%';
                 break;
             default:
                 value = '';

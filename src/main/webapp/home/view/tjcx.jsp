@@ -240,8 +240,8 @@
                         <td>收费类型：</td>
                         <td class="form-inline">
                             <div style="float:left; display:inline;width: 30%">
-                                <input type="radio" name="item_sflx" value="0" checked="checked">线下结算
-                                <input type="radio" name="item_sflx" value="1">团长结算
+                                <input type="radio" name="item_sflx" value="0" checked="checked">线下结算 单/元
+                                <input type="radio" name="item_sflx" value="1">团长结算 单/%
                                 <span style="color: #cc0001">&nbsp;&nbsp;*
 								</span>
                             </div>

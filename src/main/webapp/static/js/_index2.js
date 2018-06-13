@@ -205,7 +205,8 @@ function initGrid() {
                                 return "";
                             } else {
                                 return '<p>' + val + '</p>'
-                                    + '</br>QQ:' + row.qq;
+                                    + '</br>QQ:' + row.qq
+                                    + '</br>手机号:' + row.phone;
                             }
                         }
                     },
