@@ -46,6 +46,7 @@
                 $("#item_qhjg" + num).text(item.item_qhjg);
                 $("#coupon_rest_num" + num).text(item.coupon_rest_num + item.coupon_get_num);
                 $("#item_id" + num).val(item.item_id);
+                $("#head_id" + num).val(item.head_id);
             }
         });
     }
@@ -268,6 +269,10 @@
 						<td>转化率：</td>
 						<td><span id="coupon_zhl1"></span></td>
 					</tr>
+					<tr>
+						<td>团长ID：</td>
+						<td><span id="head_id1"></span></td>
+					</tr>
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
@@ -342,6 +347,10 @@
 						<td>转化率：</td>
 						<td><span id="coupon_zhl2"></span></td>
 					</tr>
+					<tr>
+						<td>团长ID：</td>
+						<td><span id="head_id2"></span></td>
+					</tr>
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
@@ -414,6 +423,10 @@
 					<tr>
 						<td>转化率：</td>
 						<td><span id="coupon_zhl3"></span></td>
+					</tr>
+					<tr>
+						<td>团长ID：</td>
+						<td><span id="head_id3"></span></td>
 					</tr>
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">

@@ -279,6 +279,29 @@
 
                     </tr>
                     <tr>
+                        <td>买家实拍图：</td>
+                        <td><textarea id="real_image_id" name="real_image" class="form-control"
+                                      style="resize: none; overflow-y: scroll;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>实拍图文案：</td>
+                        <td><textarea id="real_image_text_id" name="real_image_text" class="form-control"
+                                      style="resize: none; overflow-y: scroll;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>朋友圈文案：</td>
+                        <td><textarea placeholder=" 增加朋友圈内容有助于单子在更多渠道展现，提高跑量。"
+                                      id="friend_text_id" name="friend_text" class="form-control"
+                                      style="resize: none; overflow-y: scroll;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>团长Id：</td>
+                        <td class="form-inline">
+                            <input id="head_id_id" required name="head_id" style="width: 15%"
+                                   class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
                         <td></td>
                         <td>
                             <div class="form-inline">

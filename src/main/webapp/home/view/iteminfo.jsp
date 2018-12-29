@@ -305,6 +305,7 @@
                         $("#pay_coupon_use_span").html((data.data.item_zfje/data.data.item_qhjg).toFixed(2)+"(服务单价："+data.data.item_fwdj+")");
                         $("#pay_item_ysje_span").html((data.data.item_zfje/data.data.item_qhjg*data.data.item_fwdj).toFixed(2));
                         $("#pay_item_ssje_span").html(data.data.item_ssje);
+                        $("#head_id_span").html(data.data.head_id);
                         $("#pay_coupon_zhl_span").html((((data.data.item_zfje/data.data.item_qhjg)/data.data.coupon_get_num)*100).toFixed(2));
                         $("#item_merge").html(data.data.item_merge);
                         $("#item_info_form").hide();
@@ -670,6 +671,26 @@
 						<td>收费单价：</td>
 						<td><input name="item_fwdj" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
+					<tr>
+						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td>买家实拍图：</td>
+						<td><input id="real_image_id" name="real_image" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td>实拍图文案：</td>
+						<td><input id="real_image_text_id" name="real_image_text" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td>朋友圈文案：</td>
+						<td><input id="friend_text_id" name="friend_text" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>团长ID：</td>
+						<td><input id="head_id_id" name="head_id" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
 				</table>
 				<hr />
 			</form>
@@ -720,8 +741,13 @@
 						<td><span id="pay_coupon_zhl_span"></span></td>
 					</tr>
 					<tr>
+						<td>团长ID：</td>
+						<td><span id="head_id_span"></span></td>
+					</tr>
+					<tr>
 						<td colspan="2"><span id="item_merge" style="color: red;font-weight: bold"></span></td>
 					</tr>
+
 				</table>
 				<div id="item_image_list_div"></div>
 			</form>

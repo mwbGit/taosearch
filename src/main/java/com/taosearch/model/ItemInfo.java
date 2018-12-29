@@ -61,6 +61,10 @@ public class ItemInfo {
 	private String item_merge;
 	private String item_generalize_main_image;
 	private String item_sflx;// 收费类型 0线下结算 1团长结算
+	private String real_image;// 买家实拍图
+	private String real_image_text;// 实拍图文案
+	private String friend_text;// 朋友圈文案
+	private String head_id;// 团长ID
 
 	public String getItem_id() {
 		return item_id;
@@ -396,5 +400,37 @@ public class ItemInfo {
 
 	public void setItem_sflx(String item_sflx) {
 		this.item_sflx = item_sflx;
+	}
+
+	public String getReal_image() {
+		return real_image;
+	}
+
+	public void setReal_image(String real_image) {
+		this.real_image = real_image;
+	}
+
+	public String getReal_image_text() {
+		return real_image_text;
+	}
+
+	public void setReal_image_text(String real_image_text) {
+		this.real_image_text = real_image_text;
+	}
+
+	public String getFriend_text() {
+		return friend_text;
+	}
+
+	public void setFriend_text(String friend_text) {
+		this.friend_text = friend_text;
+	}
+
+	public String getHead_id() {
+		return head_id;
+	}
+
+	public void setHead_id(String head_id) {
+		this.head_id = head_id;
 	}
 }
