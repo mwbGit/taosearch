@@ -68,17 +68,20 @@
         });
     });
     function updateItemInfo() {
-        var data = serializeObject($("#item_update_form"));
+        var data = new FormData($("#item_update_form")[0]);
+
         data.item_id=item_id;
         data.before_audit_status=before_audit_status;
         console.log("==============================>再次提交数据")
         console.log(data);
         $.ajax({
             url : $ctx + '/order/updateItemInfo',
-            data : data,
-            type : 'post',
-            async : false,
-            dataType : 'json',
+            type: 'POST',
+            data: data,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
             success : function(data) {
                 if (data.code == 1) {
                     $('#alert_dialog_success').html(data.message);
@@ -265,7 +268,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 row">
 	<div class="" id="book_accordion-element">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<form class=" col-xs-12 col-sm-12 col-md-12" id="item_update_form" role="form">
+			<form class=" col-xs-12 col-sm-12 col-md-12" id="item_update_form" role="form" enctype="multipart/form-data" method="post">
 				<input id="item_image_id" name="item_image" type="hidden"> <input id="item_title_id" name="item_title" type="hidden"> <input id="item_website_type_id" name="item_website_type" type="hidden">
 				<table style="width: 90%; border-collapse: separate; border-spacing: 10px">
 					<tr>
@@ -426,7 +429,8 @@
 					<tr>
 						<td>买家实拍图：</td>
 						<td><textarea id="real_image_id" name="real_image" class="form-control"
-									  style="resize: none; overflow-y: scroll;"></textarea></td>
+                                      style="resize: none; overflow-y: scroll;"></textarea>
+                            <input  name="file" type="file" multiple="multiple"></td>
 					</tr>
 					<tr>
 						<td>实拍图文案：</td>
@@ -442,7 +446,7 @@
 					<tr>
 						<td>团长Id：</td>
 						<td class="form-inline">
-							<input id="head_id_id" required name="head_id" style="width: 15%"
+							<input id="head_id_id" name="head_id" style="width: 15%"
 								   class="form-control">
 						</td>
 					</tr>

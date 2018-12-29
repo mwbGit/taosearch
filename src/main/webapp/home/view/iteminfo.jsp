@@ -674,17 +674,18 @@
 					<tr>
 						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
 						<td>买家实拍图：</td>
-						<td><input id="real_image_id" name="real_image" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+						<td><input id="real_image_id" name="real_image" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly">
+						</td>
 					</tr>
 					<tr>
 						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
 						<td>实拍图文案：</td>
-						<td><input id="real_image_text_id" name="real_image_text" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+						<td><input id="real_image_text_id" name="real_image_text" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
 						<td>朋友圈文案：</td>
-						<td><input id="friend_text_id" name="friend_text" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+						<td><input id="friend_text_id" name="friend_text" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td></td>

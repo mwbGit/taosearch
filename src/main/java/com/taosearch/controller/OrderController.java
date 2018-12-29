@@ -208,6 +208,7 @@ public class OrderController {
         item.setUser_id(user.getUser_id());
         item.setState("001");
         item.setCoupon_id(coupon_id);
+        item.setReal_image(OrderService.upload(request));
         result = OrderService.saveItemInfo(item);
         return result;
     }
@@ -231,7 +232,7 @@ public class OrderController {
 
         ItemInfo info = OrderService.getitemInfoById(item.getItem_id());
         SysUser user = (SysUser) request.getSession().getAttribute("loginUser");
-
+        item.setReal_image(OrderService.upload(request));
         if (info == null || !info.getState().equals("112")) {
             String coupon_id = Util.getUUID();
             item.setItem_id(Util.getUUID());

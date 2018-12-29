@@ -56,4 +56,6 @@ public interface OrderService {
 	List<FinancialStatements> getFinancialStatementsForExcel(Map<String, Object> map);
 
 	int getFinancialStatementsCount(Map<String, Object> map);
+
+	String upload(HttpServletRequest request);
 }

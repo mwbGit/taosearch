@@ -73,13 +73,16 @@ function initItemType() {
 	});
 }
 function submitItemInfo() {
-	var data = serializeObject($("#item_submit_form"));
-	$.ajax({
+    var data = new FormData($("#item_submit_form")[0]);
+
+    $.ajax({
 		url : $ctx + '/order/submitItemInfo',
-		data : data,
-		type : 'post',
-		async : false,
-		dataType : 'json',
+        type: 'POST',
+        data: data,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
 		success : function(data) {
 			if (data.code == 1) {
 				$('#alert_dialog_success').html(data.message);
