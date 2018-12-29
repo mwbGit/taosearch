@@ -444,7 +444,7 @@
 									  style="resize: none; overflow-y: scroll;"></textarea></td>
 					</tr>
 					<tr>
-						<td>团长Id：</td>
+						<td>团长ID：</td>
 						<td class="form-inline">
 							<input id="head_id_id" name="head_id" style="width: 15%"
 								   class="form-control">

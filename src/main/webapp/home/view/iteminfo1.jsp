@@ -46,7 +46,11 @@
                 $("#item_qhjg" + num).text(item.item_qhjg);
                 $("#coupon_rest_num" + num).text(item.coupon_rest_num + item.coupon_get_num);
                 $("#item_id" + num).val(item.item_id);
-                $("#head_id" + num).val(item.head_id);
+                $("#head_id" + num).text(item.head_id);
+                $("#item_jhlj" + num).text(item.item_jhlj);
+                if (item.item_jhlb =='005') {
+                    $("#item_jhlj_tr" + num).show();
+				}
             }
         });
     }
@@ -273,6 +277,10 @@
 						<td>团长ID：</td>
 						<td><span id="head_id1"></span></td>
 					</tr>
+					<tr id="item_jhlj_tr1" style="display: none">
+						<td>活动ID：</td>
+						<td><span id="item_jhlj1"></span></td>
+					</tr>
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
@@ -351,6 +359,10 @@
 						<td>团长ID：</td>
 						<td><span id="head_id2"></span></td>
 					</tr>
+					<tr id="tem_jhlj_tr2">
+						<td>活动ID：</td>
+						<td><span id="item_jhlj2"></span></td>
+					</tr>
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
 					<tr>
@@ -427,6 +439,10 @@
 					<tr>
 						<td>团长ID：</td>
 						<td><span id="head_id3"></span></td>
+					</tr>
+					<tr id="item_jhlj_tr3">
+						<td>活动ID：</td>
+						<td><span id="item_jhlj3"></span></td>
 					</tr>
 				</table>
 				<table style="border-collapse: separate; border-spacing: 20px;">
