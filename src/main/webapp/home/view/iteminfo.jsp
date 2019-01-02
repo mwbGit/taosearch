@@ -310,6 +310,10 @@
                         $("#item_merge").html(data.data.item_merge);
                         $("#item_info_form").hide();
                         $("#item_pay_info_form").show();
+                        if (data.data.item_jhlb =='005'){
+                            $("#item_jhlj_tr").show();
+                        }
+                        $("#item_jhlj_td").html(data.data.item_jhlj);
                         break;
                 }
 
@@ -317,6 +321,7 @@
                 $("#a_item_main_image").attr("href",data.data.item_main_image);
                 $("#a_coupon_url").attr("href",data.data.coupon_url);
                 $("#a_item_jhlj").attr("href",data.data.item_jhlj);
+                $("#a_item_real_image").attr("href",data.data.real_image);
                 $("#a_item_generalize_main_image").attr("href",data.data.item_generalize_main_image);
             }
         });
@@ -672,7 +677,8 @@
 						<td><input name="item_fwdj" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td><input type="button" onClick="copyText2(this)" value="点击复制" />
+							<a href="" id="a_item_real_image" target="_blank">查看链接</a></td>
 						<td>买家实拍图：</td>
 						<td><input id="real_image_id" name="real_image" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly">
 						</td>
@@ -686,11 +692,6 @@
 						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
 						<td>朋友圈文案：</td>
 						<td><input id="friend_text_id" name="friend_text" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>团长ID：</td>
-						<td><input id="head_id_id" name="head_id" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 				</table>
 				<hr />
@@ -741,9 +742,9 @@
 						<td>转化率：</td>
 						<td><span id="pay_coupon_zhl_span"></span></td>
 					</tr>
-					<tr>
-						<td>团长ID：</td>
-						<td><span id="head_id_span"></span></td>
+					<tr id="item_jhlj_tr" style="display: none;">
+						<td>活动ID：</td>
+						<td><span id="item_jhlj_td"></span></td>
 					</tr>
 					<tr>
 						<td colspan="2"><span id="item_merge" style="color: red;font-weight: bold"></span></td>

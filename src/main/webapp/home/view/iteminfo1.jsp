@@ -273,10 +273,6 @@
 						<td>转化率：</td>
 						<td><span id="coupon_zhl1"></span></td>
 					</tr>
-					<tr>
-						<td>团长ID：</td>
-						<td><span id="head_id1"></span></td>
-					</tr>
 					<tr id="item_jhlj_tr1" style="display: none">
 						<td>活动ID：</td>
 						<td><span id="item_jhlj1"></span></td>
@@ -355,10 +351,6 @@
 						<td>转化率：</td>
 						<td><span id="coupon_zhl2"></span></td>
 					</tr>
-					<tr>
-						<td>团长ID：</td>
-						<td><span id="head_id2"></span></td>
-					</tr>
 					<tr id="tem_jhlj_tr2">
 						<td>活动ID：</td>
 						<td><span id="item_jhlj2"></span></td>
@@ -435,10 +427,6 @@
 					<tr>
 						<td>转化率：</td>
 						<td><span id="coupon_zhl3"></span></td>
-					</tr>
-					<tr>
-						<td>团长ID：</td>
-						<td><span id="head_id3"></span></td>
 					</tr>
 					<tr id="item_jhlj_tr3">
 						<td>活动ID：</td>
