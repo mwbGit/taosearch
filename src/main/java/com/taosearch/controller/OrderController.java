@@ -287,6 +287,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/uploadpayInfo")
+    @ResponseBody
     public MyResult<ItemInfo> uploadpayInfo(ItemAuditLog auditLog, ItemInfo item, HttpServletRequest request) {
 //		if (item_zfje == null) {
 //			MyResult<ItemInfo> result = new MyResult<ItemInfo>();
