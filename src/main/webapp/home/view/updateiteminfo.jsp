@@ -69,10 +69,8 @@
     });
     function updateItemInfo() {
         var data = new FormData($("#item_update_form")[0]);
-
-        data.item_id=item_id;
-        data.before_audit_status=before_audit_status;
-        console.log("==============================>再次提交数据")
+        data.append("item_id", item_id);
+        data.append("before_audit_status", before_audit_status);
         console.log(data);
         $.ajax({
             url : $ctx + '/order/updateItemInfo',
