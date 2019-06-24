@@ -423,7 +423,7 @@
         var value;
         switch (key) {
             case '0':
-                value = '线下结算 单/元';
+                value = '线下结算 单/元';F
                 break;
             case '1':
                 value = '团长结算 单/%';
@@ -684,14 +684,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
 						<td>实拍图文案：</td>
-						<td><input id="real_image_text_id" name="real_image_text" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+						<td><textarea id="real_image_text_id" name="real_image_text" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
-						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
 						<td>朋友圈文案：</td>
-						<td><input id="friend_text_id" name="friend_text" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+						<td><textarea id="friend_text_id" name="friend_text" style="width: 100%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
 					</tr>
 				</table>
 				<hr />
