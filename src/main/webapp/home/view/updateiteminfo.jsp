@@ -69,8 +69,10 @@
     });
     function updateItemInfo() {
         var data = new FormData($("#item_update_form")[0]);
-        data.append("item_id", item_id);
+	        data.append("item_id", item_id);
         data.append("before_audit_status", before_audit_status);
+
+        console.log("==============================>再次提交数据")
         console.log(data);
         $.ajax({
             url : $ctx + '/order/updateItemInfo',
@@ -267,7 +269,9 @@
 	<div class="" id="book_accordion-element">
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<form class=" col-xs-12 col-sm-12 col-md-12" id="item_update_form" role="form" enctype="multipart/form-data" method="post">
-				<input id="item_image_id" name="item_image" type="hidden"> <input id="item_title_id" name="item_title" type="hidden"> <input id="item_website_type_id" name="item_website_type" type="hidden">
+				<input id="item_image_id" name="item_image" type="hidden">
+<%--				<input id="item_title_id" name="item_title" type="hidden"> --%>
+				<input id="item_website_type_id" name="item_website_type" value="1" type="hidden">
 				<table style="width: 90%; border-collapse: separate; border-spacing: 10px">
 					<tr>
 						<td style="width: 10%">商品链接：</td>
@@ -282,6 +286,12 @@
 					<tr>
 						<td>商品ID：</td>
 						<td class="form-inline"><input  id="item_no_id" name="item_no" style="width: 30%" class="form-control"><span style="color: #cc0001">&nbsp;&nbsp;*</span></td>
+					</tr>
+					<tr>
+						<td>商品标题：</td>
+						<td class="form-inline"><input id="item_title_id" name="item_title" style="width: 100%"
+													   class="form-control"><span
+								style="color: #cc0001">&nbsp;&nbsp;*</span></td>
 					</tr>
 					<tr>
 						<td>商品分类：</td>

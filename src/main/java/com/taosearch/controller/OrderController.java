@@ -202,6 +202,12 @@ public class OrderController {
             result.setMessage("数据传输异常未收到值");
             return result;
         }
+        if (StringUtils.isBlank(item.getItem_image())){
+            item.setItem_image(item.getItem_main_image());
+        }
+        if (StringUtils.isBlank(item.getItem_website_type())){
+            item.setItem_website_type("1");
+        }
         String coupon_id = Util.getUUID();
         item.setItem_id(Util.getUUID());
         SysUser user = (SysUser) request.getSession().getAttribute("loginUser");
@@ -228,7 +234,12 @@ public class OrderController {
             item.setItem_yjbl(0d);
             item.setCoupon_url(" ");
         }
-
+        if (StringUtils.isBlank(item.getItem_image())){
+            item.setItem_image(item.getItem_main_image());
+        }
+        if (StringUtils.isBlank(item.getItem_website_type())){
+            item.setItem_website_type("1");
+        }
 
         ItemInfo info = OrderService.getitemInfoById(item.getItem_id());
         SysUser user = (SysUser) request.getSession().getAttribute("loginUser");
