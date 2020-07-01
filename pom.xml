@@ -37,7 +37,7 @@
 		<jedis.version>2.6.0</jedis.version>
 		<commons-httpclient.version>3.1</commons-httpclient.version>
 
-		<org.quartz-scheduler.version>1.8.6</org.quartz-scheduler.version>
+		<org.quartz-scheduler.version>2.3.2</org.quartz-scheduler.version>
 
 	</properties>
 	<dependencies>
