@@ -46,9 +46,9 @@
 					if (val == null) {
 						return "";
 					} else if (val == 0) {
-						return "老板";
+						return "店铺老板";
 					} else {
-						return "运营" ;
+						return "店铺运营" ;
 					}
 				}
 			}, {

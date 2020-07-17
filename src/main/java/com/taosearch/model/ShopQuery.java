@@ -7,6 +7,7 @@ import java.util.List;
 public class ShopQuery {
     private int page;
     private int rows;
+    private String item_no;
     private Long shop_id;
     private String name;
     private String phone;
@@ -20,6 +21,14 @@ public class ShopQuery {
     private String user_id;
     private String orderColumn;
     private String order;
+
+    public String getItem_no() {
+        return item_no;
+    }
+
+    public void setItem_no(String item_no) {
+        this.item_no = item_no;
+    }
 
     public Long getShop_id() {
         return shop_id;

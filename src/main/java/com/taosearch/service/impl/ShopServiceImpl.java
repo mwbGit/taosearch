@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,6 +58,17 @@ public class ShopServiceImpl implements ShopService {
                 shopIds.add(-1L);
             }
             query.setShop_ids(shopIds);
+        }
+        if (StringUtils.isNotBlank(query.getItem_no())) {
+            List<Long> shopIds = orderDao.getItemListByItemNo(query.getItem_no());
+            if (CollectionUtils.isNotEmpty(query.getShop_ids())) {
+                query.getShop_ids().retainAll(shopIds);
+            } else {
+                query.setShop_ids(shopIds);
+            }
+            if (CollectionUtils.isEmpty(query.getShop_ids())) {
+                query.setShop_ids(Collections.singletonList(-1L));
+            }
         }
         return shopDao.getShops(query);
     }

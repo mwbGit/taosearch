@@ -29,7 +29,7 @@ $(function() {
  * @returns
  */
 function initGrid() {
-    var gridDatas = getGridDatas(caseInfoUrl + '?hz=true&statePage=000&page=' + page + '&rows='
+    var gridDatas = getGridDatas(caseInfoUrl + '?hz=true&orderColumn=total_settlement&order=desc&page=' + page + '&rows='
         + rowForPage);
     console.log(gridDatas);
     $case_infoGrid
@@ -65,7 +65,7 @@ function initGrid() {
                             if (val == null || val == "") {
                                 return "";
                             } else {
-                                return "<a href='#' onclick='skipInfo(\"" + row.id + "\")'> "+ val +"</a>";
+                                return "<a href='"+row.link+ "' target='_blank'> "+ val +"</a>";
                             }
                         }
                     },

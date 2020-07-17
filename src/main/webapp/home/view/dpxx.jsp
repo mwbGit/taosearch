@@ -64,31 +64,31 @@
 						<td><input style="width:100px;" id="query_wexin" name="wechat" class="form-control"></td>
                         <td>排序列：</td>
                         <td><select name="orderColumn" id="orderColumn" style="width: 100px;" class="form-control">
-                            <option value=""></option>
+							<option value="total_settlement">总结算</option>
                             <option value="id">店铺ID</option>
                             <option value="item_num">推广产品数</option>
                             <option value="real_item_num">推广次数</option>
                             <option value="price">产品客单价(均)</option>
                             <option value="settlement">单次推广结算(均)</option>
-                            <option value="total_settlement">总结算</option>
-                        <td>排序：</td>
+							<option value=""></option>
+						<td>排序：</td>
                         <td><select name="order" id="order" style="width: 100px;" class="form-control">
-                            <option value=""></option>
-                            <option value="asc">升序</option>
-                            <option value="desc">降序</option>
-                        </select>
+							<option value="desc">降序</option>
+							<option value="asc">升序</option>
+							<option value=""></option>
+						</select>
                         </td>
                     </tr>
                     <tr>
-                        <td>店铺ID：</td>
-                        <td><input style="width:100px;" id="query_item_no" name="shop_id" class="form-control"></td>
+                        <td>产品ID：</td>
+                        <td><input style="width:100px;" id="query_item_no" name="item_no" class="form-control"></td>
 						<td>产品均客单价：</td>
 						<td><input style="width:100px;" id="price_min" name="price_min" class="form-control"></td>
-						<td>-</td>
+						<td>---------</td>
 						<td><input style="width:100px;" id="price_max" name="price_max" class="form-control"></td>
 						<td>总结算金额：</td>
 						<td><input style="width:100px;" id="shje_min" name="settlement_min" class="form-control"></td>
-						<td>-</td>
+						<td>---------</td>
 						<td><input style="width:100px;" id="shje_max" name="settlement_max" class="form-control"></td>
 
 						<td><input type="hidden" name="hz" value="true">

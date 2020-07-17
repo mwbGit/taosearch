@@ -61,4 +61,6 @@ public interface OrderDao {
 
 	List<Item> getItemListByShopId(long shopId);
 
+	List<Long> getItemListByItemNo(String itemNo);
+
 }

@@ -67,7 +67,6 @@
                     $('#modal_success').modal('show');
                     item_id = data.data;
                     $('.shop_id').val(item_id);
-                    debugger
                 } else {
                     $('#alert_dialog_danger').html(data.message);
                     $('#modal_danger').modal('show');
@@ -244,14 +243,14 @@
                     </tr>
                 </table>
             </form>
-            <h4>店铺负责人
+            <h4>店铺老板
                 <button class="btn " type="button" style="width: 60px" onclick="addUser(0)"> 新增
                 </button>
             </h4>
             <div id="dpfzr">
 
             </div>
-            <h4>运营负责人
+            <h4>店铺运营
                 <button class="btn " type="button" style="width: 60px" onclick="addUser(1)"> 新增</button>
             </h4>
             <div id="yyfzr">
