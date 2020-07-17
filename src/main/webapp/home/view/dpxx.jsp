@@ -65,6 +65,7 @@
                         <td>排序列：</td>
                         <td><select name="orderColumn" id="orderColumn" style="width: 100px;" class="form-control">
                             <option value=""></option>
+                            <option value="id">店铺ID</option>
                             <option value="item_num">推广产品数</option>
                             <option value="real_item_num">推广次数</option>
                             <option value="price">产品客单价(均)</option>

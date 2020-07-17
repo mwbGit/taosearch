@@ -35,7 +35,7 @@
                     }
                 }
             });
-         if (ua != 3) {
+            if (ua != 3) {
                 $('#butSave').hide();
                 $('#shop_name').attr("readonly", "");
                 $('#shop_address').attr("readonly", "");
@@ -107,10 +107,9 @@
     }
 
     function deleteUser(idex) {
-            var id = $("#user_id" + idex + "").val();
-            $("#user_form" + idex + "").hide();
-            if (id > 0) {
-                if (window.confirm("确定删除?")) {
+        var id = $("#user_id" + idex + "").val();
+        if (id > 0) {
+            if (window.confirm("确定删除?")) {
                 $.ajax({
                     url: $ctx + '/shop/user/delete?id=' + id,
                     type: 'get',
@@ -119,13 +118,16 @@
                     success: function (r) {
                     }
                 });
-                }
+            } else {
+                return;
             }
+        }
+        $("#user_form" + idex + "").hide();
     }
 
     function initUser(id, type, name, phone, wechat_name, wechat, qq, qq_name) {
         var read;
-        if (id == 0 || ua == 3 ) {
+        if (id == 0 || ua == 3) {
             read = '';
         } else {
             read = ' readonly ';
@@ -174,7 +176,7 @@
                 '                            <td colspan="2">\n' +
                 '                                <div class="form-inline">\n' +
                 '                                    <button class="btn btn-primary form-control" type="button" onclick="addShopUser(' + idex + ')">\n' +
-                '                                        <i class="glyphicon glyphicon-saved"></i>保存'+ba +'信息' +
+                '                                        <i class="glyphicon glyphicon-saved"></i>保存' + ba + '信息' +
                 '                                    </button>\n' +
                 '                                    <button class="btn btn-primary form-control" type="button" onclick="deleteUser(' + idex + ')">删除\n' +
                 '                                    </button>\n' +
