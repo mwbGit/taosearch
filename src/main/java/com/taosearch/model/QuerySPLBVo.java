@@ -32,6 +32,7 @@ public class QuerySPLBVo {
 	private String activity_begin_time;
 	private String activity_end_time;
 	private boolean hz;
+	private Long shop_id;
 
 	public boolean isHz() {
 		return hz;
@@ -151,5 +152,13 @@ public class QuerySPLBVo {
 
 	public void setActivity_begin_time(String activity_begin_time) {
 		this.activity_begin_time = activity_begin_time;
+	}
+
+	public Long getShop_id() {
+		return shop_id;
+	}
+
+	public void setShop_id(Long shop_id) {
+		this.shop_id = shop_id;
 	}
 }

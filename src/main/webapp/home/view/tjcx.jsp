@@ -232,6 +232,7 @@
                         <td>
                             <input placeholder="请输入电话号码" id="phone_id" required name="phone" style="width: 15%"
                                    class="form-control" pattern="^[0-9]*$">
+                            <span style="color: #cc0001">&nbsp;&nbsp;*</span>
                         </td>
                     </tr>
                     <tr>
@@ -239,8 +240,25 @@
                         <td class="form-inline">
                             <input placeholder="请输入QQ号码" id="qq_id" required name="qq" style="width: 15%"
                                    class="form-control" pattern="^[0-9]*$">
+                            <span style="color: #cc0001">&nbsp;&nbsp;*</span>
                         </td>
-
+                    </tr>
+                    <tr>
+                        <td>推广素材：</td>
+                        <td><textarea id="item_tgsc_id" name="item_tgsc" class="form-control"
+                                      style="resize: none; overflow-y: scroll;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>店铺信息：</td>
+                        <td class="form-inline">
+                            <select name="shop_id" id="shop_id" style="width: 40%;" class="form-control"></select>
+                            <input placeholder="请输入店铺名称" id="shop_name"  name="shop_name" style="width: 40%"
+                                   class="form-control" >
+                            <button class="btn btn-primary form-control" type="button" onclick="searchShop()"> 查询
+                            </button>
+                            <span style="color: #cc0001">&nbsp;&nbsp;*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td>收费类型：</td>

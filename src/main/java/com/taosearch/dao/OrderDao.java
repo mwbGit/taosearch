@@ -58,4 +58,7 @@ public interface OrderDao {
 	List<FinancialStatements> getFinancialStatementsForExcel(Map<String, Object> map);
 
 	int getFinancialStatementsCount(Map<String, Object> map);
+
+	List<Item> getItemListByShopId(long shopId);
+
 }

@@ -14,6 +14,7 @@ var baseUrl = $ctx;
 var item_state;
 var ua = $ua;
 var team_id = $team_id;
+var shop_id = $shop_id;
 $(function() {
     if ($p_page != "") {
         page = $p_page
@@ -35,7 +36,7 @@ $(function() {
  */
 function initGrid() {
     var gridDatas = getGridDatas(caseInfoUrl + '?hz=true&statePage=000&page=' + page + '&rows='
-        + rowForPage);
+        + rowForPage  +"&shop_id=" +shop_id);
     console.log(gridDatas);
     $case_infoGrid
         .datagrid(

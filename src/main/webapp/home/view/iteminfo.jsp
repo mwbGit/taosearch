@@ -667,6 +667,16 @@
 						<td><input name="qq" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
 					</tr>
 					<tr>
+						<td><input type="button" onClick="copyText1(this)" value="点击复制" /></td>
+						<td>推广素材：</td>
+						<td><textarea name="item_tgsc" style="width: 100%; resize: none; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></textarea></td>
+					</tr>
+					<tr>
+						<td><input type="button" onClick="copyText2(this)" value="点击复制" /></td>
+						<td>店铺名称：</td>
+						<td><input name="shop_name" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>
+					</tr>
+					<tr>
 						<td></td>
 						<td>收费类型：</td>
 						<td><input id="itemInfo_sflb_id" name="item_sflx" style="width: 30%; border-style: none; background-color: #fff; cursor: default;" readonly="readonly"></td>

@@ -51,12 +51,13 @@
 		var loadBooksType = 0;
 		$(function() {
 			_zscq();
-		})
+		});
 		function _zscq() {
 			$('#_syjc').attr("class", "");
 			$('#_zygl').attr("class", "");
 			$('#_tjcx').attr("class", "");
 			$('#_yhgl').attr("class", "");
+			$('#_dpxx').attr("class", "");
 			$('#_zscq').attr("class", "active");
 			$('#showId').load("${ctx }/home/view/index2.jsp");
 			$('#li_name').html("商品列表");
@@ -67,6 +68,7 @@
 			$('#_tjcx').attr("class", "active");
 			$('#_yhgl').attr("class", "");
 			$('#_zscq').attr("class", "");
+			$('#_dpxx').attr("class", "");
 			$('#showId').load("${ctx }/home/view/tjcx.jsp");
 			$('#li_name').html("添加商品");
 		}
@@ -76,6 +78,7 @@
 			$('#_tjcx').attr("class", "");
 			$('#_yhgl').attr("class", "");
 			$('#_zscq').attr("class", "");
+			$('#_dpxx').attr("class", "");
 			$('#showId').load("${ctx }/home/view/financialStatements.jsp");
 			$('#li_name').html("财务管理");
 		}
@@ -85,6 +88,7 @@
 			$('#_tjcx').attr("class", "");
 			$('#_yhgl').attr("class", "active");
 			$('#_zscq').attr("class", "");
+			$('#_dpxx').attr("class", "");
 			$('#showId').load("${ctx }/home/view/yhgl.jsp");
 			$('#li_name').html("用户管理");
 		}
@@ -94,8 +98,19 @@
 			$('#_yhgl').attr("class", "");
 			$('#_zscq').attr("class", "");
 			$('#_zygl').attr("class", "active");
-            $('#showId').load("${ctx }/home/view/index3.jsp");
+			$('#_dpxx').attr("class", "");
+			$('#showId').load("${ctx }/home/view/index3.jsp");
 			$('#li_name').html("商品汇总");
+		}
+		function _dpxx() {
+			$('#_syjc').attr("class", "");
+			$('#_tjcx').attr("class", "");
+			$('#_yhgl').attr("class", "");
+			$('#_zscq').attr("class", "");
+			$('#_zygl').attr("class", "");
+			$('#_dpxx').attr("class", "active");
+			$('#showId').load("${ctx }/home/view/dpxx.jsp");
+			$('#li_name').html("店铺信息");
 		}
 		//获取url中的参数
 		function GetRequest() {
@@ -132,6 +147,8 @@
 					</c:if>
 					</c:if>
 					 <li id="_zygl"><a href="#" onclick="_zygl()"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;&nbsp;商品汇总</a></li>
+					<li id="_dpxx"><a href="#" onclick="_dpxx()"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;&nbsp;店铺列表</a></li>
+
 				</ul>
 
 			</div>

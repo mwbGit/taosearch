@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taosearch.dao.ShopDao">
+	<select id="getShopById" parameterType="com.taosearch.model.Shop"
+		resultType="com.taosearch.model.Shop">
+		SELECT
+		s.id,s.name,s.address,s.link,s.item_num,s.real_item_num,s.price,s.settlement,s.total_settlement,s.add_time
+		FROM t_shop s
+		where
+		 id = #{id}
+	</select>
+	<insert id="save" parameterType="com.taosearch.model.Shop" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into t_shop
+		<set>
+ 			<if test="name != null and name != ''">
+				name=#{name},
+			</if>
+			<if test="address != null and address != ''">
+				address=#{address},
+			</if>
+			<if test="link != null and link != ''">
+				link=#{link},
+			</if>
+			<if test="item_num != null">
+				item_num=#{item_num},
+			</if>
+			<if test="real_item_num != null">
+				real_item_num=#{real_item_num},
+			</if>
+			<if test="price != null">
+				price=#{price},
+			</if>
+			<if test="settlement != null">
+				settlement=#{settlement},
+			</if>
+			<if test="total_settlement != null">
+				total_settlement=#{total_settlement},
+			</if>
+			<if test="user_id != null">
+				user_id=#{user_id},
+			</if>
+			add_time=NOW()
+		</set>
+	</insert>
+	<insert id="update" parameterType="com.taosearch.model.Shop" >
+		update t_shop
+		<set>
+			<if test="name != null and name != ''">
+				name=#{name},
+			</if>
+			<if test="address != null and address != ''">
+				address=#{address},
+			</if>
+			<if test="link != null and link != ''">
+				link=#{link},
+			</if>
+			<if test="item_num != null">
+				item_num=#{item_num},
+			</if>
+			<if test="real_item_num != null">
+				real_item_num=#{real_item_num},
+			</if>
+			<if test="price != null">
+				price=#{price},
+			</if>
+			<if test="settlement != null">
+				settlement=#{settlement},
+			</if>
+			<if test="total_settlement != null">
+				total_settlement=#{total_settlement}
+			</if>
+		</set>
+		where  id=#{id}
+	</insert>
+	<select id="getShops" parameterType="com.taosearch.model.ShopQuery"
+			resultType="com.taosearch.model.Shop">
+		SELECT
+		s.id,s.name,s.address,s.link,s.item_num,s.real_item_num,s.price,s.settlement,s.total_settlement,s.add_time, u.user_id, u.username
+		FROM t_shop s left join t_sys_user u on u.user_id = s.user_id
+		WHERE 1=1
+			<if test="user_id != null ">
+				and s.user_id  = #{user_id}
+			</if>
+			<if test="shop_id != null ">
+				and s.id  = #{shop_id}
+			</if>
+			<if test="name != null and name != ''">
+				and s.name LIKE CONCAT('%', #{name},'%')
+			</if>
+			<if test="price_min != null">
+				<![CDATA[and s.`price` >= #{price_min}]]>
+			</if>
+			<if test="price_max != null">
+				<![CDATA[and s.`price` <= #{price_max}]]>
+			</if>
+			<if test="settlement_min != null">
+				<![CDATA[and s.`settlement` >= #{settlement_min}]]>
+			</if>
+			<if test="settlement_max != null">
+				<![CDATA[and s.`settlement` <= #{settlement_max}]]>
+			</if>
+			<if test="shop_ids != null and shop_ids.size > 0">
+				and s.id in
+				<foreach item="item" index="index" collection="shop_ids"  open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+		 	LIMIT #{offest},#{rows}
+	</select>
+	<select id="getCount" parameterType="com.taosearch.model.ShopQuery"
+			resultType="int">
+		SELECT count(*)
+		FROM t_shop s
+		WHERE 1=1
+			<if test="user_id != null ">
+				and s.user_id  = #{user_id}
+			</if>
+			<if test="shop_id != null ">
+				and s.id  = #{shop_id}
+			</if>
+			<if test="name != null and name != ''">
+				and s.name LIKE CONCAT('%', #{name},'%')
+			</if>
+			<if test="price_min != null">
+				<![CDATA[and s.`price` >= #{price_min}]]>
+			</if>
+			<if test="price_max != null">
+				<![CDATA[and s.`price` <= #{price_max}]]>
+			</if>
+			<if test="settlement_min != null">
+				<![CDATA[and s.`settlement` >= #{settlement_min}]]>
+			</if>
+			<if test="settlement_max != null">
+				<![CDATA[and s.`settlement` <= #{settlement_max}]]>
+			</if>
+			<if test="shop_ids != null and shop_ids.size > 0">
+				and s.id in
+				<foreach item="item" index="index" collection="shop_ids"  open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+	</select>
+
+	<insert id="saveShopUser" parameterType="com.taosearch.model.ShopUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into t_shop_user
+		<set>
+			<if test="name != null and name != ''">
+				name=#{name},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone=#{phone},
+			</if>
+			<if test="qq != null and qq != ''">
+				qq=#{qq},
+			</if>
+			<if test="qq_name != null and qq_name != ''">
+				qq_name=#{qq_name},
+			</if>
+			<if test="wechat != null and wechat != ''">
+				wechat=#{wechat},
+			</if>
+			<if test="wechat_name != null and wechat_name != ''">
+				wechat_name=#{wechat_name},
+			</if>
+			<if test="type != null">
+				type=#{type},
+			</if>
+			shop_id = #{shop_id},
+			add_time=NOW()
+		</set>
+	</insert>
+	<select id="getShopUsers" parameterType="com.taosearch.model.ShopQuery"
+			resultType="com.taosearch.model.ShopUser">
+		SELECT
+			id,`name`,phone,qq,qq_name,wechat,wechat_name,`type`,add_time,shop_id
+		FROM t_shop_user
+		where shop_id = #{shop_id}
+		order by `type` asc, id asc
+	</select>
+	<select id="gethopIdsFormShopUsers" parameterType="com.taosearch.model.ShopQuery" resultType="java.lang.Long">
+		SELECT shop_id
+		FROM t_shop_user
+		where 1 = 1
+		<if test="phone != null and phone != ''">
+			and phone LIKE CONCAT('%', #{phone},'%')
+		</if>
+		<if test="qq != null and qq != ''">
+			and qq LIKE CONCAT('%', #{qq},'%')
+		</if>
+		<if test="wechat != null and wechat != ''">
+			and wechat LIKE CONCAT('%', #{wechat},'%')
+		</if>
+	</select>
+	<delete id="deleteShopUser" parameterType="long" >
+		delete
+		FROM t_shop_user
+		where id = #{id}
+	</delete>
+
+</mapper>

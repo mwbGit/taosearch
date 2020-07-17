@@ -9,8 +9,10 @@
 package com.taosearch.service.impl;
 
 import com.taosearch.dao.OrderDao;
+import com.taosearch.dao.ShopDao;
 import com.taosearch.model.*;
 import com.taosearch.service.OrderService;
+import com.taosearch.service.ShopService;
 import com.taosearch.util.ConfigUtils;
 import com.taosearch.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,10 @@ import java.util.*;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao OrderDao;
+    @Autowired
+    private ShopDao shopDao;
+    @Autowired
+    private ShopService shopService;
 
     @Override
     public List<ItemType> getItemTypes() {
@@ -64,6 +70,7 @@ public class OrderServiceImpl implements OrderService {
         }
         result.setCode(1);
         result.setMessage("数据提交成功");
+        shopService.updateStatistic(item.getItem_id());
         return result;
     }
 
@@ -84,7 +91,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ItemInfo getitemInfoById(String item_id) {
-        return OrderDao.getitemInfoById(item_id);
+        ItemInfo itemInfo = OrderDao.getitemInfoById(item_id);
+        if (itemInfo != null && itemInfo.getShop_id() != null) {
+            Shop shop = shopDao.getShopById(itemInfo.getShop_id());
+            if (shop != null) {
+                itemInfo.setShop_name(shop.getName());
+            }
+        }
+        return itemInfo;
     }
 
     @Override
@@ -241,6 +255,7 @@ public class OrderServiceImpl implements OrderService {
         map.put("item_merge", item.getItem_merge());
         map.put("audit_remarks", auditLog.getAudit_remarks());
         int i = OrderDao.updateItemzfje(map);
+        shopService.updateStatistic(item.getItem_id());
         if (i > 0) {
             auditLog.setItem_id(item.getItem_id());
             auditLog.setBefore_audit_status("005");
@@ -338,6 +353,7 @@ public class OrderServiceImpl implements OrderService {
         map.put("after_audit_status", auditLog.getAfter_audit_status());
         map.put("audit_remarks", auditLog.getAudit_remarks());
         int i = OrderDao.updateItemssje(map);
+        shopService.updateStatistic( auditLog.getItem_id());
         if (i > 0) {
             auditLog.setAuditor(user.getUsername());
             int n = OrderDao.saveAuditLog(auditLog);

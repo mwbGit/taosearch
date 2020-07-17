@@ -8,9 +8,14 @@
 <script type="text/javascript">
     var $p_page = "${param.page}";
     var $p_rows = "${param.rows}";
+    var $show_search = "${param.show_search}";
+    var $shop_id = "${param.shop_id}";
     var $ua="${ua}";
     var $team_id="${team_id}";
     $(function() {
+    	if ($show_search != null && $show_search > 0) {
+			$('#search_form').hide();
+		}
         console.log("=========page=====>" + ($p_page == ""));
         console.log("=========rows=====>" + ($p_rows == ""));
         $('#query_splb_start_time_div').datetimepicker({
@@ -49,7 +54,7 @@
 <script src="${ctx }/static/js/_index3.js"></script>
 <div class="col-xs-12 col-sm-12 col-md-12 row">
 	<div class="" id="book_accordion-element">
-		<div class="col-xs-12 col-sm-12 col-md-12">
+		<div class="col-xs-12 col-sm-12 col-md-12" id="search_form">
 
 			<form class=" col-xs-15 col-sm-15 col-md-15" id="query_splb_form" role="form">
 				<table>

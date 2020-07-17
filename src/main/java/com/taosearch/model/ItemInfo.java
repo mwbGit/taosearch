@@ -65,6 +65,33 @@ public class ItemInfo {
 	private String real_image_text;// 实拍图文案
 	private String friend_text;// 朋友圈文案
 	private String head_id;// 团长ID
+	private Long shop_id;// 店铺ID
+	private String shop_name;// 店铺ID
+	private String item_tgsc;// 推广素材
+
+	public String getShop_name() {
+		return shop_name;
+	}
+
+	public void setShop_name(String shop_name) {
+		this.shop_name = shop_name;
+	}
+
+	public Long getShop_id() {
+		return shop_id;
+	}
+
+	public void setShop_id(Long shop_id) {
+		this.shop_id = shop_id;
+	}
+
+	public String getItem_tgsc() {
+		return item_tgsc;
+	}
+
+	public void setItem_tgsc(String item_tgsc) {
+		this.item_tgsc = item_tgsc;
+	}
 
 	public String getItem_id() {
 		return item_id;

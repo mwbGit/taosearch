@@ -9,12 +9,19 @@ var queryParamsData;
 var imgData;
 $(function() {
 	initItemType();
+	searchShop();
 	$("#item_submit_form").html5Validate(function() {
 		submitItemInfo();
 	}, {
 		validate : function() {
 			if ($("#item_type_select").val() == "") {
 				$("#item_type_select").testRemind("请选择商品分类");
+				return false;
+			}
+			var shop_id= $("#shop_id").val();
+			debugger
+			if (shop_id == null || shop_id == "") {
+				$("#shop_id").testRemind("请选择店铺");
 				return false;
 			}
 			var data = serializeObject($("#item_submit_form"));
@@ -26,6 +33,27 @@ $(function() {
 		}
 	});
 });
+function searchShop() {
+	var name = $("#shop_name").val();
+	$.ajax({
+		url : $ctx + '/shop/search?shopId=&shopName=' + name,
+		type: 'POST',
+		async: false,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success : function(datas) {
+			$("#shop_id").html("");
+			for (var i = 0; i < datas.length; i++) {
+				$("#shop_id").append(
+					'<option class="form-control" value="'
+					+ datas[i].id + '">'+ datas[i].name
+					+ '</option>');
+			}
+		}
+	});
+}
+
 function getItemInfo() {
 	console.log("=========>开始逻辑")
 	var item_url = $("#item_url_id").val();
@@ -59,14 +87,14 @@ function initItemType() {
 		type : 'get',
 		async : false,
 		dataType : 'json',
-		success : function(datas) {
+		success : function(data) {
 			$("#item_type_select").html("");
 			$("#item_type_select").append(
 					'<option class="form-control" value="">所有分类</option>');
-			for (var i = 0; i < datas.length; i++) {
+			for (var i = 0; i < data.length; i++) {
 				$("#item_type_select").append(
 						'<option class="form-control" value="'
-								+ datas[i].type_id + '">' + datas[i].type_name
+								+ data[i].type_id + '">' + data[i].type_name
 								+ '</option>');
 			}
 		}

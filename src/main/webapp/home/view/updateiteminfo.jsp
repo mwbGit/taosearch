@@ -63,11 +63,49 @@
         });
         initItemType();
         getItemInfo();
-        $("#item_update_form").html5Validate(function() {
-            updateItemInfo();
-        });
+		$("#item_update_form").html5Validate(function() {
+			updateItemInfo();
+		}, {
+			validate : function() {
+				if ($("#item_type_select").val() == "") {
+					$("#item_type_select").testRemind("请选择商品分类");
+					return false;
+				}
+				if ($("#shop_id").val() == null || $("#shop_id").val() == "" ) {
+					$("#shop_id").testRemind("请选择店铺");
+					return false;
+				}
+				var data = serializeObject($("#item_submit_form"));
+				if (data.item_jhlb == '002' && data.item_jhlj == "") {
+					$("#item_jhlj_id").testRemind("请输入定向连接");
+					return false;
+				}
+				return true;
+			}
+		});
     });
-    function updateItemInfo() {
+	function searchShop(shopId) {
+		var name = $("#shop_name").val();
+		$.ajax({
+			url : $ctx + '/shop/search?shopName=' + name + '&shopId=' + shopId,
+			type: 'POST',
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success : function(datas) {
+				$("#shop_id").html("");
+				for (var i = 0; i < datas.length; i++) {
+					$("#shop_id").append(
+							'<option class="form-control" value="'
+							+ datas[i].id + '">'+ datas[i].name
+							+ '</option>');
+				}
+			}
+		});
+	}
+
+	function updateItemInfo() {
         var data = new FormData($("#item_update_form")[0]);
 	        data.append("item_id", item_id);
         data.append("before_audit_status", before_audit_status);
@@ -176,7 +214,8 @@
                     $("#tr_coupon_rest_num").hide();
                     $("#tr_item_yjbl_id").hide();
                 }
-            }
+				searchShop(data.data.shop_id);
+			}
         });
     };
     $('input[name="coupon_type_id"]').change(function() {
@@ -382,6 +421,7 @@
 						<td>
 							<input placeholder="请输入电话号码" id="phone_id" required name="phone" style="width: 15%"
 								   class="form-control" pattern="^[0-9]*$">
+							<span style="color: #cc0001">&nbsp;&nbsp;*</span>
 						</td>
 					</tr>
 					<tr>
@@ -389,8 +429,26 @@
 						<td class="form-inline">
 							<input placeholder="请输入QQ号码" id="qq_id" required name="qq" style="width: 15%"
 								   class="form-control" pattern="^[0-9]*$">
+							<span style="color: #cc0001">&nbsp;&nbsp;*</span>
 						</td>
 
+					</tr>
+					<tr>
+						<td>推广素材：</td>
+						<td><textarea id="item_tgsc_id"  name="item_tgsc" class="form-control"
+									  style="resize: none; overflow-y: scroll;"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>店铺信息：</td>
+						<td class="form-inline">
+							<select name="shop_id" id="shop_id" style="width: 40%;" class="form-control"></select>
+							<input placeholder="请输入店铺名称" id="shop_name" name="shop_name_search" style="width: 40%"
+								   class="form-control" >
+							<button class="btn btn-primary form-control" type="button" onclick="searchShop(-1)"> 查询
+							</button>
+							<span style="color: #cc0001">&nbsp;&nbsp;*</span>
+						</td>
 					</tr>
 					<tr>
 						<td>收费类型：</td>
