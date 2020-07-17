@@ -147,7 +147,7 @@
 					</c:if>
 					</c:if>
 					 <li id="_zygl"><a href="#" onclick="_zygl()"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;&nbsp;商品汇总</a></li>
-					<li id="_dpxx"><a href="#" onclick="_dpxx()"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;&nbsp;店铺列表</a></li>
+					<li id="_dpxx"><a href="#" onclick="_dpxx()"><i class="glyphicon glyphicon-tower"></i>&nbsp;&nbsp;&nbsp;店铺列表</a></li>
 
 				</ul>
 
