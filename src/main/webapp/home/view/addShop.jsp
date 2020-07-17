@@ -35,6 +35,12 @@
                     }
                 }
             });
+         if (ua != 3) {
+                $('#butSave').hide();
+                $('#shop_name').attr("readonly", "");
+                $('#shop_address').attr("readonly", "");
+                $('#shop_link').attr("readonly", "");
+            }
         }
     }
 
@@ -88,7 +94,7 @@
             async: false,
             dataType: 'json',
             success: function (data) {
-                $("#user_id" + idex + "").val(data);
+                $("#user_id" + idex + "").val(data.data);
                 if (data.code == 1) {
                     $('#alert_dialog_success').html("保存成功");
                     $('#modal_success').modal('show');
@@ -101,60 +107,74 @@
     }
 
     function deleteUser(idex) {
-        var id = $("#user_id" + idex + "").val();
-        $("#user_form" + idex + "").hide();
-        if (id > 0) {
-            $.ajax({
-                url: $ctx + '/shop/user/delete?id=' + id,
-                type: 'get',
-                async: false,
-                dataType: 'json',
-                success: function (r) {
+            var id = $("#user_id" + idex + "").val();
+            $("#user_form" + idex + "").hide();
+            if (id > 0) {
+                if (window.confirm("确定删除?")) {
+                $.ajax({
+                    url: $ctx + '/shop/user/delete?id=' + id,
+                    type: 'get',
+                    async: false,
+                    dataType: 'json',
+                    success: function (r) {
+                    }
+                });
                 }
-            });
-        }
+            }
     }
 
     function initUser(id, type, name, phone, wechat_name, wechat, qq, qq_name) {
+        var read;
+        if (id == 0 || ua == 3 ) {
+            read = '';
+        } else {
+            read = ' readonly ';
+        }
+        var ba;
+        if (type == 0) {
+            ba = "老板"
+        } else {
+            ba = "运营"
+        }
         idex++;
         var table = ' <form class=" col-xs-12 col-sm-12 col-md-12" id="user_form' + idex + '" role="form">\n' +
             '<input name="type" type="hidden" value="' + type + '">' +
-            '<input name="id" id="user_id' + idex + '" type="hidden" value="' + id + '">' +
+            '<input name="id"  id="user_id' + idex + '" type="hidden" value="' + id + '">' +
             '<input class="shop_id" name="shop_id" type="hidden" value="' + item_id + '">' +
             '                    <table style="width: 90%; border-collapse: separate; border-spacing: 10px">\n' +
             '                        <tr>\n' +
             '                            <td>姓名：</td>\n' +
-            '                            <td class="form-inline"><input id="user_name" name="name" value="' + name + '" style="width: 50%"\n' +
+            '                            <td class="form-inline"><input ' + read + ' id="user_name" name="name" value="' + name + '" style="width: 50%"\n' +
             '                                                           class="form-control"><span\n' +
             '                                    style="color: #cc0001">&nbsp;&nbsp;*</span></td>\n' +
             '                            <td>联系电话：</td>\n' +
-            '                            <td class="form-inline"><input id="user_phone" name="phone" value="' + phone + '" style="width: 50%"\n' +
+            '                            <td class="form-inline"><input ' + read + ' id="user_phone" name="phone" value="' + phone + '" style="width: 50%"\n' +
             '                                                           class="form-control"><span\n' +
             '                                    style="color: #cc0001">&nbsp;&nbsp;*</span></td>\n' +
             '                        </tr>\n' +
             '                        <tr>\n' +
             '                            <td>微信昵称：</td>\n' +
-            '                            <td class="form-inline"><input id="user_wecaht_name" name="wechat_name"  value="' + wechat_name + '" style="width: 50%"\n' +
+            '                            <td class="form-inline"><input  ' + read + ' id="user_wecaht_name" name="wechat_name"  value="' + wechat_name + '" style="width: 50%"\n' +
             '                                                           class="form-control"></td>\n' +
             '                            <td>微信号码：</td>\n' +
-            '                            <td class="form-inline"><input id="user_wecaht" name="wechat"  value="' + wechat + '" style="width: 50%"\n' +
+            '                            <td class="form-inline"><input  ' + read + ' id="user_wecaht" name="wechat"  value="' + wechat + '" style="width: 50%"\n' +
             '                                                           class="form-control"></td>\n' +
             '                        </tr>\n' +
             '                        <tr>\n' +
             '                            <td>QQ昵称：</td>\n' +
-            '                            <td class="form-inline"><input id="qq" name="qq_name" value="' + qq_name + '" style="width: 50%"\n' +
+            '                            <td class="form-inline"><input  ' + read + ' id="qq" name="qq_name" value="' + qq_name + '" style="width: 50%"\n' +
             '                                                           class="form-control"></td>\n' +
             '                            <td>QQ号码：</td>\n' +
-            '                            <td class="form-inline"><input id="qq_name" name="qq" value="' + qq + '" style="width: 50%"\n' +
+            '                            <td class="form-inline"><input  ' + read + ' id="qq_name" name="qq" value="' + qq + '" style="width: 50%"\n' +
             '                                                           class="form-control"></td>\n' +
             '                        </tr>'
-        if (ua == 3) {
+        if (ua == 3 || id == 0) {
             table += '                        <tr>\n' +
                 '                            <td></td>\n' +
                 '                            <td colspan="2">\n' +
                 '                                <div class="form-inline">\n' +
                 '                                    <button class="btn btn-primary form-control" type="button" onclick="addShopUser(' + idex + ')">\n' +
-                '                                        <i class="glyphicon glyphicon-saved"></i>保存\n' +
+                '                                        <i class="glyphicon glyphicon-saved"></i>保存'+ba +'信息' +
                 '                                    </button>\n' +
                 '                                    <button class="btn btn-primary form-control" type="button" onclick="deleteUser(' + idex + ')">删除\n' +
                 '                                    </button>\n' +
@@ -206,12 +226,12 @@
                         <td class="form-inline"><input id="shop_link" name="link" style="width: 100%"
                                                        class="form-control"></td>
                     </tr>
-                    <tr>
+                    <tr id="butSave">
                         <td></td>
                         <td>
                             <div class="form-inline">
                                 <button class="btn btn-primary form-control" type="button" onclick="addShop()">
-                                    <i class="glyphicon glyphicon-saved"></i>保存
+                                    <i class="glyphicon glyphicon-saved"></i>保存店铺信息
                                 </button>
                                 <button class="btn btn-primary form-control" type="reset">
                                     <i class="glyphicon glyphicon-repeat"></i>重置

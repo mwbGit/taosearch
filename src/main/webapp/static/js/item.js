@@ -19,7 +19,6 @@ $(function() {
 				return false;
 			}
 			var shop_id= $("#shop_id").val();
-			debugger
 			if (shop_id == null || shop_id == "") {
 				$("#shop_id").testRemind("请选择店铺");
 				return false;
